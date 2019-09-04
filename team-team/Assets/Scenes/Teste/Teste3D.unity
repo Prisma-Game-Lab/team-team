@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,8 +254,8 @@ GameObject:
   - component: {fileID: 954278351}
   - component: {fileID: 954278350}
   - component: {fileID: 954278349}
-  - component: {fileID: 954278348}
   - component: {fileID: 954278354}
+  - component: {fileID: 954278348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -272,11 +272,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 954278347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94dcc29966180254c9b571c0783dbbd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 46f5dc7ff93306d44bc690374ae1a60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  turnSpeed: 3
+  holdpoint: {fileID: 455139831}
+  holding: 0
+  rb: {fileID: 1912850406}
+  throwSpeed: 100
 --- !u!54 &954278349
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -376,13 +378,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 954278347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f4fe716efeff14bab5b6cba89608ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 03eeca6b1fd682d46b20d9b83015948d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdpoint: {fileID: 455139831}
-  holding: 0
-  rb: {fileID: 1912850406}
-  throwSpeed: 5
+  moveSpeed: 5
+  turnSpeed: 10
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0aade419a6cde4c4c80cea8dffc7ccbc, type: 2}
+  - {fileID: 2100000, guid: 1a21f3a1649219f43836e2560cfc1646, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -608,7 +608,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f08d5d0a758ece4880e84c975bbe679, type: 2}
+  - {fileID: 2100000, guid: 719035147332d9e41944a242749ef457, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -663,7 +663,6 @@ GameObject:
   - component: {fileID: 1912850403}
   - component: {fileID: 1912850402}
   - component: {fileID: 1912850401}
-  - component: {fileID: 1912850405}
   - component: {fileID: 1912850406}
   m_Layer: 0
   m_Name: Potion
@@ -702,7 +701,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 939869e6941fac74da22a2b58d7309d9, type: 2}
+  - {fileID: 2100000, guid: 2b6f1e3f5883c3148bce3df387ebd65a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -745,18 +744,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1912850405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912850400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ae0c39983424f448e5ccbbfe86cbfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1912850406
 Rigidbody:
   m_ObjectHideFlags: 0
