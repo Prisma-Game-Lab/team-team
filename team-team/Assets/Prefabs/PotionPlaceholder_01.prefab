@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5372329838928065120}
   m_Layer: 0
   m_Name: PotionPlaceholder_01
-  m_TagString: Respawn
+  m_TagString: potion_placeholder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

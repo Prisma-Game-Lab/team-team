@@ -13,7 +13,7 @@ public class MovementControllerPlaceholder : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Respawn"))
+        if (other.gameObject.CompareTag("potion_placeholder"))
         {
             Destroy(other.gameObject);
             GameController.potionCount -= 1;

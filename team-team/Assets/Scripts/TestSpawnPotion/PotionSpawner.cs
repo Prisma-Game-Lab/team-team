@@ -20,7 +20,7 @@ public class PotionSpawner : MonoBehaviour
     public GameObject[] Obstacles;
 
     //array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
-    public GameObject[] potionVariants;
+    private GameObject[] potionVariants = GameController.potionVariants;
 
     //PLACEHOLDER: variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
     public float potionSize;
