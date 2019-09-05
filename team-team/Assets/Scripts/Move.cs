@@ -27,15 +27,25 @@ public class Move : MonoBehaviour
 
         //Mantem posição
         if (Mathf.Abs(moveHon) < 1 && Mathf.Abs(moveVer) < 1)
+        {
             return;
-     
+        }
+
+        
         //Calcula direção
-        angle = Mathf.Atan2(moveHon, moveVer);
-        angle = Mathf.Rad2Deg * angle;
-        angle += cam.eulerAngles.y;
+        //angle = Mathf.Atan2(moveVer, moveHon);
+        //angle = Mathf.Rad2Deg * angle;
+
+        //angle += cam.eulerAngles.y; //não entendi o que exatamente a camera tem a ver com essa rotação. Esse valor é 0 de qquer forma Ass: Krauss
     
         //Rotaciona o jogador
-        rot = Quaternion.Euler(0, angle, 0);
+        //rot = Quaternion.Euler(0, angle, 0);
+        
+        //calcula rotação
+        rot = Quaternion.LookRotation(move, Vector3.up);
+        //rotaciona jogador
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed);
+
+
     }
 }
