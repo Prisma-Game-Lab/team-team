@@ -17,10 +17,12 @@ public class PotionSpawner : MonoBehaviour
     public float SpawnY;
 
     //array contendo obstaculos onde não é possivel o aparecimento das poções
+        //acho que no final das contas, não é necessário esse array né? Ass: Krauss
     public GameObject[] Obstacles;
 
     //array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
-    private GameObject[] potionVariants = GameController.potionVariants;
+        //é uma boa já saber que vamos trabalhar com probabilidades, mas depois devemos pensar num jeito melhor de controlá-las, botar elementos repetidos na lista é meio ruim. Talvez pesos, sl. Ass: Krauss 
+    private GameObject[] potionVariants;
 
     //PLACEHOLDER: variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
     public float potionSize;
@@ -29,6 +31,8 @@ public class PotionSpawner : MonoBehaviour
     private Transform baseTransform;
     void Start()
     {
+        potionVariants = GameController.Instance.potionVariants;
+        
         baseTransform = GetComponent<Transform>();
         //cria o numero de poções igual ao máximo no inicio
         while (GameController.potionCount < maxPotions)

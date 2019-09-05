@@ -539,6 +539,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cef119c2c32d1344a2722c27dc46bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveSize: 0
+  potionVariants:
+  - {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621, type: 3}
+  - {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621, type: 3}
+  - {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293, type: 3}
+  numTeams: 2
 --- !u!114 &2135301348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,9 +566,6 @@ MonoBehaviour:
   Obstacles:
   - {fileID: 1410044661}
   - {fileID: 420041774}
-  potionVariants:
-  - {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293, type: 3}
-  - {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621, type: 3}
   potionSize: 1
 --- !u!4 &2135301349
 Transform:

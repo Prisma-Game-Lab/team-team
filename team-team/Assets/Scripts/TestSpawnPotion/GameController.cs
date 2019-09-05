@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public int objectiveSize;
 
     //variações de poções disponiveis
-    public static GameObject[] potionVariants;
+    public GameObject[] potionVariants;
 
     //numero de times e pontuações atuais de cada time
     public int numTeams;
@@ -20,8 +20,29 @@ public class GameController : MonoBehaviour
     //vetor que armazena o objetivo, gerado em Start()
     private static int[] objective;
 
+    //singleton stuff
+    public static GameController Instance {get; private set;}
+    void Awake()
+    {
+        //se não há alguma outra instancia desta classe, me registro
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        //se há alguma outra já registrada, me destruo
+        else
+        {
+            GameObject.Destroy(this);
+        }
+        //desta maneira, sempre só haverá 1 GameController na cena(padrão singleton)
+    }
+
+
+
     void Start()
     {
+        Debug.Assert(potionVariants.Length > 0);
+        
         //gera aleatoriamente a sequencia necessária para vitoria
         objective = new int[objectiveSize];
 
@@ -44,7 +65,7 @@ public class GameController : MonoBehaviour
         //busca a cada frame se algum time completou o objetivo
         for (int i = 0; i < numTeams; i++)
         {
-            if (teamScores[i] == objectiveSize)
+            if (teamScores[i] >= objectiveSize)
             {
                 Debug.Log("team " + i + "wins!");
                 break;
