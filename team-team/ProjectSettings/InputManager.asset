@@ -369,9 +369,9 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
-    axis: 0
+    axis: 1
     joyNum: 1
   - serializedVersion: 3
     m_Name: VerticalLJoystick1
@@ -385,9 +385,9 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
-    axis: 0
+    axis: 1
     joyNum: 2
   - serializedVersion: 3
     m_Name: VerticalLJoystick2
@@ -401,9 +401,9 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
-    axis: 0
+    axis: 1
     joyNum: 3
   - serializedVersion: 3
     m_Name: VerticalLJoystick3
@@ -417,7 +417,71 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
-    axis: 0
+    axis: 1
     joyNum: 4
+  - serializedVersion: 3
+    m_Name: HorizontalLKeyboard0
+    descriptiveName: eixo das teclas ad
+    descriptiveNegativeName: 
+    negativeButton: a
+    positiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.0001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: HorizontalLKeyboard1
+    descriptiveName: eixo das teclas left right
+    descriptiveNegativeName: 
+    negativeButton: left
+    positiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.0001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: VerticalLKeyboard0
+    descriptiveName: eixo das teclas ws
+    descriptiveNegativeName: 
+    negativeButton: s
+    positiveButton: w
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.0001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: VerticalLKeyboard1
+    descriptiveName: eixo das teclas up down
+    descriptiveNegativeName: 
+    negativeButton: down
+    positiveButton: up
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.0001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0

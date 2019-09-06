@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Move : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
@@ -9,6 +10,8 @@ public class Move : MonoBehaviour
     float angle;
     Quaternion rot;
     Transform cam;
+
+    public ControllerScheme controllerScheme;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +23,10 @@ public class Move : MonoBehaviour
     void Update()
     {
         //Movimenta jpgador
-        float moveHon = Input.GetAxisRaw("Horizontal");
-        float moveVer = Input.GetAxisRaw("Vertical");
+        //mudei as funções de Input.GetAxisRaw para InputManager.GetAxis, usando a classe que fiz para lidar com controles. Ass: Krauss
+        float moveHon = InputManager.GetAxis(controllerScheme, "HorizontalL");
+        float moveVer = InputManager.GetAxis(controllerScheme, "VerticalL");
+        Debug.Log(moveVer);
         Vector3 move = new Vector3(moveHon, 0.0f, moveVer);
         transform.position += move * Time.deltaTime * moveSpeed;
 

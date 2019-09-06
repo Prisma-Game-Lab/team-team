@@ -10,7 +10,7 @@ Autores: Arthur, Krauss
 
  */
 public class Throw : MonoBehaviour
-{
+{    
     public Transform holdpoint;
     public bool holding = false;
     

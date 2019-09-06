@@ -12,6 +12,7 @@ Autores: Krauss,
 
 
 // a controller scheme is defined as the pair controller mode and index
+[System.Serializable]
 public struct ControllerScheme
 {
     public ControllerMode mode;
@@ -20,6 +21,7 @@ public struct ControllerScheme
 
 //controller mode can be either keyboard or joystick
 //we define a maximum of two keyboards and 4 joysticks, this beeing implemented below and in the input settings
+[System.Serializable]
 public enum ControllerMode{Keyboard, Joystick};
 
 public class InputManager : MonoBehaviour
@@ -50,8 +52,12 @@ public class InputManager : MonoBehaviour
             //destroy second instance, ie this
             GameObject.Destroy(this);
         }
+
+        joystickNames = Input.GetJoystickNames();
+        
     }
     
+   
     void Start()
     {
         
@@ -62,17 +68,17 @@ public class InputManager : MonoBehaviour
     {
         joystickNames = Input.GetJoystickNames();
         
-        Debug.Log(Input.GetJoystickNames().Length);
-        for (uint i = 0; i < joystickNames.Length; i++)
-        {
-            ControllerScheme cs = new ControllerScheme();
-            cs.mode = ControllerMode.Joystick;
-            cs.index = i;
-            if(IsControllerConnected(cs))
-            {
-                Debug.Log(GetIdString(cs) + " h:" + GetAxis(cs, "HorizontalL") + " v:" + GetAxis(cs, "VerticalL"));
-            }
-        }
+        // Debug.Log(Input.GetJoystickNames().Length);
+        // for (uint i = 0; i < joystickNames.Length; i++)
+        // {
+        //     ControllerScheme cs = new ControllerScheme();
+        //     cs.mode = ControllerMode.Joystick;
+        //     cs.index = i;
+        //     if(IsControllerConnected(cs))
+        //     {
+        //         Debug.Log(GetIdString(cs) + " h:" + GetAxis(cs, "HorizontalL") + " v:" + GetAxis(cs, "VerticalL"));
+        //     }
+        // }
         
     }
 
