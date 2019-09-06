@@ -6,7 +6,7 @@ using UnityEngine;
 /*
 Throw: script que implementa o comportamento de um player segurar objetos e poder arremessá-los
 
-Autores: Arthur, Krauss
+Autores: Arthur, Krauss, Arthus James
 
  */
 public class Throw : MonoBehaviour
@@ -18,6 +18,10 @@ public class Throw : MonoBehaviour
         //Além disso, é importante que ela seja setada quando o player pega uma poção, senão ele só poderia pegar uma única poção durante o jogo
     private Rigidbody potionRigidbody;
     public float throwSpeed = 100.0f;
+
+    //J: variavel que carrega a qual time o jogador pertence, e o script da poção com que se está interagindo
+    public int throwerTeam;
+    private PotColi potionScript = null;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +54,9 @@ public class Throw : MonoBehaviour
                 potionRigidbody.gameObject.transform.SetParent(null);
                 //potionRigidbody.useGravity = true;
                 holding = false;
+
+                //J: altera o valor Thrown da poção para true
+                potionScript.setThrown(true);
             }
             
         }
@@ -69,6 +76,10 @@ public class Throw : MonoBehaviour
             other.gameObject.transform.position = holdpoint.position;
             potionRigidbody = other.gameObject.GetComponent<Rigidbody>();
             potionRigidbody.isKinematic = false;
+
+            //J: ãdquire script da poção arremessada e altera o valor de qual time carrega/arremessa a poção
+            potionScript = other.GetComponent<PotColi>();
+            potionScript.setThrower(throwerTeam);
         }
     }
 }

@@ -26,7 +26,7 @@ public class Move : MonoBehaviour
         //mudei as funções de Input.GetAxisRaw para InputManager.GetAxis, usando a classe que fiz para lidar com controles. Ass: Krauss
         float moveHon = InputManager.GetAxis(controllerScheme, "HorizontalL");
         float moveVer = InputManager.GetAxis(controllerScheme, "VerticalL");
-        Debug.Log(moveVer);
+        //Debug.Log(moveVer);
         Vector3 move = new Vector3(moveHon, 0.0f, moveVer);
         transform.position += move * Time.deltaTime * moveSpeed;
 
