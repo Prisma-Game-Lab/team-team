@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1028561590935306877}
   - component: {fileID: -9073629903609581433}
   - component: {fileID: 4114396337426120968}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Caldeirao
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   SpawnY: 0.75
   Obstacles: []
   potionSize: 0.5
+  maxAttempts: 0
 --- !u!114 &4114396337426120968
 MonoBehaviour:
   m_ObjectHideFlags: 0

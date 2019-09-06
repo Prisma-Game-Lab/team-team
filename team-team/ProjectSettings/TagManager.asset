@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - potion_placeholder
+  - Target
+  - Potion
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - floor
+  - notfloor
   - 
   - 
   - 

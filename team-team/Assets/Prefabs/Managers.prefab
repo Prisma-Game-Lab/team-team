@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7763991181694663606}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7763991182602056284}
   - component: {fileID: 7763991182602056285}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}

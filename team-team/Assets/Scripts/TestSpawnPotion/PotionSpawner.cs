@@ -16,25 +16,29 @@ public class PotionSpawner : MonoBehaviour
     public float maxSpawnZ;
     public float SpawnY;
 
-    //array contendo obstaculos onde não é possivel o aparecimento das poções
+    //J:array contendo obstaculos onde não é possivel o aparecimento das poções
         //acho que no final das contas, não é necessário esse array né? Ass: Krauss
     public GameObject[] Obstacles;
 
-    //array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
+    //J:array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
         //é uma boa já saber que vamos trabalhar com probabilidades, mas depois devemos pensar num jeito melhor de controlá-las, botar elementos repetidos na lista é meio ruim. Talvez pesos, sl. Ass: Krauss 
     private GameObject[] potionVariants;
 
-    //PLACEHOLDER: variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
+    
+    //variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
     public float potionSize;
 
-    //PLACEHOLDER: armazena Transform do GameManager para usar como base para rotação inicial da poção
+    //J: PLACEHOLDER variavel de failsafe pra evitar que o editor crashe caso potionSize seja grande demais para adicionar todas as poções na região correta
+    public int maxAttempts;
+    //J: armazena Transform do objeto gerenciador do spawn para usar como base para rotação inicial da poção
     private Transform baseTransform;
+
     void Start()
     {
         potionVariants = GameController.Instance.potionVariants;
         
         baseTransform = GetComponent<Transform>();
-        //cria o numero de poções igual ao máximo no inicio
+        //J: cria o numero de poções igual ao máximo no inicio
         while (GameController.potionCount < maxPotions)
         {
             spawnPotion();
@@ -44,7 +48,7 @@ public class PotionSpawner : MonoBehaviour
     
     void Update()
     {
-        //reestoca poções no jogo
+        //J: reestoca poções no jogo
         if (GameController.potionCount < maxPotions)
         {
             spawnPotion();
@@ -56,14 +60,17 @@ public class PotionSpawner : MonoBehaviour
         int chosenPotion = 0;
         float spawnX = 0.0f;
         float spawnZ = 0.0f;
+
+        //J: variavel que deve garantir que não entrará em loop infinito
+        int attempts = 0;
         do {
-            //escolhe aleatoriamente a poção que surgirá e a sua posição, dentro do limite definido
+            //J: escolhe aleatoriamente a poção que surgirá e a sua posição, dentro do limite definido
             chosenPotion = Random.Range(0, potionVariants.Length);
             spawnX = Random.Range(minSpawnX, maxSpawnX);
             spawnZ = Random.Range(minSpawnZ, maxSpawnZ);
-
-        } while (Physics.CheckSphere(new Vector3(spawnX,SpawnY,spawnZ),potionSize));
-
+            attempts++;
+            //J: muda a posição caso exista um objeto dentro da area definida, a não ser que tenha tentadov vezes demais
+        } while (Physics.CheckSphere(new Vector3(spawnX,SpawnY,spawnZ),potionSize,9)||attempts <= maxAttempts);
         Instantiate(potionVariants[chosenPotion], new Vector3(spawnX, SpawnY, spawnZ), baseTransform.rotation);
         GameController.potionCount += 1;
     }
