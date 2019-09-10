@@ -88,18 +88,6 @@ public class InputManager : MonoBehaviour
 
     */
 
-    //retorna identicamente à Input.GetKeyDown, mas somente usando o controle especificado
-    //também retorna false se o controle estiver desconectado
-    public static bool GetKeyDown(ControllerScheme controller, string buttonName)
-    {
-        if(IsControllerConnected(controller))
-        {
-            string str = buttonName + GetIdString(controller);
-            return Input.GetKeyDown(str);
-        }
-        else return false;
-    }
-
     //retorna identicamente à Input.GetAxis, mas somente usando o controle especificado
     //também retorna false se o controle estiver desconectado
     public static float GetAxis(ControllerScheme controller, string axisName)
@@ -110,6 +98,36 @@ public class InputManager : MonoBehaviour
             return Input.GetAxis(str);
         }
         else return 0.0f;
+    }
+
+    public static bool GetKeyDown(ControllerScheme controller, string axisName)
+    {
+        if(IsControllerConnected(controller))
+        {
+            //um hardcode temporário:
+            if(controller.mode == ControllerMode.Joystick)
+            {
+                switch(controller.index)
+                {
+                    case 0:
+                        return Input.GetKeyDown(KeyCode.Joystick1Button0);
+                    case 1:
+                        return Input.GetKeyDown(KeyCode.Joystick2Button0);
+                    case 2:
+                        return Input.GetKeyDown(KeyCode.Joystick3Button0);
+                    case 3:
+                        return Input.GetKeyDown(KeyCode.Joystick4Button0);
+                    default:
+                        return false;
+                }
+            }
+            else
+            {
+                string str = axisName + GetIdString(controller);
+                return Input.GetAxis(str) > 0;
+            }
+        }
+        else return false;
     }
 
     //for a given controller scheme, tells if it is connected or not

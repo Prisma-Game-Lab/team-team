@@ -23,10 +23,13 @@ public class Throw : MonoBehaviour
     public int throwerTeam;
     private PotColi potionScript = null;
 
+    // K: provavalmente uma referência temporária, pq depois eu poderia tirar a variável de controle para outro script
+    private Move _move;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _move = this.GetComponent<Move>();
     }
 
     // Update is called once per frame
@@ -41,13 +44,11 @@ public class Throw : MonoBehaviour
             potionRigidbody.transform.position = holdpoint.position;
             potionRigidbody.useGravity = false;
             
-            if (Input.GetKeyDown("space"))
+            if (InputManager.GetKeyDown(_move.controllerScheme, "Action1"))
             { 
                 //arremessa a poção que estava sendo segurada
                 
-                //arthur, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita! Ass: Krauss
-                //old: potionRigidbody.velocity = new Vector3(transform.localScale.x, 0.0f, 0.0f) * throwSpeed;
-                
+                //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
                 Vector3 throwDirection = transform.forward;
                 Debug.Log(throwDirection);
                 potionRigidbody.velocity =  throwDirection * throwSpeed;
@@ -68,7 +69,8 @@ public class Throw : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //se o player colidir com a poção && o player não estiver segurando outra poção,
-        if(other.gameObject.CompareTag("Potion") && holding == false)
+        PotColi pc = other.GetComponent<PotColi>();
+        if(other.gameObject.CompareTag("Potion") && holding == false && pc != null)
         {
             //segura esta poção:
             holding = true;
@@ -77,8 +79,8 @@ public class Throw : MonoBehaviour
             potionRigidbody = other.gameObject.GetComponent<Rigidbody>();
             potionRigidbody.isKinematic = false;
 
-            //J: ãdquire script da poção arremessada e altera o valor de qual time carrega/arremessa a poção
-            potionScript = other.GetComponent<PotColi>();
+            //J: adquire script da poção arremessada e altera o valor de qual time carrega/arremessa a poção
+            potionScript = pc;
             potionScript.setThrower(throwerTeam);
         }
     }
