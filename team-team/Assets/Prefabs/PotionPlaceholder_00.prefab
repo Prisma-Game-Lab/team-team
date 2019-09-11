@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1883183894977849145}
   - component: {fileID: 7006894993104714739}
   - component: {fileID: -7469703637447182985}
+  - component: {fileID: 3466001334096569926}
   m_Layer: 9
   m_Name: PotionPlaceholder_00
   m_TagString: Potion
@@ -123,3 +124,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 0
+--- !u!114 &3466001334096569926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245802354034773144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9e9d187a4e4c749aace4dccbfa10a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 5

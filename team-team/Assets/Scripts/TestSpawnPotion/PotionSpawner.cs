@@ -22,7 +22,7 @@ public class PotionSpawner : MonoBehaviour
 
     //J:array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
         //é uma boa já saber que vamos trabalhar com probabilidades, mas depois devemos pensar num jeito melhor de controlá-las, botar elementos repetidos na lista é meio ruim. Talvez pesos, sl. Ass: Krauss 
-    private GameObject[] potionVariants;
+    public GameObject[] potionVariants;
 
     
     //variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
