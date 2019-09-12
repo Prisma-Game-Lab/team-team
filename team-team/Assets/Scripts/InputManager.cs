@@ -109,14 +109,15 @@ public class InputManager : MonoBehaviour
             {
                 switch(controller.index)
                 {
+                    //quadrado ou R1 num PS4
                     case 0:
-                        return Input.GetKeyDown(KeyCode.Joystick1Button0);
+                        return Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
                     case 1:
-                        return Input.GetKeyDown(KeyCode.Joystick2Button0);
+                        return Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
                     case 2:
-                        return Input.GetKeyDown(KeyCode.Joystick3Button0);
+                        return Input.GetKeyDown(KeyCode.Joystick3Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
                     case 3:
-                        return Input.GetKeyDown(KeyCode.Joystick4Button0);
+                        return Input.GetKeyDown(KeyCode.Joystick4Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
                     default:
                         return false;
                 }

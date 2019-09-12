@@ -11,25 +11,32 @@ Autores: Arthur, Krauss, Arthus James
  */
 public class Throw : MonoBehaviour
 {    
+    [Header("Referências do Unity(não mexer, só se você souber o que está fazendo)")]
     public Transform holdpoint;
     public bool holding = false;
-    
+
+    [Header("Variáveis de ajuste da gameplay. Ver tooltips para mais infos")]
+    [Tooltip("Variável para ajustar a velocidade em que o jogador arremessa a poção")]
+    public float throwSpeed = 100.0f;
+    [Tooltip("variavel que determina a qual time o jogador pertence")]
+    //J: , e o script da poção com que se está interagindo
+    public int throwerTeam;
+
     //Arthur, é de fato importante ter essa variável Rigidbody aqui. Mas é importante que o nome dela seja potionRigidbody, ou algo mais descritivo que só rb. Tomei a liberdade de mudar. Ass: Krauss
         //Além disso, é importante que ela seja setada quando o player pega uma poção, senão ele só poderia pegar uma única poção durante o jogo
     private Rigidbody potionRigidbody;
-    public float throwSpeed = 100.0f;
+    
 
-    //J: variavel que carrega a qual time o jogador pertence, e o script da poção com que se está interagindo
-    public int throwerTeam;
+    
     private PotColi potionScript = null;
 
-    // K: provavalmente uma referência temporária, pq depois eu poderia tirar a variável de controle para outro script
-    private Move _move;
+    //classe bobinha que armazena configuração de controle do jogador
+    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        _move = this.GetComponent<Move>();
+        playerInput = this.GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -44,7 +51,7 @@ public class Throw : MonoBehaviour
             potionRigidbody.transform.position = holdpoint.position;
             potionRigidbody.useGravity = false;
             
-            if (InputManager.GetKeyDown(_move.controllerScheme, "Action1"))
+            if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1"))
             { 
                 //arremessa a poção que estava sendo segurada
                 

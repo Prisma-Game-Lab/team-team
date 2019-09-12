@@ -3,38 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[RequireComponent(typeof(PlayerInput))]
 public class Move : MonoBehaviour
 {
+    [Header("Variáveis de customização do movimento do jogador. Ver tooltips para mais informações")]
+    
+    [Tooltip("A velocidade base de movimentação do player")]
     public float moveSpeed = 5.0f;
+    [Tooltip("Determina se o jogador deve tentar rotacionar automaticamente quando é movido. Só é válido para joysticks, já que no teclado isso acontece de qualquer jeito")]
+    public bool AutoRotate;
+    [Tooltip("Caso ShouldAutoRotate esteja ativo, a velocidade base de rotação do jogador")]
     public float turnSpeed = 10.0f;
-    float angle;
-    Quaternion rot;
-    Transform cam;
 
-    public ControllerScheme controllerScheme;
+    private float angle;
+    private Quaternion rot;
+
+    //classe boba usada para centralizar configurações de controle do player. Acessada por esta classe pq isso afeta a movimentação
+    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main.transform;
+        playerInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Movimenta jpgador
+        //Movimenta jogador
         //mudei as funções de Input.GetAxisRaw para InputManager.GetAxis, usando a classe que fiz para lidar com controles. Ass: Krauss
-        float moveHon = InputManager.GetAxis(controllerScheme, "HorizontalL");
-        float moveVer = InputManager.GetAxis(controllerScheme, "VerticalL");
+        float moveHon = InputManager.GetAxis(playerInput.controllerScheme, "HorizontalL");
+        float moveVer = InputManager.GetAxis(playerInput.controllerScheme, "VerticalL");
         //Debug.Log(moveVer);
         Vector3 move = new Vector3(moveHon, 0.0f, moveVer);
         transform.position += move * Time.deltaTime * moveSpeed;
-
-        //Mantem posição
-        if (Mathf.Abs(moveHon) < 1 && Mathf.Abs(moveVer) < 1)
-        {
-            return;
-        }
 
         
         //Calcula direção
@@ -46,10 +48,39 @@ public class Move : MonoBehaviour
         //Rotaciona o jogador
         //rot = Quaternion.Euler(0, angle, 0);
         
-        //calcula rotação
-        rot = Quaternion.LookRotation(move, Vector3.up);
-        //rotaciona jogador
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed);
+        //se o player está usando um controle para jogar,
+        if(playerInput.controllerScheme.mode == ControllerMode.Joystick)
+        {
+            float h = InputManager.GetAxis(playerInput.controllerScheme, "HorizontalR");
+            float v = InputManager.GetAxis(playerInput.controllerScheme, "VerticalR");
+            Vector2 input = new Vector2(h,v);
+            //se o player está usando o analógico direito para se mexer, imediatamente vai para aquela orientação(por ora pelo menos)
+            if(input.magnitude >= 0.6f) //botei um thrshold de 0.6 pra ele não ficar rodando a esmo e ficar sempre na direção do último input
+            {
+                float angle_rad = Mathf.Atan2(input.x, input.y);
+                Quaternion rotation = new Quaternion();
+                rotation.eulerAngles = new Vector3(0.0f, angle_rad * Mathf.Rad2Deg, 0.0f);
+                transform.rotation = rotation;
+            }
+            else if(AutoRotate && move.magnitude > 0)
+            {
+                //auto-rotaciona
+                rot = Quaternion.LookRotation(move, Vector3.up);
+                //rotaciona jogador
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed);    
+        
+            }
+        }
+        else if(move.magnitude > 0)
+        {
+            //se o player está controlando no teclado, a única maneira de rotacionar é autorotacionando.
+
+            //calcula rotação
+            rot = Quaternion.LookRotation(move, Vector3.up);
+            //rotaciona jogador
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed);    
+        
+        }
 
 
     }

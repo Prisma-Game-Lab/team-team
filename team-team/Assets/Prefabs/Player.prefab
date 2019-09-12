@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 889521016780103399}
   - component: {fileID: 889521016780103416}
   - component: {fileID: 889521016780103398}
+  - component: {fileID: 375684883}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -156,9 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   turnSpeed: 10
-  controllerScheme:
-    mode: 1
-    index: 0
 --- !u!114 &889521016780103398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +173,18 @@ MonoBehaviour:
   holding: 0
   throwSpeed: 10
   throwerTeam: 0
+--- !u!114 &375684883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889521016780103393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6632fcfbf95af354c8ae2b945f336ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerScheme:
+    mode: 1
+    index: 0
