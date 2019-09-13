@@ -46,25 +46,32 @@ public class Throw : MonoBehaviour
         if (holding)
         {
             Debug.Assert(potionRigidbody != null);
-
-            //seta a posição da poção
-            potionRigidbody.transform.position = holdpoint.position;
-            potionRigidbody.useGravity = false;
-            
-            if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1"))
-            { 
-                //arremessa a poção que estava sendo segurada
-                
-                //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
-                Vector3 throwDirection = transform.forward;
-                Debug.Log(throwDirection);
-                potionRigidbody.velocity =  throwDirection * throwSpeed;
-                potionRigidbody.gameObject.transform.SetParent(null);
-                //potionRigidbody.useGravity = true;
+            //J: Corrige o erro de ficar impedido de pegar poção nova
+            if (potionRigidbody == null)
+            {
                 holding = false;
+            }
+            else
+            {
+                //seta a posição da poção
+                potionRigidbody.transform.position = holdpoint.position;
+                potionRigidbody.useGravity = false;
 
-                //J: altera o valor Thrown da poção para true
-                potionScript.setThrown(true);
+                if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1"))
+                {
+                    //arremessa a poção que estava sendo segurada
+
+                    //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
+                    Vector3 throwDirection = transform.forward;
+                    Debug.Log(throwDirection);
+                    potionRigidbody.velocity = throwDirection * throwSpeed;
+                    potionRigidbody.gameObject.transform.SetParent(null);
+                    //potionRigidbody.useGravity = true;
+                    holding = false;
+
+                    //J: altera o valor Thrown da poção para true
+                    potionScript.setThrown(true);
+                }
             }
             
         }
