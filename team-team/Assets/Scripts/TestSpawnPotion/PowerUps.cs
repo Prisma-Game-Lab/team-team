@@ -8,9 +8,10 @@ public class PowerUps : MonoBehaviour
     public float duration = 5.0f;
 
     //Arthur: Aplica o efeito das poções quando elas são coletadas (ainda vou mudar pra funcionar com colisão com o player)
+        //J: ele aplicava o efeito da poção no player que pegasse porque aplica o efeito quando colide com player. Agora só aplica quando a orbe ja foi lançada
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && this.gameObject.GetComponent<PotColi>().getThrown())
         {
             if(this.gameObject.GetComponent<PotColi>().potionType == 0)
                 StartCoroutine(SpeedUp(other));
@@ -27,7 +28,10 @@ public class PowerUps : MonoBehaviour
         Move info = other.GetComponent<Move>();
         info.moveSpeed = maxSpeed;
 
+        Debug.Log("Acelerou");
         yield return new WaitForSeconds(duration);
+
+        Debug.Log("Voltou a velocidade normal");
 
         info.moveSpeed = minSpeed;
    
@@ -41,9 +45,12 @@ public class PowerUps : MonoBehaviour
         Move info = other.GetComponent<Move>();
         info.moveSpeed = minSpeed;
 
-        yield return new WaitForSeconds(duration);
 
+        Debug.Log("Slow");
+        yield return new WaitForSeconds(duration);
+        Debug.Log("Voltou a velocidade normal");
         info.moveSpeed = normalSpeed;
 
     }
+            //J: aparentemente pesquisei aqui e a duração das orbes nunca acaba porque o objeto que conta o tempo ta sendo destruido. temos que encontrar uma solução diferente depois
 }

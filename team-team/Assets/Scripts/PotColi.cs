@@ -27,6 +27,10 @@ public class PotColi : MonoBehaviour
     {
         thrower = newThrower;
     }
+    public bool getThrown()
+    {
+        return thrown;
+    }
     public void setThrown(bool newThrown)
     {
         thrown = newThrown;

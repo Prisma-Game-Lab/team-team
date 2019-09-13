@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         Debug.Assert(potionVariants.Length > 0);
         //J: Inicializa texto do objetivo na UI
         Debug.Assert(DisplayGoal != null);
-        DisplayGoal.text = "Sequencia: ";
+        DisplayGoal.text = "Receita: ";
 
         
         //J: gera aleatoriamente a sequencia necessária para vitoria
@@ -118,27 +118,7 @@ public class GameController : MonoBehaviour
         {
             DisplayP4.text = "Alvo do jogador 4:" + orbNames[objective[teamScores[3]]].ToString();
         }
-
-        //J: busca a cada frame se algum time completou o objetivo
-        /*for (int i = 0; i < numTeams; i++ )
-        {
-
-            Debug.Log("team " + i + " total: " + teamScores[i]);
-            if (teamScores[i] >= objectiveSize && !gameEnd)
-            {
-                Debug.Log("team " + i + " wins!");
-                gameEnd = true;
-
-                DisplayP1 = null;
-                DisplayP2 = null;
-                DisplayP3 = null;
-                DisplayP4 = null;
-                i++;
-                DisplayGoal.text = "Jogador " + i.ToString() + " ganhou!";
-
-                break;
-            }
-        }*/
+        
     }
     private void OnTriggerEnter(Collider other)
     {
