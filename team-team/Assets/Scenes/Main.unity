@@ -560,7 +560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!1 &375684882 stripped
 GameObject:
@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 1028561590935306864, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1028561590935306864, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
@@ -756,6 +756,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1028561590935306864, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028561590935306864, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028561590935306864, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028561590935306879, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: be8196b876911524490ae87aff549e87,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a756a0457544b154fa1e140b3d740dd3, type: 3}
 --- !u!1 &816253649 stripped
@@ -1215,11 +1236,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: b5ce51f13b9a1ae42a214b8bec6e29bf,
-        type: 3}
-      propertyPath: m_Name
-      value: "po\xE7o 01"
-      objectReference: {fileID: 0}
     - target: {fileID: -8684251187902555887, guid: b5ce51f13b9a1ae42a214b8bec6e29bf,
         type: 3}
       propertyPath: m_IsActive
@@ -1394,6 +1410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: b5ce51f13b9a1ae42a214b8bec6e29bf,
+        type: 3}
+      propertyPath: m_Name
+      value: "po\xE7o 01"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ce51f13b9a1ae42a214b8bec6e29bf, type: 3}
