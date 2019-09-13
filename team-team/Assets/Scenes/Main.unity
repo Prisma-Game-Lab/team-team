@@ -425,6 +425,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 375684883, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
+      propertyPath: _controllerScheme.mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 889521016264318685, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -753,6 +757,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 375684883, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
       propertyPath: _controllerScheme.index
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375684883, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
+      propertyPath: _controllerScheme.mode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
