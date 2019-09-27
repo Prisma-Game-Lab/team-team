@@ -917,17 +917,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 889521016780103398, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
-        type: 3}
-      propertyPath: throwerTeam
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 375684883, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
       propertyPath: _controllerScheme.index
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 375684883, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
       propertyPath: _controllerScheme.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 889521016780103398, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: throwerTeam
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

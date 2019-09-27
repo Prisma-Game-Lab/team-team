@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 0
+  throwRange: 6
+  fallType: 1
 --- !u!114 &3466001334096569926
 MonoBehaviour:
   m_ObjectHideFlags: 0

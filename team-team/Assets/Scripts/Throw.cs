@@ -18,7 +18,7 @@ public class Throw : MonoBehaviour
     [Header("Variáveis de ajuste da gameplay. Ver tooltips para mais infos")]
     [Tooltip("Variável para ajustar a velocidade em que o jogador arremessa a poção")]
     public float throwSpeed = 100.0f;
-    [Tooltip("variavel que determina a qual time o jogador pertence")]
+    [Tooltip("variavel que determina a qual time o jogador pertence (começa contagem do 0)")]
     //J: , e o script da poção com que se está interagindo
     public int throwerTeam;
 
@@ -36,6 +36,7 @@ public class Throw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameController.setThrowSpeedGlobal(throwSpeed);
         playerInput = this.GetComponent<PlayerInput>();
     }
 

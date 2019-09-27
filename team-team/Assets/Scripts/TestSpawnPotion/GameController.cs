@@ -30,6 +30,9 @@ public class GameController : MonoBehaviour
     //J: String contendo os nomes dados para cada orbe, enquanto não temos imagens para apresentar no lugar na HUD
     public string[] orbNames;
 
+    //J: variavel responsavel para receber a velocidade de arremesso base dos jogadores e atribui-la às poções para calcular alcance corretamente, para queda linear
+    private static float throwSpeedGlobal;
+
     //singleton stuff
     public static GameController Instance {get; private set;}
     void Awake()
@@ -174,6 +177,14 @@ public class GameController : MonoBehaviour
         return GameController.objective;
     }
 
+    public static float getThrowSpeedGlobal()
+    {
+        return GameController.throwSpeedGlobal;
+    }
+    public static void setThrowSpeedGlobal(float newSpeed)
+    {
+        throwSpeedGlobal = newSpeed;
+    }
 
 
 }
