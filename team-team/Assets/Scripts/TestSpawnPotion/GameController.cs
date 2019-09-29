@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     public string[] orbNames;
 
     //J: variavel responsavel para receber a velocidade de arremesso base dos jogadores e atribui-la às poções para calcular alcance corretamente, para queda linear
+    //K: prático, mas o que acontece se, por exemplo, players precisarem ter alcances diferentes quando lançam a poção? Por serem personagens diferentes ou pelo efeito de uma poção, por exemplo?
     private static float throwSpeedGlobal;
 
     //singleton stuff
