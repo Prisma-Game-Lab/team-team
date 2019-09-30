@@ -32,12 +32,16 @@ public class Throw : MonoBehaviour
 
     //classe bobinha que armazena configuração de controle do jogador
     private PlayerInput playerInput;
+    private PlayerEffects playerEffects;
 
     // Start is called before the first frame update
     void Start()
     {
         GameController.setThrowSpeedGlobal(throwSpeed);
         playerInput = this.GetComponent<PlayerInput>();
+        playerEffects = GetComponent<PlayerEffects>();
+
+        Debug.Assert(playerEffects != null);
     }
 
     // Update is called once per frame
@@ -46,8 +50,9 @@ public class Throw : MonoBehaviour
         //se o personagem está segurando uma poção,
         if (holding)
         {
-            Debug.Assert(potionRigidbody != null);
+            //Debug.Assert(potionRigidbody != null);
             //J: Corrige o erro de ficar impedido de pegar poção nova
+            //K: não é melhor setar pra null toda vez que arremessar a poção?
             if (potionRigidbody == null)
             {
                 holding = false;
@@ -64,7 +69,6 @@ public class Throw : MonoBehaviour
 
                     //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
                     Vector3 throwDirection = transform.forward;
-                    Debug.Log(throwDirection);
                     potionRigidbody.velocity = throwDirection * throwSpeed;
                     potionRigidbody.gameObject.transform.SetParent(null);
                     //potionRigidbody.useGravity = true;
@@ -72,6 +76,11 @@ public class Throw : MonoBehaviour
 
                     //J: altera o valor Thrown da poção para true
                     potionScript.setThrown(true);
+                }
+                else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2"))
+                {
+                    //joga a poção em si mesmo!
+                    potionScript.HitPlayer(playerEffects);
                 }
             }
             

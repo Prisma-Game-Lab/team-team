@@ -130,7 +130,9 @@ public class GameController : MonoBehaviour
         if(other.gameObject.CompareTag("Potion"))
         {
             int throwerTeam = other.GetComponent<PotColi>().getThrower();
-            int thrownPotion = other.GetComponent<PotColi>().potionType;
+
+            //K: por enquanto está sendo feito este cast de enum pra int, o que é válido e seguro. Porém, seria mais organizado mudar tudo logo
+            int thrownPotion = (int)other.GetComponent<PotColi>().potionType;
 
             
             //J: se a orbe jogada é o objetivo atual do time, marca ponto. Também impede erros caso uma orbe spawne dentro do poço

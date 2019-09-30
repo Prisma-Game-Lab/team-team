@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+K: Como discutimos na reunião e pelo slack, havia a necessidade de mexer parte desta lógica para o player, e não para a poção individualmente,
+dado que ela é sempre destruída e aí bugava. Assim sendo, fiz isso e acabei fazendo um script mais genérico que cuida de várias paradas destas, 
+duração dos efeitos, sobreposições, etc. 
+
+Copiei bastante código que vocês escreveram, só mudei ele de lugar e deixei mais generalizado para várias poções, que devem entrar no futuro
+
+Assim, sendo esse script agora está *OBSOLETO*!!!
+
+
+ */
+
 public class PowerUps : MonoBehaviour
 {
     //Arthur: Variável que define a duração dos efeitos dos power ups
@@ -13,9 +25,9 @@ public class PowerUps : MonoBehaviour
     {
         if(other.CompareTag("Player") && this.gameObject.GetComponent<PotColi>().getThrown())
         {
-            if(this.gameObject.GetComponent<PotColi>().potionType == 0)
+            if((int)this.gameObject.GetComponent<PotColi>().potionType == 0)
                 StartCoroutine(SpeedUp(other));
-            else if(this.gameObject.GetComponent<PotColi>().potionType == 1)
+            else if((int)this.gameObject.GetComponent<PotColi>().potionType == 1)
                 StartCoroutine(SpeedDown(other));
         }
     }
@@ -53,4 +65,5 @@ public class PowerUps : MonoBehaviour
 
     }
             //J: aparentemente pesquisei aqui e a duração das orbes nunca acaba porque o objeto que conta o tempo ta sendo destruido. temos que encontrar uma solução diferente depois
+            //K: ver comentário acima
 }

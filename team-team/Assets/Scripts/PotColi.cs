@@ -5,7 +5,8 @@ using UnityEngine;
 public class PotColi : MonoBehaviour
 {
     //J: variaveis que armazenam o tipo da poção, quem a arremessou (-1 = ninguem), e se está sendo segurada, para impedir que a poção estoure na mão de quem carrega
-    public int potionType;
+        //K: mudei para um enum para coexistir com meu outro script
+    public PotionEffect potionType;
     private int thrower = -1;
     private bool thrown = false;
 
@@ -14,6 +15,7 @@ public class PotColi : MonoBehaviour
     [Tooltip("Variavel para ajustar alcance do arremesso da orbe para lançamento linear")]
     public float throwRange;
     [Tooltip("Variavel que define forma que a orbe cai. (1 = em linha, 2 = em arco) ")]
+    //K: isso tem toda a cara do mundo de um enum! Vale a pena trocar?
     public int fallType;
 
     //J: contador de tempo até fazer poção cair, para queda linear
@@ -55,6 +57,7 @@ public class PotColi : MonoBehaviour
     }
 
     //J: get e set para a variavel thrower e set para a variavel thrown para serem utilizados no script Throw
+    //K: ótima prática! Encapsulamento é bom. Em C# tem uma jeito um pouco mais conciso de fazer a mesma coisa: pesquisa sobre Properties depois
     public int getThrower()
     {
         return thrower;
@@ -72,6 +75,13 @@ public class PotColi : MonoBehaviour
         thrown = newThrown;
     }
 
+    public void HitPlayer(PlayerEffects player)
+    {
+        GameController.potionCount--;
+        player.AddEffect(potionType, 5.0f);
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Target"))
@@ -79,12 +89,23 @@ public class PotColi : MonoBehaviour
             //J: destroi a poção ao colidir com o caldeirão
             Destroy(gameObject);
         }   
-        if(thrown && !other.gameObject.CompareTag("Potion"))
+        // else if(thrown && !other.gameObject.CompareTag("Potion"))
+        // {
+        //     //J: PLACEHOLDER. aqui aplicará efeito da poção quando for implementado.
+        //     Destroy(gameObject);
+        //     //J: atualiza contador de poções, para criar nova poção
+        //     GameController.potionCount--;
+        // }
+        else if(thrown && other.CompareTag("Player"))
         {
-            //J: PLACEHOLDER. aqui aplicará efeito da poção quando for implementado.
-            Destroy(gameObject);
+            //aplica efeito da poção!
+
             //J: atualiza contador de poções, para criar nova poção
-            GameController.potionCount--;
+            PlayerEffects pe = other.GetComponent<PlayerEffects>();
+            Debug.Assert(pe != null);
+            this.HitPlayer(pe);
+            
+
         }
         
     }
