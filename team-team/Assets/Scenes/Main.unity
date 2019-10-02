@@ -1107,7 +1107,12 @@ PrefabInstance:
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: orbNames.Array.size
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: potionVariants.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
@@ -1144,6 +1149,17 @@ PrefabInstance:
       propertyPath: DisplayGoal
       value: 
       objectReference: {fileID: 783211280}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: potionVariants.Array.data[2]
+      value: 
+      objectReference: {fileID: 3662853228246884818, guid: 7337c702bddee87489c1f92714aaee2c,
+        type: 3}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: orbNames.Array.data[2]
+      value: Freeze
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a756a0457544b154fa1e140b3d740dd3, type: 3}
 --- !u!1 &816253649 stripped
