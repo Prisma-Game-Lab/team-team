@@ -15,7 +15,8 @@ Autores: Krauss,
 public enum PotionEffect
 {
     Accelerate, 
-    Decelerate
+    Decelerate,
+    Freeze
 }
 
 public class PlayerEffects : MonoBehaviour

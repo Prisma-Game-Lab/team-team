@@ -34,6 +34,9 @@ public class Throw : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerEffects playerEffects;
 
+    //O: Variável que define se o jogador pode jogar ou não os itens
+    private bool canThrow = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,7 @@ public class Throw : MonoBehaviour
         //se o personagem está segurando uma poção,
         if (holding)
         {
+            GetCanThrow();
             //Debug.Assert(potionRigidbody != null);
             //J: Corrige o erro de ficar impedido de pegar poção nova
             //K: não é melhor setar pra null toda vez que arremessar a poção?
@@ -63,7 +67,7 @@ public class Throw : MonoBehaviour
                 potionRigidbody.transform.position = holdpoint.position;
                 potionRigidbody.useGravity = false;
 
-                if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1"))
+                if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1") && canThrow)
                 {
                     //arremessa a poção que estava sendo segurada
 
@@ -77,7 +81,7 @@ public class Throw : MonoBehaviour
                     //J: altera o valor Thrown da poção para true
                     potionScript.setThrown(true);
                 }
-                else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2"))
+                else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
                 {
                     //joga a poção em si mesmo!
                     potionScript.HitPlayer(playerEffects);
@@ -107,5 +111,20 @@ public class Throw : MonoBehaviour
             potionScript = pc;
             potionScript.setThrower(throwerTeam);
         }
+    }
+
+    //O: Função que altera o valor da variável canThrow caso o jogador esteja ou não congelado
+    private bool GetCanThrow()
+    {
+        bool freeze = playerEffects.HasEffect(PotionEffect.Freeze);
+        if(freeze)
+        {
+            canThrow = false;
+        }
+        else
+        {
+            canThrow = true;
+        }
+        return canThrow;
     }
 }
