@@ -1107,12 +1107,12 @@ PrefabInstance:
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: orbNames.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: potionVariants.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
@@ -1159,6 +1159,17 @@ PrefabInstance:
         type: 3}
       propertyPath: orbNames.Array.data[2]
       value: Freeze
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: potionVariants.Array.data[3]
+      value: 
+      objectReference: {fileID: 2330187846890212218, guid: 001b19c9e78facb4894457f325659a55,
+        type: 3}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: orbNames.Array.data[3]
+      value: Invert
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a756a0457544b154fa1e140b3d740dd3, type: 3}

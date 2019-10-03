@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3662853228246884818
+--- !u!1 &2330187846890212218
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2713796501797422445}
-  - component: {fileID: 6347495455622507869}
-  - component: {fileID: 7688541116905644415}
-  - component: {fileID: 7815690879722164836}
-  - component: {fileID: 6026442376567162107}
-  - component: {fileID: 2433016530441990986}
+  - component: {fileID: 6915384829702931203}
+  - component: {fileID: 1204788269475087610}
+  - component: {fileID: 2554873999137090219}
+  - component: {fileID: 9132182447508469172}
+  - component: {fileID: 3592871141900988966}
+  - component: {fileID: 1611247277763930806}
   m_Layer: 9
-  m_Name: PotionPlaceholder_02
+  m_Name: PotionPlaceholder_03
   m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2713796501797422445
+--- !u!4 &6915384829702931203
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
+  m_GameObject: {fileID: 2330187846890212218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
@@ -35,21 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6347495455622507869
+--- !u!33 &1204788269475087610
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7688541116905644415
+  m_GameObject: {fileID: 2330187846890212218}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2554873999137090219
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
+  m_GameObject: {fileID: 2330187846890212218}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,26 +81,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7815690879722164836
-SphereCollider:
+--- !u!65 &9132182447508469172
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
+  m_GameObject: {fileID: 2330187846890212218}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6026442376567162107
+--- !u!114 &3592871141900988966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330187846890212218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abc656e05ff5c24a8f4f4e5eed09afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionType: 3
+  throwRange: 6
+  fallType: 1
+--- !u!54 &1611247277763930806
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
+  m_GameObject: {fileID: 2330187846890212218}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -110,18 +125,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2433016530441990986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662853228246884818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abc656e05ff5c24a8f4f4e5eed09afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  potionType: 2
-  throwRange: 6
-  fallType: 1

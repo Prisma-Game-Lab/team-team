@@ -58,7 +58,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool inv = plEffects.HasEffect(PotionEffect.Invert); //O: Verifica se o jogador foi atingido pelo orbe de confusão
         float adjSpeed = GetAdjustedSpeed(); //K: a velocidade de movimento que deve ser usada, considerando os efeitos que podem afetá-la
         
         //Movimenta jogador
@@ -72,8 +72,12 @@ public class Move : MonoBehaviour
         //calcula qual deve ser a velocidade do player
         if(newMove.sqrMagnitude > 0.1f)
         {
-            //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
-            move = newMove;
+            //O: Inverte a direção do movimento do jogador ao ser atingido pelo orbe de confusão
+            if (inv)
+                move = -1 * newMove;
+            else
+                //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
+                move = newMove;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, adjSpeed, ref yAcceleration, accelerationTime);
         }
         else

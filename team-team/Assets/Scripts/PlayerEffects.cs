@@ -16,7 +16,8 @@ public enum PotionEffect
 {
     Accelerate, 
     Decelerate,
-    Freeze
+    Freeze,
+    Invert
 }
 
 public class PlayerEffects : MonoBehaviour
