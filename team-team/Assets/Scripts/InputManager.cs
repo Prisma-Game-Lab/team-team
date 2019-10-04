@@ -107,19 +107,44 @@ public class InputManager : MonoBehaviour
             //um hardcode temporário:
             if(controller.mode == ControllerMode.Joystick)
             {
-                switch(controller.index)
+                if(axisName == "Action1")
                 {
-                    //quadrado ou R1 num PS4
-                    case 0:
-                        return Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
-                    case 1:
-                        return Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
-                    case 2:
-                        return Input.GetKeyDown(KeyCode.Joystick3Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
-                    case 3:
-                        return Input.GetKeyDown(KeyCode.Joystick4Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
-                    default:
-                        return false;
+                    switch(controller.index)
+                    {
+                        //quadrado ou R1 num PS4
+                        case 0:
+                            return Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
+                        case 1:
+                            return Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
+                        case 2:
+                            return Input.GetKeyDown(KeyCode.Joystick3Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
+                        case 3:
+                            return Input.GetKeyDown(KeyCode.Joystick4Button0) || Input.GetKeyDown(KeyCode.Joystick1Button5);
+                        default:
+                            return false;
+                    }
+                }
+                else if(axisName == "Action2")
+                {
+                    switch(controller.index)
+                    {
+                        //X ou L1 num PS4
+                        case 0:
+                            return Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button4);
+                        case 1:
+                            return Input.GetKeyDown(KeyCode.Joystick2Button1) || Input.GetKeyDown(KeyCode.Joystick1Button4);
+                        case 2:
+                            return Input.GetKeyDown(KeyCode.Joystick3Button1) || Input.GetKeyDown(KeyCode.Joystick1Button4);
+                        case 3:
+                            return Input.GetKeyDown(KeyCode.Joystick4Button1) || Input.GetKeyDown(KeyCode.Joystick1Button4);
+                        default:
+                            return false;
+                    }
+                }
+                else 
+                {
+                    Debug.LogWarning("Comando estranho passado para a gambiarra dos controles");
+                    return false; //não deveria nunca cair aqui
                 }
             }
             else

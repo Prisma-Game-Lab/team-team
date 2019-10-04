@@ -8,8 +8,14 @@ public class Move : MonoBehaviour
 {
     [Header("Variáveis de customização do movimento do jogador. Ver tooltips para mais informações")]
     
-    [Tooltip("A velocidade base(máxima) de movimentação do player")]
+    [Tooltip("A velocidade base de movimentação do player")]
     public float moveSpeed = 5.0f;
+    [Tooltip("A velocidade de movimentação do player quando sob o efeito de aceleração")]
+    public float moveSpeedAcc = 10.0f;
+    [Tooltip("A velocidade de movimentação do player quando sob o efeito de desaceleração")]
+    public float moveSpeedDec = 2.5f;
+    [Tooltip("Player fica parado se congelado")]
+    public float moveFreeze = 0.0f;
 
     [Tooltip("O tempo em segundo que o player demora de velocidade 0 para velocidade máxima")]
     public float accelerationTime = 0.1f;
@@ -25,6 +31,8 @@ public class Move : MonoBehaviour
 
     //classe boba usada para centralizar configurações de controle do player. Acessada por esta classe pq isso afeta a movimentação
     private PlayerInput playerInput;
+    private Rigidbody rigidbody;
+    private PlayerEffects plEffects;
 
     private Vector3 move; //um vetor usado pra "passar input" da update pra fixed update
     private float currentSpeed; //um float usado pra manter a velocidade do player, irrespectivamente de direção
@@ -35,6 +43,10 @@ public class Move : MonoBehaviour
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        rigidbody = GetComponent<Rigidbody>();
+        plEffects = GetComponent<PlayerEffects>();
+
+        Debug.Assert(plEffects != null);
 
         //calcula coeficiente de desaceleração do player
         // aceleração = Vfinal - Vinicial / deltaTempo =>
@@ -46,6 +58,9 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool inv = plEffects.HasEffect(PotionEffect.Invert); //O: Verifica se o jogador foi atingido pelo orbe de confusão
+        float adjSpeed = GetAdjustedSpeed(); //K: a velocidade de movimento que deve ser usada, considerando os efeitos que podem afetá-la
+        
         //Movimenta jogador
         //mudei as funções de Input.GetAxisRaw para InputManager.GetAxis, usando a classe que fiz para lidar com controles. Ass: Krauss
         float moveHon = InputManager.GetAxis(playerInput.controllerScheme, "HorizontalL");
@@ -57,9 +72,13 @@ public class Move : MonoBehaviour
         //calcula qual deve ser a velocidade do player
         if(newMove.sqrMagnitude > 0.1f)
         {
-            //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
-            move = newMove;
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref yAcceleration, accelerationTime);
+            //O: Inverte a direção do movimento do jogador ao ser atingido pelo orbe de confusão
+            if (inv)
+                move = -1 * newMove;
+            else
+                //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
+                move = newMove;
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, adjSpeed, ref yAcceleration, accelerationTime);
         }
         else
         {
@@ -71,8 +90,8 @@ public class Move : MonoBehaviour
 
 
         //move o player
-        transform.position += move.normalized * Time.deltaTime * currentSpeed;
-
+        //transform.position += move.normalized * Time.deltaTime * currentSpeed;
+        rigidbody.velocity = move * currentSpeed;
         
         //Calcula direção
         //angle = Mathf.Atan2(moveVer, moveHon);
@@ -120,6 +139,39 @@ public class Move : MonoBehaviour
         }
 
 
+    }
+
+    private float GetAdjustedSpeed()
+    {
+        bool acc = plEffects.HasEffect(PotionEffect.Accelerate);
+        bool dec = plEffects.HasEffect(PotionEffect.Decelerate);
+        bool freeze = plEffects.HasEffect(PotionEffect.Freeze);
+        if(acc && dec)
+        {
+            //velocidade normal se estiver sendo afetado pelos dois
+            return moveSpeed;
+        }
+        else if(acc)
+        {
+            //velocidade acelerada
+            return moveSpeedAcc;
+        }
+        else if(dec)
+        {
+            return moveSpeedDec;
+        }
+        else if (freeze)
+        {
+            //O: Deixa o jogador completamente imóvel caso seja atingido pelo orbe de gelo
+            turnSpeed = 0.0f;
+            return moveFreeze;
+        }
+        else
+        {
+            turnSpeed = 10.0f;
+            return moveSpeed;
+        }
+        
     }
 
     void FixedUpdate()

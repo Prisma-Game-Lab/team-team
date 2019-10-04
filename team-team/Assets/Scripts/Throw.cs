@@ -18,7 +18,7 @@ public class Throw : MonoBehaviour
     [Header("Variáveis de ajuste da gameplay. Ver tooltips para mais infos")]
     [Tooltip("Variável para ajustar a velocidade em que o jogador arremessa a poção")]
     public float throwSpeed = 100.0f;
-    [Tooltip("variavel que determina a qual time o jogador pertence")]
+    [Tooltip("variavel que determina a qual time o jogador pertence (começa contagem do 0)")]
     //J: , e o script da poção com que se está interagindo
     public int throwerTeam;
 
@@ -32,11 +32,19 @@ public class Throw : MonoBehaviour
 
     //classe bobinha que armazena configuração de controle do jogador
     private PlayerInput playerInput;
+    private PlayerEffects playerEffects;
+
+    //O: Variável que define se o jogador pode jogar ou não os itens
+    private bool canThrow = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameController.setThrowSpeedGlobal(throwSpeed);
         playerInput = this.GetComponent<PlayerInput>();
+        playerEffects = GetComponent<PlayerEffects>();
+
+        Debug.Assert(playerEffects != null);
     }
 
     // Update is called once per frame
@@ -45,26 +53,39 @@ public class Throw : MonoBehaviour
         //se o personagem está segurando uma poção,
         if (holding)
         {
-            Debug.Assert(potionRigidbody != null);
-
-            //seta a posição da poção
-            potionRigidbody.transform.position = holdpoint.position;
-            potionRigidbody.useGravity = false;
-            
-            if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1"))
-            { 
-                //arremessa a poção que estava sendo segurada
-                
-                //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
-                Vector3 throwDirection = transform.forward;
-                Debug.Log(throwDirection);
-                potionRigidbody.velocity =  throwDirection * throwSpeed;
-                potionRigidbody.gameObject.transform.SetParent(null);
-                //potionRigidbody.useGravity = true;
+            GetCanThrow();
+            //Debug.Assert(potionRigidbody != null);
+            //J: Corrige o erro de ficar impedido de pegar poção nova
+            //K: não é melhor setar pra null toda vez que arremessar a poção?
+            if (potionRigidbody == null)
+            {
                 holding = false;
+            }
+            else
+            {
+                //seta a posição da poção
+                potionRigidbody.transform.position = holdpoint.position;
+                potionRigidbody.useGravity = false;
 
-                //J: altera o valor Thrown da poção para true
-                potionScript.setThrown(true);
+                if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action1") && canThrow)
+                {
+                    //arremessa a poção que estava sendo segurada
+
+                    //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
+                    Vector3 throwDirection = transform.forward;
+                    potionRigidbody.velocity = throwDirection * throwSpeed;
+                    potionRigidbody.gameObject.transform.SetParent(null);
+                    //potionRigidbody.useGravity = true;
+                    holding = false;
+
+                    //J: altera o valor Thrown da poção para true
+                    potionScript.setThrown(true);
+                }
+                else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
+                {
+                    //joga a poção em si mesmo!
+                    potionScript.HitPlayer(playerEffects);
+                }
             }
             
         }
@@ -90,5 +111,20 @@ public class Throw : MonoBehaviour
             potionScript = pc;
             potionScript.setThrower(throwerTeam);
         }
+    }
+
+    //O: Função que altera o valor da variável canThrow caso o jogador esteja ou não congelado
+    private bool GetCanThrow()
+    {
+        bool freeze = playerEffects.HasEffect(PotionEffect.Freeze);
+        if(freeze)
+        {
+            canThrow = false;
+        }
+        else
+        {
+            canThrow = true;
+        }
+        return canThrow;
     }
 }
