@@ -14,6 +14,8 @@ public class Move : MonoBehaviour
     public float moveSpeedAcc = 10.0f;
     [Tooltip("A velocidade de movimentação do player quando sob o efeito de desaceleração")]
     public float moveSpeedDec = 2.5f;
+    [Tooltip("Player fica parado se congelado")]
+    public float moveFreeze = 0.0f;
 
     [Tooltip("O tempo em segundo que o player demora de velocidade 0 para velocidade máxima")]
     public float accelerationTime = 0.1f;
@@ -56,7 +58,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool inv = plEffects.HasEffect(PotionEffect.Invert); //O: Verifica se o jogador foi atingido pelo orbe de confusão
         float adjSpeed = GetAdjustedSpeed(); //K: a velocidade de movimento que deve ser usada, considerando os efeitos que podem afetá-la
         
         //Movimenta jogador
@@ -70,8 +72,12 @@ public class Move : MonoBehaviour
         //calcula qual deve ser a velocidade do player
         if(newMove.sqrMagnitude > 0.1f)
         {
-            //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
-            move = newMove;
+            //O: Inverte a direção do movimento do jogador ao ser atingido pelo orbe de confusão
+            if (inv)
+                move = -1 * newMove;
+            else
+                //se player está inserindo input, ele tenta acelerar, até o limite da velocidade máxima
+                move = newMove;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, adjSpeed, ref yAcceleration, accelerationTime);
         }
         else
@@ -139,6 +145,7 @@ public class Move : MonoBehaviour
     {
         bool acc = plEffects.HasEffect(PotionEffect.Accelerate);
         bool dec = plEffects.HasEffect(PotionEffect.Decelerate);
+        bool freeze = plEffects.HasEffect(PotionEffect.Freeze);
         if(acc && dec)
         {
             //velocidade normal se estiver sendo afetado pelos dois
@@ -153,10 +160,18 @@ public class Move : MonoBehaviour
         {
             return moveSpeedDec;
         }
+        else if (freeze)
+        {
+            //O: Deixa o jogador completamente imóvel caso seja atingido pelo orbe de gelo
+            turnSpeed = 0.0f;
+            return moveFreeze;
+        }
         else
         {
+            turnSpeed = 10.0f;
             return moveSpeed;
         }
+        
     }
 
     void FixedUpdate()
