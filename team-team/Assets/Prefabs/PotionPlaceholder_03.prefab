@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1204788269475087610}
   - component: {fileID: 2554873999137090219}
   - component: {fileID: 9132182447508469172}
-  - component: {fileID: 3592871141900988966}
   - component: {fileID: 1611247277763930806}
+  - component: {fileID: 3592871141900988966}
   m_Layer: 9
   m_Name: PotionPlaceholder_03
   m_TagString: Potion
@@ -94,21 +94,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3592871141900988966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330187846890212218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abc656e05ff5c24a8f4f4e5eed09afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  potionType: 3
-  throwRange: 6
-  fallType: 1
 --- !u!54 &1611247277763930806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,3 +110,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3592871141900988966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330187846890212218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abc656e05ff5c24a8f4f4e5eed09afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionType: 3
+  fallType: 1
+  airTime: 4
+  archAngle: 15

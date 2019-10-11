@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 0
-  throwRange: 6
   fallType: 1
+  airTime: 4
+  archAngle: 15
