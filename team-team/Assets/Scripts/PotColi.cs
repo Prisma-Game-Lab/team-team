@@ -82,7 +82,6 @@ public class PotColi : MonoBehaviour
 
     public void HitPlayer(PlayerEffects player)
     {
-        GameController.potionCount--;
         player.AddEffect(potionType, 5.0f);
 
         //incrementa pontuação:
@@ -101,7 +100,6 @@ public class PotColi : MonoBehaviour
         if (other.gameObject.CompareTag("Target"))
         {
             //J: destroi a poção ao colidir com o caldeirão
-            GameController.potionCount--;
             Destroy(gameObject);
             GameController.potionCount--;
         }   
@@ -109,16 +107,15 @@ public class PotColi : MonoBehaviour
         {
 
             //J: atualiza contador de poções, para criar nova poção
+            Destroy(gameObject);
             Debug.Log("Compare tag player");
             PlayerEffects pe = other.GetComponent<PlayerEffects>();
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
             GameController.potionCount--;
-
         }
         else if (thrown && !other.gameObject.CompareTag("Potion"))
-        {
-            Destroy(gameObject);
+        {           
             //J: atualiza contador de poções, para criar nova poção
             GameController.potionCount--;
         }
