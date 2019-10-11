@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 1
+  pointValueOnCauldron: 100
   throwRange: 6
   fallType: 1

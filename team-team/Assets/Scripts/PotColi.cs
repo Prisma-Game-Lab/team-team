@@ -5,8 +5,15 @@ using UnityEngine;
 public class PotColi : MonoBehaviour
 {
     //J: variaveis que armazenam o tipo da poção, quem a arremessou (-1 = ninguem), e se está sendo segurada, para impedir que a poção estoure na mão de quem carrega
-        //K: mudei para um enum para coexistir com meu outro script
+    //K: mudei para um enum para coexistir com meu outro script
+    [Header("Variaveis definindo características básicas desta poção")]
+    [Tooltip("O tipo de efeito que esta poção tem")]
     public PotionEffect potionType;
+    [Tooltip("O valor em pontos que esta poção tem, caso acerte o calderão, caso a condição de vitória sejam pontos!")]
+    public int pointValueOnCauldron = 100;
+    [Tooltip("O valor em pontos que esta poção tem, caso acerte outro player, caso a condição de vitória sejam pontos!")]
+    public int pointValueOnPlayer = 100;
+
     private int thrower = -1;
     private bool thrown = false;
 
@@ -79,6 +86,9 @@ public class PotColi : MonoBehaviour
     {
         GameController.potionCount--;
         player.AddEffect(potionType, 5.0f);
+
+        //incrementa pontuação:
+        GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
         Destroy(gameObject);
     }
 
@@ -87,6 +97,7 @@ public class PotColi : MonoBehaviour
         if(other.gameObject.CompareTag("Target"))
         {
             //J: destroi a poção ao colidir com o caldeirão
+            GameController.potionCount--;
             Destroy(gameObject);
         }   
         // else if(thrown && !other.gameObject.CompareTag("Potion"))
