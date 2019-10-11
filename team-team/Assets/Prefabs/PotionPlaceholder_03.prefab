@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 3
+  pointValueOnCauldron: 100
+  pointValueOnPlayer: 100
+  potionDuration: 5
   fallType: 1
   airTime: 4
-  archAngle: 15

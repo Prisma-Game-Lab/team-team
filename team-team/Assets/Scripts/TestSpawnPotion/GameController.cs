@@ -30,10 +30,11 @@ public class GameController : MonoBehaviour
     public float objectiveMaxPoints;
 
     [Header("Referências do Unity, cuidado ao mexer")]
-
+    [Tooltip("lista de poções no jogo. aumente o tamanho da lista e adicione o prefab de uma poção para adicioná-la")]
     //J: variações de poções disponiveis
     public GameObject[] potionVariants;
 
+    [Tooltip("número de equipes com pontuações separadas na cena")]
     //J: numero de times e pontuações atuais de cada time
     public int numTeams;
     //K: fiz de uma maneira em que agora há duas "pontuações" que são mantidas ao mesmo tempo. Uma é o quão longe o time foi no objetivo(de jogar N poções no poço) -> teamObjIndex
@@ -83,8 +84,11 @@ public class GameController : MonoBehaviour
         Debug.Assert(potionVariants.Length > 0);
         //J: Inicializa texto do objetivo na UI
         Debug.Assert(DisplayGoal != null);
-        DisplayGoal.text = "Receita: ";
-
+        if (victoryCondition == VictoryCondition.PotionSequence)
+        {
+            DisplayGoal.text = "Receita: ";
+        }
+        
         
         //J: gera aleatoriamente a sequencia necessária para vitoria
         objective = new int[objectiveSize];
