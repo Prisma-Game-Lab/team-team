@@ -599,6 +599,22 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
+    m_Name: HorizontalRJoystick0
+    descriptiveName: eixo horizontal do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: HorizontalRJoystick1
     descriptiveName: eixo horizontal do analog da direita, controle 1
     descriptiveNegativeName: 
@@ -613,6 +629,22 @@ InputManager:
     invert: 0
     type: 2
     axis: 2
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: HorizontalRJoystick1
+    descriptiveName: eixo horizontal do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
     joyNum: 2
   - serializedVersion: 3
     m_Name: HorizontalRJoystick2
@@ -631,6 +663,22 @@ InputManager:
     axis: 2
     joyNum: 3
   - serializedVersion: 3
+    m_Name: HorizontalRJoystick2
+    descriptiveName: eixo horizontal do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: 3
+  - serializedVersion: 3
     m_Name: HorizontalRJoystick3
     descriptiveName: eixo horizontal do analog da direita, controle 1
     descriptiveNegativeName: 
@@ -645,6 +693,22 @@ InputManager:
     invert: 0
     type: 2
     axis: 2
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: HorizontalRJoystick3
+    descriptiveName: eixo horizontal do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
     joyNum: 4
   - serializedVersion: 3
     m_Name: VerticalRJoystick0
@@ -663,6 +727,22 @@ InputManager:
     axis: 5
     joyNum: 1
   - serializedVersion: 3
+    m_Name: VerticalRJoystick0
+    descriptiveName: eixo vertical do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: VerticalRJoystick1
     descriptiveName: eixo vertical do analog da direita, controle 1
     descriptiveNegativeName: 
@@ -677,6 +757,22 @@ InputManager:
     invert: 1
     type: 2
     axis: 5
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: VerticalRJoystick1
+    descriptiveName: eixo vertical do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 4
     joyNum: 2
   - serializedVersion: 3
     m_Name: VerticalRJoystick2
@@ -695,6 +791,22 @@ InputManager:
     axis: 5
     joyNum: 3
   - serializedVersion: 3
+    m_Name: VerticalRJoystick2
+    descriptiveName: eixo vertical do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 4
+    joyNum: 3
+  - serializedVersion: 3
     m_Name: VerticalRJoystick3
     descriptiveName: eixo vertical do analog da direita, controle 1
     descriptiveNegativeName: 
@@ -709,4 +821,20 @@ InputManager:
     invert: 1
     type: 2
     axis: 5
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: VerticalRJoystick3
+    descriptiveName: eixo vertical do analog da direita, controle 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 4
     joyNum: 4
