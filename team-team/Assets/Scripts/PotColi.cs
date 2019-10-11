@@ -86,7 +86,13 @@ public class PotColi : MonoBehaviour
         player.AddEffect(potionType, 5.0f);
 
         //incrementa pontuação:
-        GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
+        //gambiarra temporaria pra nao cganhar pontos consigo mesmo
+        if (player.gameObject.GetComponent<Throw>().throwerTeam != this.getThrower())
+        {
+            Debug.Log("Oi");
+            GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
+        }
+        
         Destroy(gameObject);
     }
 
@@ -99,22 +105,23 @@ public class PotColi : MonoBehaviour
             Destroy(gameObject);
             GameController.potionCount--;
         }   
-        else if(thrown && !other.gameObject.CompareTag("Potion"))
-        {
-            Destroy(gameObject);
-            //J: atualiza contador de poções, para criar nova poção
-            GameController.potionCount--;
-        }
         else if(thrown && other.CompareTag("Player"))
         {
 
             //J: atualiza contador de poções, para criar nova poção
+            Debug.Log("Compare tag player");
             PlayerEffects pe = other.GetComponent<PlayerEffects>();
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
             GameController.potionCount--;
 
         }
-        
+        else if (thrown && !other.gameObject.CompareTag("Potion"))
+        {
+            Destroy(gameObject);
+            //J: atualiza contador de poções, para criar nova poção
+            GameController.potionCount--;
+        }
+
     }
 }
