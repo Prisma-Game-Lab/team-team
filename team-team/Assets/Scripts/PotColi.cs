@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PotColi : MonoBehaviour
 {
+    public enum FallStyle { linha, arco}
     //J: variaveis que armazenam o tipo da poção, quem a arremessou (-1 = ninguem), e se está sendo segurada, para impedir que a poção estoure na mão de quem carrega
     //K: mudei para um enum para coexistir com meu outro script
     [Header("Variaveis definindo características básicas desta poção")]
@@ -19,52 +20,43 @@ public class PotColi : MonoBehaviour
 
     //J: variavel para definir distancia atravessada pela orbe antes de cair, e modo de queda (1 = linear, 2 = fisico)
     [Header("Variaveis para definir alcance e forma de arremeço da orbe. Ver tooltips para mais infos")]
-    [Tooltip("Variavel para ajustar alcance do arremesso da orbe para lançamento linear")]
-    public float throwRange;
-    [Tooltip("Variavel que define forma que a orbe cai. (1 = em linha, 2 = em arco) ")]
-    //K: isso tem toda a cara do mundo de um enum! Vale a pena trocar?
-    public int fallType;
-
-    //J: contador de tempo até fazer poção cair, para queda linear
-    private float fallCounter;
+    [Tooltip("Variavel que define forma que a orbe cai")]
+    public FallStyle fallType;
+    [Tooltip("Variavel que define a altura que a orbe alcança, quando em queda do tipo arco, ou o tempo antes de cair, para queda em linha")]
+    public int airTime;
 
     void Start()
     {
-
-        Debug.Assert(fallType == 1 || fallType == 2);
         
-        if (fallType == 1)
-        {
-            //J: tempo no ar são 60 frames * velocidade de arremesso do jogador/alcance de arremesso
-            fallCounter = 60 * throwRange / GameController.getThrowSpeedGlobal() ;
-            Debug.Log("fallCounter = " + fallCounter);
-        }
-
     }
     
     void Update()
     {
         if (thrown )
         {
-            //se queda linear, liga gravidade quando tempo acabar
-            if (fallType == 1)
+
+            airTime--;
+
+            //J: se queda linear, liga gravidade quando tempo acabar
+            if (fallType == FallStyle.linha)
             {
-                fallCounter--;
-                if (fallCounter <= 0)
+                if (airTime <= 0)
                 {
                     this.GetComponent<Rigidbody>().useGravity = true;
                 }
             }
-            else if (fallType == 2)
-            {
 
+            //J: se queda  em arco, faz cair.
+            else if (fallType == FallStyle.arco)
+            {
+                    this.GetComponent<Rigidbody>().useGravity = true;
             }
+            
         }
 
     }
 
     //J: get e set para a variavel thrower e set para a variavel thrown para serem utilizados no script Throw
-    //K: ótima prática! Encapsulamento é bom. Em C# tem uma jeito um pouco mais conciso de fazer a mesma coisa: pesquisa sobre Properties depois
     public int getThrower()
     {
         return thrower;
@@ -80,6 +72,12 @@ public class PotColi : MonoBehaviour
     public void setThrown(bool newThrown)
     {
         thrown = newThrown;
+
+        //J: se tiver trajetoria de arco, cria velocidade vertical
+        if (newThrown && fallType == FallStyle.arco)
+        {
+            gameObject.GetComponent<Rigidbody>().AddForce(0, airTime, 0, ForceMode.VelocityChange);
+        }
     }
 
     public void HitPlayer(PlayerEffects player)
@@ -94,28 +92,27 @@ public class PotColi : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Target"))
+        if (other.gameObject.CompareTag("Target"))
         {
             //J: destroi a poção ao colidir com o caldeirão
             GameController.potionCount--;
             Destroy(gameObject);
+            GameController.potionCount--;
         }   
-        // else if(thrown && !other.gameObject.CompareTag("Potion"))
-        // {
-        //     //J: PLACEHOLDER. aqui aplicará efeito da poção quando for implementado.
-        //     Destroy(gameObject);
-        //     //J: atualiza contador de poções, para criar nova poção
-        //     GameController.potionCount--;
-        // }
+        else if(thrown && !other.gameObject.CompareTag("Potion"))
+        {
+            Destroy(gameObject);
+            //J: atualiza contador de poções, para criar nova poção
+            GameController.potionCount--;
+        }
         else if(thrown && other.CompareTag("Player"))
         {
-            //aplica efeito da poção!
 
             //J: atualiza contador de poções, para criar nova poção
             PlayerEffects pe = other.GetComponent<PlayerEffects>();
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
-            
+            GameController.potionCount--;
 
         }
         
