@@ -1181,6 +1181,18 @@ PrefabInstance:
       propertyPath: victoryCondition
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: potionVariants.Array.data[0]
+      value: 
+      objectReference: {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293,
+        type: 3}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: potionVariants.Array.data[1]
+      value: 
+      objectReference: {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a756a0457544b154fa1e140b3d740dd3, type: 3}
 --- !u!1 &816253649 stripped
