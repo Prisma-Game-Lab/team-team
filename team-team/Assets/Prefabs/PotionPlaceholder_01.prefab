@@ -123,11 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 1
-<<<<<<< HEAD
-=======
   pointValueOnCauldron: 100
   throwRange: 6
->>>>>>> 589a3e76082769a080d4d6d2b19f31473456ac60
   fallType: 1
   airTime: 4
   archAngle: 30
