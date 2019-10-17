@@ -38,6 +38,7 @@ public class PotColi : MonoBehaviour
         if (thrown )
         {
 
+            //K: esse método de contar o tempo faz sentido, mas acaba variando conforme o framerate do jogo
             airTime--;
 
             //J: se queda linear, liga gravidade quando tempo acabar
@@ -83,12 +84,26 @@ public class PotColi : MonoBehaviour
         }
     }
 
+    /*K:
+    HitPlayer: função chamada quando a função deve "quebrar" em cima do player.
+        - player é o player que deve sofrer os efeitos desta poção 
+
+        - note que esta pontuação não está decrementando a potionCount
+    */
     public void HitPlayer(PlayerEffects player)
     {
         player.AddEffect(potionType, potionDuration);
 
-        //incrementa pontuação:
-        GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
+        
+        Throw _throw = player.gameObject.GetComponent<Throw>();
+        Debug.Assert(_throw != null);
+        //se quem arremessou é de outro time de quem foi acertado, 
+        if(_throw.throwerTeam != this.getThrower())
+        {
+            //incrementa pontuação:
+            GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
+        }
+        
         Destroy(gameObject);
     }
 

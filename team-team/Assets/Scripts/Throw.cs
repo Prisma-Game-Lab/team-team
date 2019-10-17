@@ -126,5 +126,9 @@ public class Throw : MonoBehaviour
             canThrow = true;
         }
         return canThrow;
+
+        //K: não há nada de errado com a estrutura escrita acima(pode ser útil mais pra frente pra implementar efeitos visuais e tal,)
+        //mas repare que do jeito que está hoje, ela poderia ser simplificada para: 
+            // return  !playerEffects.HasEffect(PotionEffect.Freeze);
     }
 }
