@@ -7,7 +7,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [Header("Variáveis de customização do movimento do jogador. Ver tooltips para mais informações")]
-    
+
     [Tooltip("A velocidade base de movimentação do player")]
     public float moveSpeed = 5.0f;
     [Tooltip("A velocidade de movimentação do player quando sob o efeito de aceleração")]
@@ -21,6 +21,7 @@ public class Move : MonoBehaviour
     public float accelerationTime = 0.1f;
     [Tooltip("O tempo em segundo que o player demora de velocidade máxima para velocidade 0")]
     public float decelerationTime = 0.2f;
+
     [Tooltip("Determina se o jogador deve tentar rotacionar automaticamente quando é movido. Só é válido para joysticks, já que no teclado isso acontece de qualquer jeito")]
     public bool AutoRotate;
     [Tooltip("Caso ShouldAutoRotate esteja ativo, a velocidade base de rotação do jogador")]

@@ -15,6 +15,10 @@ public class PotColi : MonoBehaviour
     [Tooltip("O valor em pontos que esta poção tem, caso acerte outro player, caso a condição de vitória sejam pontos!")]
     public int pointValueOnPlayer = 100;
 
+    [Header("Ajuste das durações dos efeitos")]
+    [Tooltip("Duração do efeito da poção")]
+    public float potionDuration;
+
     private int thrower = -1;
     private bool thrown = false;
 
@@ -27,7 +31,6 @@ public class PotColi : MonoBehaviour
 
     void Start()
     {
-        
     }
     
     void Update()
@@ -82,16 +85,10 @@ public class PotColi : MonoBehaviour
 
     public void HitPlayer(PlayerEffects player)
     {
-        player.AddEffect(potionType, 5.0f);
+        player.AddEffect(potionType, potionDuration);
 
         //incrementa pontuação:
-        //gambiarra temporaria pra nao cganhar pontos consigo mesmo
-        if (player.gameObject.GetComponent<Throw>().throwerTeam != this.getThrower())
-        {
-            Debug.Log("Oi");
-            GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
-        }
-        
+        GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
         Destroy(gameObject);
     }
 
@@ -108,17 +105,16 @@ public class PotColi : MonoBehaviour
 
             //J: atualiza contador de poções, para criar nova poção
             Destroy(gameObject);
-            Debug.Log("Compare tag player");
             PlayerEffects pe = other.GetComponent<PlayerEffects>();
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
             GameController.potionCount--;
         }
-        else if (thrown && !other.gameObject.CompareTag("Potion"))
-        {           
-            //J: atualiza contador de poções, para criar nova poção
+        else if (thrown)
+        {
+            Destroy(gameObject);
             GameController.potionCount--;
         }
-
+        
     }
 }
