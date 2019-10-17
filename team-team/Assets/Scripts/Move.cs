@@ -22,6 +22,8 @@ public class Move : MonoBehaviour
     [Tooltip("O tempo em segundo que o player demora de velocidade máxima para velocidade 0")]
     public float decelerationTime = 0.2f;
 
+    [Tooltip("Determina se ao jogador é permitido rotacionar manualmente o personagem usando o joystick direito. Só é válido para joysticks, já que no teclado isso é impossível")]
+    public bool ManualRotate;
     [Tooltip("Determina se o jogador deve tentar rotacionar automaticamente quando é movido. Só é válido para joysticks, já que no teclado isso acontece de qualquer jeito")]
     public bool AutoRotate;
     [Tooltip("Caso ShouldAutoRotate esteja ativo, a velocidade base de rotação do jogador")]
@@ -74,6 +76,7 @@ public class Move : MonoBehaviour
         if(newMove.sqrMagnitude > 0.1f)
         {
             //O: Inverte a direção do movimento do jogador ao ser atingido pelo orbe de confusão
+            //K: use as chavinhas {} pra marcar os ifs, por favor eu imploro
             if (inv)
                 move = -1 * newMove;
             else
@@ -111,8 +114,8 @@ public class Move : MonoBehaviour
             Vector2 input = new Vector2(h,v);
         
 
-            //se o player está usando o analógico direito para se mexer, imediatamente vai para aquela orientação(por ora pelo menos)
-            if(input.magnitude >= 0.6f) //botei um thrshold de 0.6 pra ele não ficar rodando a esmo e ficar sempre na direção do último input
+            //se o player está usando o analógico direito para se rotacionar, imediatamente vai para aquela orientação(por ora pelo menos)
+            if(ManualRotate && input.magnitude >= 0.6f) //botei um thrshold de 0.6 pra ele não ficar rodando a esmo e ficar sempre na direção do último input
             {
                 float angle_rad = Mathf.Atan2(input.x, input.y);
                 Quaternion rotation = new Quaternion();
@@ -179,4 +182,5 @@ public class Move : MonoBehaviour
     {
         
     }
+
 }

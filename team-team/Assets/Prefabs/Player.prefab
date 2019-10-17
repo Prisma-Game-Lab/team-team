@@ -202,9 +202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  moveSpeedAcc: 10
+  moveSpeedDec: 2.5
+  moveFreeze: 0
   accelerationTime: 0.1
   decelerationTime: 0.2
-  AutoRotate: 0
+  AutoRotate: 1
   turnSpeed: 10
 --- !u!114 &889521016780103398
 MonoBehaviour:
