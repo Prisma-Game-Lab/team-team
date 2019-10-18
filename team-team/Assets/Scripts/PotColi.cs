@@ -116,7 +116,41 @@ public class PotColi : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject);
+        if (other.gameObject.CompareTag("Target"))
+        {
+            //J: destroi a poção ao colidir com o caldeirão
+            Destroy(gameObject);
+            GameController.potionCount--;
+        }   
+        else if(thrown && other.gameObject.CompareTag("Player"))
+        {
+
+            //J: atualiza contador de poções, para criar nova poção
+            Destroy(gameObject);
+            PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();
+            Debug.Assert(pe != null);
+            this.HitPlayer(pe);
+            GameController.potionCount--;
+        }
+        else if (thrown && other.gameObject.layer == LayerMask.NameToLayer("floor"))
+        {
+            //destruído ao colidir com chão
+            Destroy(gameObject);
+            GameController.potionCount--;
+        }
+        else if(thrown && lastObjectBouncedOn != other.gameObject)
+        {
+            Debug.Log("BOING");
+            //reflete trajetoria
+            lastObjectBouncedOn = other.gameObject;
+            this.GetComponent<Rigidbody>().velocity = Vector3.Reflect(this.GetComponent<Rigidbody>().velocity, other.contacts[0].normal);
+        }
+    }
+
+    /*private void OnTriggerEnter(Collider other)
     {
         //K: seria válido testar aqui se a poção foi arremessada? thrown?
         if (other.gameObject.CompareTag("Target"))
@@ -143,7 +177,8 @@ public class PotColi : MonoBehaviour
         }
         else if(thrown && lastObjectBouncedOn != other.gameObject)
         {
-            lastObjectBouncedOn = other.gameObject;
+
+            
             Debug.Log("quica" + lastObjectBouncedOn.ToString());
             //quica ao colidir com outras coisas
             //outros orbes???
@@ -195,8 +230,8 @@ public class PotColi : MonoBehaviour
             rigidbody.velocity = newVelocity;
 
             //verificar se é necessário botar algum tipo de cooldown no quique
-
+            
         }
         
-    }
+    }*/
 }
