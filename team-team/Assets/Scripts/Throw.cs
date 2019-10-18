@@ -98,7 +98,7 @@ public class Throw : MonoBehaviour
     {
         //se o player colidir com a poção && o player não estiver segurando outra poção,
         PotColi pc = other.GetComponent<PotColi>();
-        if(other.gameObject.CompareTag("Potion") && holding == false && pc != null)
+        if(other.gameObject.CompareTag("Potion") && holding == false && pc != null && !other.GetComponent<PotColi>().getThrown())
         {
             //segura esta poção:
             holding = true;

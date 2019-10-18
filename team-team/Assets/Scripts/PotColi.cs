@@ -118,7 +118,8 @@ public class PotColi : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject);
+        
+        Debug.Log("colidiu com: "+ other.gameObject.name);
         if (other.gameObject.CompareTag("Target"))
         {
             //J: destroi a poção ao colidir com o caldeirão
@@ -143,15 +144,15 @@ public class PotColi : MonoBehaviour
         }
         else if(thrown && lastObjectBouncedOn != other.gameObject)
         {
-            Debug.Log("BOING");
             //reflete trajetoria
             lastObjectBouncedOn = other.gameObject;
             this.GetComponent<Rigidbody>().velocity = Vector3.Reflect(this.GetComponent<Rigidbody>().velocity, other.contacts[0].normal);
         }
     }
-
-    /*private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger");
         //K: seria válido testar aqui se a poção foi arremessada? thrown?
         if (other.gameObject.CompareTag("Target"))
         {
@@ -174,7 +175,7 @@ public class PotColi : MonoBehaviour
             //destruído ao colidir com chão
             Destroy(gameObject);
             GameController.potionCount--;
-        }
+        }/*
         else if(thrown && lastObjectBouncedOn != other.gameObject)
         {
 
@@ -231,7 +232,7 @@ public class PotColi : MonoBehaviour
 
             //verificar se é necessário botar algum tipo de cooldown no quique
             
-        }
-        
-    }*/
-}
+        }*/
+
+    }
+    }
