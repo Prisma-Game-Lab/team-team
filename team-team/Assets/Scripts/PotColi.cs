@@ -29,11 +29,16 @@ public class PotColi : MonoBehaviour
     [Tooltip("Variavel que define a altura que a orbe alcança, quando em queda do tipo arco, ou o tempo antes de cair, para queda em linha")]
     public int airTime;
 
+    [Tooltip("Variável que define a velocidade base em que um objeto é refletido da parede")]
+    public float ReflectionVelocityMultiplier = 2.0f;
+
     private Rigidbody rigidbody;
     private Collider collider;
     private float raycastDistance = 0.5f;
     //armazenamos sempre qual o último objeto em que quicamos, para poder bloquear quiques duplos
     private GameObject lastObjectBouncedOn;
+
+    private Vector3 currentVelocity;
 
     void Start()
     {
@@ -41,10 +46,16 @@ public class PotColi : MonoBehaviour
         collider = GetComponent<Collider>();
         lastObjectBouncedOn = null;
     }
+
+    void FixedUpdate()
+    {
+        //K: esse valor é necessário para calcular a reflexão, já que os efeitos da colisão sobre a física ocorrem *antes* da função OnCollisionEnter ser chamada!
+        currentVelocity = rigidbody.velocity;
+    }
     
     void Update()
     {
-        if (thrown )
+        if (thrown)
         {
 
             //K: esse método de contar o tempo faz sentido, mas acaba variando conforme o framerate do jogo
@@ -116,37 +127,57 @@ public class PotColi : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision collision)
     {
         
-        Debug.Log("colidiu com: "+ other.gameObject.name);
-        if (other.gameObject.CompareTag("Target"))
+        Debug.Log("colidiu com: "+ collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Target"))
         {
             //J: destroi a poção ao colidir com o caldeirão
             Destroy(gameObject);
             GameController.potionCount--;
         }   
-        else if(thrown && other.gameObject.CompareTag("Player"))
+        else if(thrown && collision.gameObject.CompareTag("Player"))
         {
 
             //J: atualiza contador de poções, para criar nova poção
             Destroy(gameObject);
-            PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();
+            PlayerEffects pe = collision.gameObject.GetComponent<PlayerEffects>();
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
             GameController.potionCount--;
         }
-        else if (thrown && other.gameObject.layer == LayerMask.NameToLayer("floor"))
+        else if (thrown && collision.gameObject.layer == LayerMask.NameToLayer("floor"))
         {
             //destruído ao colidir com chão
             Destroy(gameObject);
             GameController.potionCount--;
         }
-        else if(thrown && lastObjectBouncedOn != other.gameObject)
+        else if(thrown && collision.gameObject.layer == LayerMask.NameToLayer("reflector") && lastObjectBouncedOn != collision.gameObject)
         {
-            //reflete trajetoria
-            lastObjectBouncedOn = other.gameObject;
-            this.GetComponent<Rigidbody>().velocity = Vector3.Reflect(this.GetComponent<Rigidbody>().velocity, other.contacts[0].normal);
+            lastObjectBouncedOn = collision.gameObject;
+            //reflete trajetoria:
+            //acha normal da superfície
+            Bounds bounds = this.collider.bounds;
+            float d = 4.0f*Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+            RaycastHit hit;
+            //Debug.DrawRay(bounds.center, d*(collision.GetContact(0).point - bounds.center).normalized, Color.red, 0.5f);
+            bool bhit = Physics.Raycast(bounds.center, (collision.GetContact(0).point - bounds.center).normalized, out hit, d, ~LayerMask.NameToLayer("reflector"));
+            if(bhit)
+            {
+                //Debug.DrawRay(hit.point, hit.normal*10, Color.green, 0.5f);
+                //Debug.DrawRay(hit.point, currentVelocity*10, Color.blue, 0.5f);
+                Vector3 refletido = Vector3.Reflect(currentVelocity, hit.normal.normalized);
+                //Vector3 refletido = MyReflect(rigidbody.velocity, hit.normal.normalized);
+                //Debug.Log("refletido");
+                //Debug.DrawRay(hit.point, refletido*10, Color.red, 0.5f);
+                rigidbody.velocity = refletido.normalized * currentVelocity.magnitude * ReflectionVelocityMultiplier;
+            }
+            else
+            {
+                Debug.LogWarning("Raycast failed to find reflector surface on collision");
+            }
+            
         }
     }
     
@@ -159,7 +190,8 @@ public class PotColi : MonoBehaviour
             //J: destroi a poção ao colidir com o caldeirão
             Destroy(gameObject);
             GameController.potionCount--;
-        }   
+        }
+        //interação com o player é tratada aqui pq o player tem uma box no seu entorno que é um trigger   
         else if(thrown && other.CompareTag("Player"))
         {
 
@@ -170,69 +202,8 @@ public class PotColi : MonoBehaviour
             this.HitPlayer(pe);
             GameController.potionCount--;
         }
-        else if (thrown && other.gameObject.layer == LayerMask.NameToLayer("floor"))
-        {
-            //destruído ao colidir com chão
-            Destroy(gameObject);
-            GameController.potionCount--;
-        }/*
-        else if(thrown && lastObjectBouncedOn != other.gameObject)
-        {
-
-            
-            Debug.Log("quica" + lastObjectBouncedOn.ToString());
-            //quica ao colidir com outras coisas
-            //outros orbes???
-            
-            //direções em que devo checar colisões
-            int hDir = rigidbody.velocity.x > 0 ? 1 : -1;
-            int vDir = rigidbody.velocity.z > 0 ? 1 : -1;
-
-            Vector3 newVelocity = rigidbody.velocity;
-            RaycastHit hit;
-            //há 8 origens para o raycast, uma para cada canto do bound
-            Vector3[] origins = new Vector3[8];
-            float dx = collider.bounds.extents.x; float dy = collider.bounds.extents.y; float dz = collider.bounds.extents.z;
-            origins[0] = collider.bounds.center + new Vector3(dx, dy, dz);
-            origins[1] = collider.bounds.center + new Vector3(dx, dy, -dz);
-            origins[2] = collider.bounds.center + new Vector3(dx, -dy, dz);
-            origins[3] = collider.bounds.center + new Vector3(dx, -dy, -dz);
-            origins[4] = collider.bounds.center + new Vector3(-dx, dy, dz);
-            origins[5] = collider.bounds.center + new Vector3(-dx, dy, -dz);
-            origins[6] = collider.bounds.center + new Vector3(-dx, -dy, dz);
-            origins[7] = collider.bounds.center + new Vector3(-dx, -dy, -dz);
-            
-            //há colisores nas direções de movimento? se sim, inverto minha velocidade nessa direção -> quico
-            //horizontal, ou x
-            foreach(Vector3 origin in origins)
-            {
-                Debug.DrawRay(origin, Vector3.right * hDir * raycastDistance, Color.red, 2);
-                if(other.Raycast(new Ray(this.transform.position, Vector3.right * hDir), out hit, raycastDistance))
-                {
-                    newVelocity.x = -newVelocity.x;
-                    Debug.Log("Invert x!");
-                    break;
-                }
-            }
-            
-            //"vertical", ou z
-            foreach(Vector3 origin in origins)
-            {
-                Debug.DrawRay(origin, Vector3.forward * vDir * raycastDistance, Color.blue, 2);
-                if(other.Raycast(new Ray(this.transform.position, Vector3.forward * vDir), out hit, raycastDistance))
-                {
-                    newVelocity.z = -newVelocity.z;
-                    Debug.Log("Invert z!");
-                    break;
-                }
-            }
-            
-
-            rigidbody.velocity = newVelocity;
-
-            //verificar se é necessário botar algum tipo de cooldown no quique
-            
-        }*/
-
+         
     }
-    }
+
+}
+

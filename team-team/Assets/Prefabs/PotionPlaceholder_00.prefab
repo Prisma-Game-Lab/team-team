@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9056563750517076793}
   - component: {fileID: 7006894993104714739}
   - component: {fileID: -7469703637447182985}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PotionPlaceholder_00
   m_TagString: Potion
   m_Icon: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   potionDuration: 5
   fallType: 1
   airTime: 4
+  ReflectionVelocityMultiplier: 1.2
 --- !u!1 &2322539173693246333
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ GameObject:
   - component: {fileID: 3208180547366703247}
   - component: {fileID: 3987159015217835979}
   - component: {fileID: 6697801835606238321}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4965,7 +4966,7 @@ GameObject:
   - component: {fileID: 2418227270635688761}
   - component: {fileID: 2877627190682306180}
   - component: {fileID: 6623724299599875255}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9779,7 +9780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655338424675438093}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Orb_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9812,7 +9813,7 @@ GameObject:
   - component: {fileID: 1689606361457800677}
   - component: {fileID: 8986108697513551319}
   - component: {fileID: 9126536558033976073}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: central
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14632,7 +14633,7 @@ GameObject:
   - component: {fileID: 7069824235191177381}
   - component: {fileID: 4799879281568907080}
   - component: {fileID: 2072212480164614336}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19385,7 +19386,7 @@ GameObject:
   - component: {fileID: 523445968766549152}
   - component: {fileID: 4274307887501678360}
   - component: {fileID: 419805240369371906}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: energy central
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24196,7 +24197,7 @@ GameObject:
   - component: {fileID: 8453941649046499827}
   - component: {fileID: 2856847353404501823}
   - component: {fileID: 8934561999768601128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}

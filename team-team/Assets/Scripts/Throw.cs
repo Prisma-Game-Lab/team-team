@@ -13,7 +13,7 @@ public class Throw : MonoBehaviour
 {    
     [Header("Referências do Unity(não mexer, só se você souber o que está fazendo)")]
     public Transform holdpoint;
-    public bool holding = false;
+    [HideInInspector] public bool holding = false;
 
     [Header("Variáveis de ajuste da gameplay. Ver tooltips para mais infos")]
     [Tooltip("Variável para ajustar a velocidade em que o jogador arremessa a poção")]
