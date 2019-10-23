@@ -114,7 +114,7 @@ MonoBehaviour:
   SpawnY: 0.75
   Obstacles: []
   potionVariants: []
-  potionSize: 0.5
+  potionSize: 0.6
   maxAttempts: 0
 --- !u!114 &4114396337426120968
 MonoBehaviour:
@@ -128,7 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cef119c2c32d1344a2722c27dc46bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryCondition: 1
   objectiveSize: 3
+  objectiveMaxPoints: 1500
   potionVariants:
   - {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293, type: 3}
   - {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621, type: 3}

@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03eeca6b1fd682d46b20d9b83015948d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  moveSpeedAcc: 10
+  moveSpeed: 7.5
+  moveSpeedAcc: 12.5
   moveSpeedDec: 2.5
   moveFreeze: 0
   accelerationTime: 0.1
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdpoint: {fileID: 889521016264318685}
   holding: 0
-  throwSpeed: 10
+  throwSpeed: 15
   throwerTeam: 0
 --- !u!114 &375684883
 MonoBehaviour:

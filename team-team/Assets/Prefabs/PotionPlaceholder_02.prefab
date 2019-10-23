@@ -9726,10 +9726,10 @@ MonoBehaviour:
   potionType: 2
   pointValueOnCauldron: 100
   pointValueOnPlayer: 100
-  potionDuration: 2
-  fallType: 1
-  airTime: 4
-  ReflectionVelocityMultiplier: 1.2
+  potionDuration: 1.5
+  fallType: 0
+  airTime: 100
+  ReflectionVelocityMultiplier: 1.1
 --- !u!1 &7100407958536461727
 GameObject:
   m_ObjectHideFlags: 0
