@@ -4764,9 +4764,9 @@ GameObject:
   - component: {fileID: 6915384829702931203}
   - component: {fileID: 1204788269475087610}
   - component: {fileID: 2554873999137090219}
-  - component: {fileID: 9132182447508469172}
   - component: {fileID: 1611247277763930806}
   - component: {fileID: 3592871141900988966}
+  - component: {fileID: 962534010924580617}
   m_Layer: 11
   m_Name: PotionPlaceholder_03
   m_TagString: Potion
@@ -4835,19 +4835,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &9132182447508469172
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330187846890212218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1611247277763930806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4883,6 +4870,19 @@ MonoBehaviour:
   fallType: 0
   airTime: 100
   ReflectionVelocityMultiplier: 1.1
+--- !u!135 &962534010924580617
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330187846890212218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4434198692623632729
 GameObject:
   m_ObjectHideFlags: 0

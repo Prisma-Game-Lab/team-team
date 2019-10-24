@@ -45,6 +45,9 @@ public class PotColi : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         lastObjectBouncedOn = null;
+
+        //K: uma solução simplista para o problema das orbes flutuando sozinhas, estranhamente: no inicio, desablitar qualquer movimento
+        rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
     }
 
     void FixedUpdate()
@@ -100,8 +103,11 @@ public class PotColi : MonoBehaviour
         //J: se tiver trajetoria de arco, cria velocidade vertical
         if (newThrown && fallType == FallStyle.arco)
         {
+            rigidbody.constraints = 0; //flag para nenhuma constraint 
             gameObject.GetComponent<Rigidbody>().AddForce(0, airTime, 0, ForceMode.VelocityChange);
         }
+
+        
     }
 
     /*K:
@@ -136,6 +142,7 @@ public class PotColi : MonoBehaviour
             //J: destroi a poção ao colidir com o caldeirão
             Destroy(gameObject);
             GameController.potionCount--;
+            return;
         }   
         else if(thrown && collision.gameObject.CompareTag("Player"))
         {
@@ -146,12 +153,14 @@ public class PotColi : MonoBehaviour
             Debug.Assert(pe != null);
             this.HitPlayer(pe);
             GameController.potionCount--;
+            return;
         }
         else if (thrown && collision.gameObject.layer == LayerMask.NameToLayer("floor"))
         {
             //destruído ao colidir com chão
             Destroy(gameObject);
             GameController.potionCount--;
+            return;
         }
         else if(thrown && collision.gameObject.layer == LayerMask.NameToLayer("reflector") && lastObjectBouncedOn != collision.gameObject)
         {
@@ -168,8 +177,7 @@ public class PotColi : MonoBehaviour
                 //Debug.DrawRay(hit.point, hit.normal*10, Color.green, 0.5f);
                 //Debug.DrawRay(hit.point, currentVelocity*10, Color.blue, 0.5f);
                 Vector3 refletido = Vector3.Reflect(currentVelocity, hit.normal.normalized);
-                //Vector3 refletido = MyReflect(rigidbody.velocity, hit.normal.normalized);
-                //Debug.Log("refletido");
+                Debug.Log("refletido");
                 //Debug.DrawRay(hit.point, refletido*10, Color.red, 0.5f);
                 rigidbody.velocity = refletido.normalized * currentVelocity.magnitude * ReflectionVelocityMultiplier;
             }
@@ -177,7 +185,14 @@ public class PotColi : MonoBehaviour
             {
                 Debug.LogWarning("Raycast failed to find reflector surface on collision");
             }
+            return;
             
+        }
+        else
+        {
+            //depois de colidir com qualquer outra coisa(paredes, poções), liga a gravidade se não estiver ligada
+            rigidbody.useGravity = true;
+
         }
     }
     

@@ -33,6 +33,8 @@ public class Throw : MonoBehaviour
     //classe bobinha que armazena configuração de controle do jogador
     private PlayerInput playerInput;
     private PlayerEffects playerEffects;
+    private Transform transform;
+    private Collider trigger;
 
     //O: Variável que define se o jogador pode jogar ou não os itens
     private bool canThrow = true;
@@ -43,6 +45,8 @@ public class Throw : MonoBehaviour
         GameController.setThrowSpeedGlobal(throwSpeed);
         playerInput = this.GetComponent<PlayerInput>();
         playerEffects = GetComponent<PlayerEffects>();
+        transform = GetComponent<Transform>();
+        trigger = GetComponent<Collider>();
 
         Debug.Assert(playerEffects != null);
     }
@@ -71,6 +75,10 @@ public class Throw : MonoBehaviour
                 {
                     //arremessa a poção que estava sendo segurada
 
+
+                    //K: remove contraints de movimento, para arremessar a poção
+                    potionRigidbody.constraints = 0;
+
                     //K: O, eu alterei esta linha abaixo para fazer com que o objeto seja arremessado em várias direções, e não só para direita!
                     Vector3 throwDirection = transform.forward;
                     potionRigidbody.velocity = throwDirection * throwSpeed;
@@ -80,6 +88,13 @@ public class Throw : MonoBehaviour
 
                     //J: altera o valor Thrown da poção para true
                     potionScript.setThrown(true);
+
+                    //K: a propria poção faz isso, quando ela sai do trigger do player
+                    //potionRigidbody.gameObject.GetComponent<Collider>().enabled = true;
+
+                    //K: começa uma corrotina improvisada, para só reativar o collider da orbe quando ela já estiver longe o suficiente deste player
+                    StartCoroutine(OrbIsOutside(potionRigidbody));
+                    
                 }
                 else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
                 {
@@ -92,6 +107,15 @@ public class Throw : MonoBehaviour
             
     }
 
+    //coroutina responsável por esperar a orbe sair de perto do player pra depois reativar seu collider
+    private IEnumerator OrbIsOutside(Rigidbody Orbrigidbody)
+    {
+        Transform Orbtransform = Orbrigidbody.gameObject.GetComponent<Transform>();
+        yield return new WaitUntil(() => !trigger.bounds.Contains(Orbtransform.position));
+        yield return new WaitForSeconds(0.1f); //K: meio gambiarra, mas é a vida(pré-hacktudo)
+        Orbrigidbody.gameObject.GetComponent<Collider>().enabled = true;
+        yield break;
+    }
 
     // on TRIGGER enter
     private void OnTriggerEnter(Collider other)
@@ -105,7 +129,10 @@ public class Throw : MonoBehaviour
             other.gameObject.transform.SetParent(holdpoint);
             other.gameObject.transform.position = holdpoint.position;
             potionRigidbody = other.gameObject.GetComponent<Rigidbody>();
+            //K: pra que mexer no isKinematic?
             potionRigidbody.isKinematic = false;
+
+            potionRigidbody.gameObject.GetComponent<Collider>().enabled = false;
 
             //J: adquire script da poção arremessada e altera o valor de qual time carrega/arremessa a poção
             potionScript = pc;
