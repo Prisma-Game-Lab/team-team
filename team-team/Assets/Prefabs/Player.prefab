@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controllerScheme:
-    mode: 1
+    mode: 0
     index: 0
 --- !u!114 &3892519881728914074
 MonoBehaviour:
