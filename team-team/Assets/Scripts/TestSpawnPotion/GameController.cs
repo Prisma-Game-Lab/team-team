@@ -204,19 +204,19 @@ public class GameController : MonoBehaviour
             //K: como seria uma maneira mais limpa de fazer essa repetição
             if (DisplayP1 != null)
             {
-                DisplayP1.text = "Jogador 1: " + teamPoints[0] + "/"  + objectiveMaxPoints;
+                DisplayP1.text = teamPoints[0] + "";
             }
             if (DisplayP2 != null)
             {
-                DisplayP2.text = "Jogador 2: " + teamPoints[1] + "/"  + objectiveMaxPoints;
+                DisplayP2.text = teamPoints[1] + "";
             }
             if (DisplayP3 != null)
             {
-                DisplayP3.text = "Jogador 3: " + teamPoints[2] + "/"  + objectiveMaxPoints;
+                DisplayP3.text = teamPoints[2] + "\n/"  + objectiveMaxPoints;
             }
             if (DisplayP4 != null)
             {
-                DisplayP4.text = "Jogador 4: " + teamPoints[3] + "/"  + objectiveMaxPoints;
+                DisplayP4.text = teamPoints[3] + "\n/"  + objectiveMaxPoints;
             }
         }
         
