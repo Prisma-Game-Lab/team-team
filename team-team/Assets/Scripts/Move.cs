@@ -29,6 +29,8 @@ public class Move : MonoBehaviour
     [Tooltip("Caso ShouldAutoRotate esteja ativo, a velocidade base de rotação do jogador")]
     public float turnSpeed = 10.0f;
 
+    private Animator animator;
+
     private float angle;
     private Quaternion rot;
 
@@ -48,6 +50,7 @@ public class Move : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         rigidbody = GetComponent<Rigidbody>();
         plEffects = GetComponent<PlayerEffects>();
+        animator = GetComponent<Animator>();
 
         Debug.Assert(plEffects != null);
 
@@ -96,6 +99,7 @@ public class Move : MonoBehaviour
         //move o player
         //transform.position += move.normalized * Time.deltaTime * currentSpeed;
         rigidbody.velocity = move * currentSpeed;
+        animator.SetBool("Walking", currentSpeed > 0);
         
         //Calcula direção
         //angle = Mathf.Atan2(moveVer, moveHon);
