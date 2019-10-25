@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
     [Header("Referências do Unity, cuidado ao mexer")]
     [Tooltip("lista de poções no jogo. aumente o tamanho da lista e adicione o prefab de uma poção para adicioná-la")]
     public GameObject[] potionVariants;
+    [Tooltip("Tela de fim de jogo e sua mensagem.")]
+    public GameObject telaFinal;
+    private Text winner;
     
 
     [Tooltip("Prefab do alvo bonus")]
@@ -96,6 +99,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        winner = telaFinal.GetComponent<Text>();
         Debug.Assert(potionVariants.Length > 0);
         //J: Inicializa texto do objetivo na UI
         Debug.Assert(DisplayGoal != null);
@@ -237,7 +241,8 @@ public class GameController : MonoBehaviour
                 DisplayP4.text = "";
                 DisplayP4 = null;
             }
-            DisplayGoal.text = "Jogador " + (victoriousTeam+1).ToString() + " ganhou!";
+            telaFinal.SetActive(true);
+            winner.text = "Jogador " + (victoriousTeam+1).ToString() + " ganhou!";
             DisplayGoal.enabled = true;
             return;
         }
@@ -270,19 +275,19 @@ public class GameController : MonoBehaviour
             //K: como seria uma maneira mais limpa de fazer essa repetição
             if (DisplayP1 != null)
             {
-                DisplayP1.text = teamPoints[0] + "/"  + objectiveMaxPoints;
+                DisplayP1.text = teamPoints[0] + " " ;
             }
             if (DisplayP2 != null)
             {
-                DisplayP2.text = teamPoints[1] + "/"  + objectiveMaxPoints;
+                DisplayP2.text = teamPoints[1] + " " ;
             }
             if (DisplayP3 != null && teamPoints.Length > 2)
             {
-                DisplayP3.text = teamPoints[2] + "/"  + objectiveMaxPoints;
+                DisplayP3.text = "Jogador 3:" + teamPoints[2];
             }
             if (DisplayP4 != null && teamPoints.Length > 3)
             {
-                DisplayP4.text = teamPoints[3] + "/"  + objectiveMaxPoints;
+                DisplayP4.text = "Jogador 4:" + teamPoints[3];
             }
         }
         
