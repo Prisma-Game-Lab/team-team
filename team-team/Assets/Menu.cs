@@ -17,4 +17,11 @@ public class Menu : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+
+    //K: temp para hacktudo
+    public void IniciarTemp(int playersQtd)
+    {
+        PersistentInfo.Instance.playersQtd = playersQtd;
+        SceneManager.LoadScene("Cenas integradas");
+    }
 }
