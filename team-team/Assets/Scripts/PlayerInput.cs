@@ -11,7 +11,8 @@ Autores: Krauss,
  */
 
 public class PlayerInput : MonoBehaviour
-{    
+{
+    
     [Header("Configurações de controlador para este player")]
     [Tooltip("Determina se este player usa joystick ou teclado, e qual o seu índice")]
     [SerializeField] private ControllerScheme _controllerScheme;
@@ -19,6 +20,5 @@ public class PlayerInput : MonoBehaviour
     {
         get{ return _controllerScheme; }
     }
-
 
 }

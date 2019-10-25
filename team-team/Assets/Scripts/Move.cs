@@ -7,7 +7,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [Header("Variáveis de customização do movimento do jogador. Ver tooltips para mais informações")]
-    
+
     [Tooltip("A velocidade base de movimentação do player")]
     public float moveSpeed = 5.0f;
     [Tooltip("A velocidade de movimentação do player quando sob o efeito de aceleração")]
@@ -21,10 +21,15 @@ public class Move : MonoBehaviour
     public float accelerationTime = 0.1f;
     [Tooltip("O tempo em segundo que o player demora de velocidade máxima para velocidade 0")]
     public float decelerationTime = 0.2f;
+
+    [Tooltip("Determina se ao jogador é permitido rotacionar manualmente o personagem usando o joystick direito. Só é válido para joysticks, já que no teclado isso é impossível")]
+    public bool ManualRotate;
     [Tooltip("Determina se o jogador deve tentar rotacionar automaticamente quando é movido. Só é válido para joysticks, já que no teclado isso acontece de qualquer jeito")]
     public bool AutoRotate;
     [Tooltip("Caso ShouldAutoRotate esteja ativo, a velocidade base de rotação do jogador")]
     public float turnSpeed = 10.0f;
+
+    private Animator animator;
 
     private float angle;
     private Quaternion rot;
@@ -45,6 +50,7 @@ public class Move : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         rigidbody = GetComponent<Rigidbody>();
         plEffects = GetComponent<PlayerEffects>();
+        animator = GetComponent<Animator>();
 
         Debug.Assert(plEffects != null);
 
@@ -73,6 +79,7 @@ public class Move : MonoBehaviour
         if(newMove.sqrMagnitude > 0.1f)
         {
             //O: Inverte a direção do movimento do jogador ao ser atingido pelo orbe de confusão
+            //K: use as chavinhas {} pra marcar os ifs, por favor eu imploro
             if (inv)
                 move = -1 * newMove;
             else
@@ -92,6 +99,7 @@ public class Move : MonoBehaviour
         //move o player
         //transform.position += move.normalized * Time.deltaTime * currentSpeed;
         rigidbody.velocity = move * currentSpeed;
+        animator.SetBool("Walking", currentSpeed > 0);
         
         //Calcula direção
         //angle = Mathf.Atan2(moveVer, moveHon);
@@ -110,8 +118,8 @@ public class Move : MonoBehaviour
             Vector2 input = new Vector2(h,v);
         
 
-            //se o player está usando o analógico direito para se mexer, imediatamente vai para aquela orientação(por ora pelo menos)
-            if(input.magnitude >= 0.6f) //botei um thrshold de 0.6 pra ele não ficar rodando a esmo e ficar sempre na direção do último input
+            //se o player está usando o analógico direito para se rotacionar, imediatamente vai para aquela orientação(por ora pelo menos)
+            if(ManualRotate && input.magnitude >= 0.6f) //botei um thrshold de 0.6 pra ele não ficar rodando a esmo e ficar sempre na direção do último input
             {
                 float angle_rad = Mathf.Atan2(input.x, input.y);
                 Quaternion rotation = new Quaternion();
@@ -178,4 +186,5 @@ public class Move : MonoBehaviour
     {
         
     }
+
 }
