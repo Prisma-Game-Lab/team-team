@@ -33,7 +33,6 @@ public class PotColi : MonoBehaviour
     public float ReflectionVelocityMultiplier = 2.0f;
 
     private Rigidbody rigidbody;
-    private Transform transform;
     private Collider collider;
     private float raycastDistance = 0.5f;
     //armazenamos sempre qual o último objeto em que quicamos, para poder bloquear quiques duplos
@@ -41,14 +40,10 @@ public class PotColi : MonoBehaviour
 
     private Vector3 currentVelocity;
 
-    [Tooltip("O nome do evento/som a ser tocado quando a orbe é arremessada e corre pelo ar")]
-    public string thrownEventString = "event:/Efeitos/orbs/lançamento orb";
-
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
-        transform = GetComponent<Transform>();
         lastObjectBouncedOn = null;
 
         //K: uma solução simplista para o problema das orbes flutuando sozinhas, estranhamente: no inicio, desablitar qualquer movimento
@@ -105,12 +100,6 @@ public class PotColi : MonoBehaviour
     {
         thrown = newThrown;
 
-        if(newThrown)
-        {
-            //toca som da orbe voando
-            FMODUnity.RuntimeManager.PlayOneShot(thrownEventString, transform.position);
-
-        }
         //J: se tiver trajetoria de arco, cria velocidade vertical
         if (newThrown && fallType == FallStyle.arco)
         {
@@ -152,7 +141,9 @@ public class PotColi : MonoBehaviour
         {
             //J: destroi a poção ao colidir com o caldeirão
             Destroy(gameObject);
+	    Destroy(collision.gameObject);
             GameController.potionCount--;
+	    GameController.targetCount--;
             return;
         }   
         else if(thrown && collision.gameObject.CompareTag("Player"))
@@ -210,10 +201,11 @@ public class PotColi : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger");
+	
         //K: seria válido testar aqui se a poção foi arremessada? thrown?
         if (other.gameObject.CompareTag("Target"))
         {
-            //J: destroi a poção ao colidir com o caldeirão
+            //J: destroi a poção ao colidir com o alvo bonus
             Destroy(gameObject);
             GameController.potionCount--;
         }

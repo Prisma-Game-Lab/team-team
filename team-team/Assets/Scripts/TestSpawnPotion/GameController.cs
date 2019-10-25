@@ -15,7 +15,8 @@ public class GameController : MonoBehaviour
 {
     //J: contador de poções existentes na cena
     public static int potionCount = 0;
-
+    //J: contador de alvos existentes na cena
+    public static int targetCount = 0;
     [Header("Configurações de Gameplay. Preste atenção nas tooltips")]
 
     [Tooltip("Controla a condição de vitória entre algumas opções. O valor deste item determina se algumas variáveis abaixo são ou não usadas")]
@@ -31,8 +32,16 @@ public class GameController : MonoBehaviour
 
     [Header("Referências do Unity, cuidado ao mexer")]
     [Tooltip("lista de poções no jogo. aumente o tamanho da lista e adicione o prefab de uma poção para adicioná-la")]
-    //J: variações de poções disponiveis
     public GameObject[] potionVariants;
+    
+
+    [Tooltip("Prefab do alvo bonus")]
+    public GameObject bonusTarget;
+    [Tooltip("Objetos vazios que marcam as posições possíveis onde o alvo bonus pode aparecer")]
+    public Transform[] targetSpawnPoints;
+    [Tooltip("Intervalo entre alvos bonus")]
+    public float targetCooldown;
+
 
     [Tooltip("número de equipes com pontuações separadas na cena")]
     //J: numero de times e pontuações atuais de cada time
@@ -55,6 +64,7 @@ public class GameController : MonoBehaviour
 
     //J: String contendo os nomes dados para cada orbe, enquanto não temos imagens para apresentar no lugar na HUD
     public string[] orbNames;
+
 
     //J: variavel responsavel para receber a velocidade de arremesso base dos jogadores e atribui-la às poções para calcular alcance corretamente, para queda linear
     //K: prático, mas o que acontece se, por exemplo, players precisarem ter alcances diferentes quando lançam a poção? Por serem personagens diferentes ou pelo efeito de uma poção, por exemplo?
@@ -93,15 +103,15 @@ public class GameController : MonoBehaviour
         //J: gera aleatoriamente a sequencia necessária para vitoria
         objective = new int[objectiveSize];
 
-        Debug.Log("Objetivo: ");
         for(int i=0;i<objectiveSize; i++)
         {
             objective[i] = Random.Range(0, potionVariants.Length);
-            Debug.Log("Poção "+ i + ": " + objective[i]);
             
             DisplayGoal.text = DisplayGoal.text + orbNames[objective[i]];
             
         }
+	//J: inicia a função que cria os alvos bonus, que se repete sozinha
+        StartCoroutine(spawnTarget(targetCooldown));
 
         //J: configura pontuação inicial de todos os times para 0
         teamPoints = new int[numTeams];
@@ -126,8 +136,30 @@ public class GameController : MonoBehaviour
     {
         //J: atualiza o valor exibido como alvo atual de cada jogador
         UpdateScoringUI();
-        
-        
+    }
+
+
+
+    //J: função responsável por criar os alvos bonus com n segundos de intervalo.
+    IEnumerator spawnTarget(float cooldown)
+    {
+	//enqanto o jogo não acabar
+	while (!gameEnd)
+	{
+		//espera o tempo
+		yield return new WaitForSecondsRealtime(cooldown);
+
+		//escolhe um spawn possivel
+		int chosenSpawn = Random.Range(0,targetSpawnPoints.Length);
+		
+		//cria o alvo no spawn escolhido
+		Debug.Log("Alvo Spawnado");
+		Instantiate(bonusTarget,targetSpawnPoints[chosenSpawn].position,targetSpawnPoints[chosenSpawn].rotation);
+		targetCount++;
+
+		//espera o alvo sumir;
+		yield return new WaitUntil(() => targetCount == 0);
+	}
     }
 
     // informa se o time em questão ganhou o jogo!
@@ -204,19 +236,19 @@ public class GameController : MonoBehaviour
             //K: como seria uma maneira mais limpa de fazer essa repetição
             if (DisplayP1 != null)
             {
-                DisplayP1.text = teamPoints[0] + "";
+                DisplayP1.text = "Jogador 1: " + teamPoints[0] + "/"  + objectiveMaxPoints;
             }
             if (DisplayP2 != null)
             {
-                DisplayP2.text = teamPoints[1] + "";
+                DisplayP2.text = "Jogador 2: " + teamPoints[1] + "/"  + objectiveMaxPoints;
             }
             if (DisplayP3 != null)
             {
-                DisplayP3.text = teamPoints[2] + "\n/"  + objectiveMaxPoints;
+                DisplayP3.text = "Jogador 3: " + teamPoints[2] + "/"  + objectiveMaxPoints;
             }
             if (DisplayP4 != null)
             {
-                DisplayP4.text = teamPoints[3] + "\n/"  + objectiveMaxPoints;
+                DisplayP4.text = "Jogador 4: " + teamPoints[3] + "/"  + objectiveMaxPoints;
             }
         }
         
