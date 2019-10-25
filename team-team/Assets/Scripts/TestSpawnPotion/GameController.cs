@@ -270,11 +270,11 @@ public class GameController : MonoBehaviour
             //K: como seria uma maneira mais limpa de fazer essa repetição
             if (DisplayP1 != null)
             {
-                DisplayP1.text = teamPoints[0] + "/"  + objectiveMaxPoints;
+                DisplayP1.text = teamPoints[0] + " " ;
             }
             if (DisplayP2 != null)
             {
-                DisplayP2.text = teamPoints[1] + "/"  + objectiveMaxPoints;
+                DisplayP2.text = teamPoints[1] + " " ;
             }
             if (DisplayP3 != null && teamPoints.Length > 2)
             {

@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdpoint: {fileID: 889521016264318685}
   holding: 0
-  throwSpeed: 15
+  throwSpeed: 17.5
   throwerTeam: 0
   throwEventString: event:/Efeitos/personagens/arremesso orb personagem 1
 --- !u!114 &375684883
