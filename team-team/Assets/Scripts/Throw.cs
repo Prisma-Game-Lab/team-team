@@ -104,6 +104,7 @@ public class Throw : MonoBehaviour
                 else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
                 {
                     //joga a poção em si mesmo!
+                    GameController.potionCount--;
                     potionScript.HitPlayer(playerEffects);
                 }
             }
