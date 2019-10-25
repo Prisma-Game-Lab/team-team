@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public enum VictoryCondition
 {
@@ -65,6 +67,9 @@ public class GameController : MonoBehaviour
     //J: String contendo os nomes dados para cada orbe, enquanto não temos imagens para apresentar no lugar na HUD
     public string[] orbNames;
 
+    //K: lista de referencias para os players
+    public List<GameObject> players;
+    private int numPlayers;
 
     //J: variavel responsavel para receber a velocidade de arremesso base dos jogadores e atribui-la às poções para calcular alcance corretamente, para queda linear
     //K: prático, mas o que acontece se, por exemplo, players precisarem ter alcances diferentes quando lançam a poção? Por serem personagens diferentes ou pelo efeito de uma poção, por exemplo?
@@ -113,6 +118,29 @@ public class GameController : MonoBehaviour
 	//J: inicia a função que cria os alvos bonus, que se repete sozinha
         StartCoroutine(spawnTarget(targetCooldown));
 
+        //k: coisas temporárias pra setar o jogo de acordo com o num de players
+        if(PersistentInfo.Instance != null)
+        {
+            //free for all
+            numTeams = PersistentInfo.Instance.playersQtd;
+            numPlayers = numTeams;
+        }
+        else
+        {
+            numTeams = 4;
+            numPlayers = 4;
+        }
+
+        //K: desliga players que não estiverem jogando
+        //supoe que o thrower team de cada player já está setado corretamente
+        for(int i = 0; i < players.Count; i++)
+        {
+            if(players[i] != null)
+            {
+                players[i].SetActive(i < numPlayers);                
+            }
+        }
+
         //J: configura pontuação inicial de todos os times para 0
         teamPoints = new int[numTeams];
         teamObjIndex = new int[numTeams];
@@ -136,6 +164,12 @@ public class GameController : MonoBehaviour
     {
         //J: atualiza o valor exibido como alvo atual de cada jogador
         UpdateScoringUI();
+
+        //K: temp para hacktudo: se apertar 'm', volta para menu
+        if(Input.GetKey(KeyCode.M))
+        {
+            SceneManager.LoadScene("MenuTemp");
+        }
     }
 
 
@@ -236,19 +270,19 @@ public class GameController : MonoBehaviour
             //K: como seria uma maneira mais limpa de fazer essa repetição
             if (DisplayP1 != null)
             {
-                DisplayP1.text = "Jogador 1: " + teamPoints[0] + "/"  + objectiveMaxPoints;
+                DisplayP1.text = teamPoints[0] + "/"  + objectiveMaxPoints;
             }
             if (DisplayP2 != null)
             {
-                DisplayP2.text = "Jogador 2: " + teamPoints[1] + "/"  + objectiveMaxPoints;
+                DisplayP2.text = teamPoints[1] + "/"  + objectiveMaxPoints;
             }
-            if (DisplayP3 != null)
+            if (DisplayP3 != null && teamPoints.Length > 2)
             {
-                DisplayP3.text = "Jogador 3: " + teamPoints[2] + "/"  + objectiveMaxPoints;
+                DisplayP3.text = teamPoints[2] + "/"  + objectiveMaxPoints;
             }
-            if (DisplayP4 != null)
+            if (DisplayP4 != null && teamPoints.Length > 3)
             {
-                DisplayP4.text = "Jogador 4: " + teamPoints[3] + "/"  + objectiveMaxPoints;
+                DisplayP4.text = teamPoints[3] + "/"  + objectiveMaxPoints;
             }
         }
         
