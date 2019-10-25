@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /*
 Throw: script que implementa o comportamento de um player segurar objetos e poder arremessá-los
 
@@ -21,6 +20,9 @@ public class Throw : MonoBehaviour
     [Tooltip("variavel que determina a qual time o jogador pertence (começa contagem do 0)")]
     //J: , e o script da poção com que se está interagindo
     public int throwerTeam;
+
+    [Tooltip("O nome do evento/som a ser tocado quando a orbe é arremessada")]
+    public string throwEventString = "event:/Efeitos/personagens/arremesso potion";
 
     //Arthur, é de fato importante ter essa variável Rigidbody aqui. Mas é importante que o nome dela seja potionRigidbody, ou algo mais descritivo que só rb. Tomei a liberdade de mudar. Ass: Krauss
         //Além disso, é importante que ela seja setada quando o player pega uma poção, senão ele só poderia pegar uma única poção durante o jogo
@@ -94,6 +96,9 @@ public class Throw : MonoBehaviour
 
                     //K: começa uma corrotina improvisada, para só reativar o collider da orbe quando ela já estiver longe o suficiente deste player
                     StartCoroutine(OrbIsOutside(potionRigidbody));
+
+                    //emite som de arremesso de poção
+                    FMODUnity.RuntimeManager.PlayOneShot(throwEventString, transform.position);
                     
                 }
                 else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
