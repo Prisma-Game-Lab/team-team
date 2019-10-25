@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     private CharSelection charSelection;
     public void Iniciar()
     {
-        if(charSelection.CheckIfPlayersReady())
+        if (charSelection.CheckIfPlayersReady())
             SceneManager.LoadScene("Main");
     }
 

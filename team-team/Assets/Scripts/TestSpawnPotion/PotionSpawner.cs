@@ -71,6 +71,7 @@ public class PotionSpawner : MonoBehaviour
             attempts++;
             //J: muda a posição caso exista um objeto dentro da area definida, a não ser que tenha tentadov vezes demais
         } while (Physics.CheckSphere(new Vector3(spawnX,SpawnY,spawnZ),potionSize,9)||attempts <= maxAttempts);
+        Debug.Log("Spawn");
         Instantiate(potionVariants[chosenPotion], new Vector3(spawnX, SpawnY, spawnZ), baseTransform.rotation);
         GameController.potionCount += 1;
     }
