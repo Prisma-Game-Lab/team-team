@@ -283,11 +283,11 @@ public class GameController : MonoBehaviour
             }
             if (DisplayP3 != null && teamPoints.Length > 2)
             {
-                DisplayP3.text = teamPoints[2] + "/"  + objectiveMaxPoints;
+                DisplayP3.text = "Jogador 3:" + teamPoints[2];
             }
             if (DisplayP4 != null && teamPoints.Length > 3)
             {
-                DisplayP4.text = teamPoints[3] + "/"  + objectiveMaxPoints;
+                DisplayP4.text = "Jogador 4:" + teamPoints[3];
             }
         }
         

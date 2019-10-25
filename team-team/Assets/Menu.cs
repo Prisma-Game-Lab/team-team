@@ -22,6 +22,6 @@ public class Menu : MonoBehaviour
     public void IniciarTemp(int playersQtd)
     {
         PersistentInfo.Instance.playersQtd = playersQtd;
-        SceneManager.LoadScene("Cenas integradas");
+        SceneManager.LoadScene("CenaGDFinal");
     }
 }
