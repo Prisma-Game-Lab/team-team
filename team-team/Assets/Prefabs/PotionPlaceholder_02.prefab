@@ -9724,8 +9724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionType: 2
-  pointValueOnCauldron: 100
-  pointValueOnPlayer: 100
+  pointValueOnCauldron: 300
+  pointValueOnPlayer: 50
   potionDuration: 1.5
   fallType: 0
   airTime: 100

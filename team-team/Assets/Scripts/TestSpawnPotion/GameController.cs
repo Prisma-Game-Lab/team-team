@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        winner = telaFinal.GetComponent<Text>();
+        winner = telaFinal.GetComponentInChildren<Text>();
         Debug.Assert(potionVariants.Length > 0);
         //J: Inicializa texto do objetivo na UI
         Debug.Assert(DisplayGoal != null);
@@ -317,6 +317,7 @@ public class GameController : MonoBehaviour
 
                 //K: por enquanto está sendo feito este cast de enum pra int, o que é válido e seguro. Porém, seria mais organizado mudar tudo logo
                 //J: se a orbe jogada é o objetivo atual do time, marca ponto. Também impede erros caso uma orbe spawne dentro do poço
+                if(potionType == objective[teamObjIndex[throwerTeam]])
                 if(potionType == objective[teamObjIndex[throwerTeam]])
                 {
                     teamObjIndex[throwerTeam]++;
