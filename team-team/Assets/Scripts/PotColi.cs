@@ -144,6 +144,7 @@ public class PotColi : MonoBehaviour
 	    Destroy(collision.gameObject);
             GameController.potionCount--;
 	    GameController.targetCount--;
+            GameController.Instance.AddPoints(pointValueOnCauldron, this.getThrower());
             return;
         }   
         else if(thrown && collision.gameObject.CompareTag("Player"))

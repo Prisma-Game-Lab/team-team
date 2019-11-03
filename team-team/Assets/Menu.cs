@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     private CharSelection charSelection;
     public void Iniciar()
     {
-        if(charSelection.CheckIfPlayersReady())
+        if (charSelection.CheckIfPlayersReady())
             SceneManager.LoadScene("Main");
     }
 
@@ -22,6 +22,6 @@ public class Menu : MonoBehaviour
     public void IniciarTemp(int playersQtd)
     {
         PersistentInfo.Instance.playersQtd = playersQtd;
-        SceneManager.LoadScene("Cenas integradas");
+        SceneManager.LoadScene("CenaGDFinal");
     }
 }
