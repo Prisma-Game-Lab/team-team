@@ -14,6 +14,7 @@ Autores: Krauss,
 
 public enum PotionEffect
 {
+    Nothing,
     Accelerate, 
     Decelerate,
     Freeze,
@@ -50,7 +51,8 @@ public class PlayerEffects : MonoBehaviour
 
     public void AddEffect(PotionEffect effect, float duration = 5.0f) //onde eu boto esse valor 5?
     {
-        StartCoroutine(StartEffect(effect, duration));
+        if(effect == PotionEffect.Nothing) return;
+        else StartCoroutine(StartEffect(effect, duration));
     }
 
     IEnumerator StartEffect(PotionEffect effect, float duration)
