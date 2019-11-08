@@ -16,13 +16,9 @@ public class PotionSpawner : MonoBehaviour
     public float maxSpawnZ;
     public float SpawnY;
 
-    //J:array contendo obstaculos onde não é possivel o aparecimento das poções
-        //acho que no final das contas, não é necessário esse array né? Ass: Krauss
-    public GameObject[] Obstacles;
-
     //J:array contendo uma instância de cada tipo de poção diferente (ou várias, caso tenham probabilidades diferentes)
         //é uma boa já saber que vamos trabalhar com probabilidades, mas depois devemos pensar num jeito melhor de controlá-las, botar elementos repetidos na lista é meio ruim. Talvez pesos, sl. Ass: Krauss 
-    public GameObject[] potionVariants;
+    private GameObject[] potionVariants;
 
     
     //variavel que armazena tamanho da poção, usado para verificar colisões durante o spawn
@@ -60,19 +56,23 @@ public class PotionSpawner : MonoBehaviour
         int chosenPotion = 0;
         float spawnX = 0.0f;
         float spawnZ = 0.0f;
-
         //J: variavel que deve garantir que não entrará em loop infinito
         int attempts = 0;
+        Collider[] overlaps;
         do {
             //J: escolhe aleatoriamente a poção que surgirá e a sua posição, dentro do limite definido
             chosenPotion = Random.Range(0, potionVariants.Length);
             spawnX = Random.Range(minSpawnX, maxSpawnX);
             spawnZ = Random.Range(minSpawnZ, maxSpawnZ);
             attempts++;
+            overlaps = Physics.OverlapSphere(new Vector3(spawnX, SpawnY, spawnZ), potionSize);
             //J: muda a posição caso exista um objeto dentro da area definida, a não ser que tenha tentadov vezes demais
-        } while (Physics.CheckSphere(new Vector3(spawnX,SpawnY,spawnZ),potionSize,9)||attempts <= maxAttempts);
-        Debug.Log("Spawn");
-        Instantiate(potionVariants[chosenPotion], new Vector3(spawnX, SpawnY, spawnZ), baseTransform.rotation);
+        } while (overlaps.Length != 0||attempts > maxAttempts);
+        if (attempts < maxAttempts)
+        {
+            Instantiate(potionVariants[chosenPotion], new Vector3(spawnX, SpawnY, spawnZ), baseTransform.rotation);
+        }
+        //J: soma mesmo que não instancie, para terminar o loop caso não tenham espaços disponiveis para spawnar orbes
         GameController.potionCount += 1;
     }
 }
