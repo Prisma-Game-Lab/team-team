@@ -57,9 +57,9 @@ public class CharSelection : MonoBehaviour
         {
             if(!playerReady[i])
             {
-                if (InputManager.GetAxis(playerInput[i].controllerScheme, "Vertical") > 0)
+                if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") > 0)
                     ChangeCharUp(i);
-                else if (InputManager.GetAxis(playerInput[i].controllerScheme, "Vertical") < 0)
+                else if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") < 0)
                     ChangeCharDown(i);
                 else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
                     Confirm(i); 
@@ -89,7 +89,7 @@ public class CharSelection : MonoBehaviour
             }
 
             //O: Quando o jogador pressiona o botão "A" ele está livre para escolher seu personagem
-            if(InputManager.GetKeyDown(playerInput[i].controllerScheme, "Ation1"))
+            if(InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action2"))
             {
                 IncreasePlayers(i);
             }
