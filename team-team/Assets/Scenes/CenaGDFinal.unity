@@ -1406,7 +1406,7 @@ PrefabInstance:
         type: 3}
       propertyPath: potionVariants.Array.data[2]
       value: 
-      objectReference: {fileID: 3662853228246884818, guid: 7337c702bddee87489c1f92714aaee2c,
+      objectReference: {fileID: 486895087683828573, guid: 07a788d003b7ffb4e9ab3fee423879dc,
         type: 3}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
@@ -1417,7 +1417,7 @@ PrefabInstance:
         type: 3}
       propertyPath: potionVariants.Array.data[3]
       value: 
-      objectReference: {fileID: 2330187846890212218, guid: 001b19c9e78facb4894457f325659a55,
+      objectReference: {fileID: 956956042837002119, guid: ff0ae66a4d618764d99fdecedbb4954f,
         type: 3}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
@@ -1438,13 +1438,13 @@ PrefabInstance:
         type: 3}
       propertyPath: potionVariants.Array.data[0]
       value: 
-      objectReference: {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293,
+      objectReference: {fileID: 4326583028995198262, guid: 7b62c07137ae7714db227a7ce977720f,
         type: 3}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: potionVariants.Array.data[1]
       value: 
-      objectReference: {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621,
+      objectReference: {fileID: 1126043967734524566, guid: 5c1b3d42c36f826408a4780b2def103d,
         type: 3}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
