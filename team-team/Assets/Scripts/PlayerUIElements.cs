@@ -21,7 +21,7 @@ public class PlayerUIElements : MonoBehaviour
     void Start()
     {
         
-        newPosition = new Vector3(player.transform.position.x, 0.55f, player.transform.position.z);
+        newPosition = new Vector3(player.transform.position.x, 0.25f, player.transform.position.z);
         transform.position = newPosition;
         offset = transform.position - player.transform.position;
 
