@@ -351,7 +351,7 @@ public class GameController : MonoBehaviour
         //K: talvez verificar aqui se o modo de jogo está de fato usando pontos?
         if(team >= 0 && team < numTeams)
         {
-            playerBarFill[team].fillAmount += 0.5f;
+            playerBarFill[team].fillAmount += 0.1f;
             teamPoints[team] += points;
             if(HasWonGame(team))
             {
