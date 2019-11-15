@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour
             DisplayGoal.text = DisplayGoal.text + orbNames[objective[i]];
             
         }
-	//J: inicia a função que cria os alvos bonus, que se repete sozinha
+	    //J: inicia a função que cria os alvos bonus, que se repete sozinha
         StartCoroutine(spawnTarget(targetCooldown));
 
         //k: coisas temporárias pra setar o jogo de acordo com o num de players
@@ -188,8 +188,16 @@ public class GameController : MonoBehaviour
 	//enqanto o jogo não acabar
 	while (!gameEnd)
 	{
-		//espera o tempo
-		yield return new WaitForSecondsRealtime(cooldown);
+		//espera o tempo. pausa contagem se o jogo estiver pausado
+        for(int i=0;i<cooldown;i++)
+            {
+                while (MenuPausa.pausado)
+                {
+                    yield return new WaitForSecondsRealtime(0.1f);
+                }
+                yield return new WaitForSecondsRealtime(1.0f);
+
+            }
 
 		//escolhe um spawn possivel
 		int chosenSpawn = Random.Range(0,targetSpawnPoints.Length);
