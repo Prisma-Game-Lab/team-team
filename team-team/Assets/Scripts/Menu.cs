@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     private CharSelection charSelection;
+    public string[] availableLevels;
+    private int playerCount;
     public void Iniciar()
     {
-            SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");
     }
 
     public void Sair()
@@ -17,10 +19,16 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
-    //K: temp para hacktudo
-    public void IniciarTemp(int playersQtd)
+    //J: Armazena numero de jogadores selecionado
+    public void setPlayerCount(int newCount)
     {
-        PersistentInfo.Instance.playersQtd = playersQtd;
-        SceneManager.LoadScene("CenaGDFinal");
+        playerCount = newCount;
+    }
+
+    //J: Inicia cena selecionada com numero de jogadores
+    public void IniciarTemp(int selectedLevel)
+    {
+        PersistentInfo.Instance.playersQtd = playerCount;
+        SceneManager.LoadScene(availableLevels[selectedLevel]);
     }
 }

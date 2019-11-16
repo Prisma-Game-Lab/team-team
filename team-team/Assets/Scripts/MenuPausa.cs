@@ -42,7 +42,6 @@ public class MenuPausa : MonoBehaviour
 
     public void MenuPrincipal()
     {
-        Debug.Log("Indo para menu principal...");
         SceneManager.LoadScene("MenuTemp");
     }
 }
