@@ -8,10 +8,6 @@ public class Menu : MonoBehaviour
     public CharSelection charSelection;
     public string[] availableLevels;
     private int playerCount;
-    public void Iniciar()
-    {
-        SceneManager.LoadScene("Main");
-    }
 
     public void Sair()
     {
@@ -19,18 +15,6 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
-    //J: Armazena numero de jogadores selecionado
-    public void setPlayerCount(int newCount)
-    {
-        playerCount = newCount;
-    }
-
-    //J: Inicia cena selecionada com numero de jogadores
-    public void IniciarTemp(int selectedLevel)
-    {
-        PersistentInfo.Instance.playersQtd = playerCount;
-        SceneManager.LoadScene(availableLevels[selectedLevel]);
-    }
     public void StartGame(int selectedLevel)
     {
 
