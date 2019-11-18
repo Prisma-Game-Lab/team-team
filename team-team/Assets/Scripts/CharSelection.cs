@@ -8,13 +8,17 @@ public class CharSelection : MonoBehaviour
     public CharacterSelectionData PlayerData;
     public Transform[] PlayerPanels;
     public Sprite[] CharSprites;
+    public float controllerCooldown = 0.3f;
+    public Button readyButton;
+    public Button returnButton;
 
-    private int numPlayers = 0;
+    public int numPlayers = 0;
     private bool[] playerReady;
     private GameObject[] Arrows;
     private GameObject[] pressKeyText;
     private Image[] playerPortrait;
     private PlayerInput[] playerInput;
+    private float currentCooldown = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,8 @@ public class CharSelection : MonoBehaviour
         playerPortrait = new Image[PlayerPanels.Length];
         playerReady = new bool[PlayerPanels.Length];
         playerInput = new PlayerInput[PlayerPanels.Length];
+        readyButton.gameObject.SetActive(false);
+        returnButton.gameObject.SetActive(false);
 
         for (int i = 0; i < 4; i++)
         {
@@ -53,18 +59,23 @@ public class CharSelection : MonoBehaviour
         {
             DetectDevice();
         }
-        for(int i = 0; i < numPlayers; i++)
+        if (currentCooldown <= 0)
         {
-            if(!playerReady[i])
+            for (int i = 0; i < numPlayers; i++)
             {
-                if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") > 0)
-                    ChangeCharUp(i);
-                else if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") < 0)
-                    ChangeCharDown(i);
-                else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
-                    Confirm(i); 
+                if (!playerReady[i])
+                {
+                    if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") > 0)
+                        ChangeCharUp(i);
+                    else if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") < 0)
+                        ChangeCharDown(i);
+                    else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
+                        Confirm(i);
+                }
             }
         }
+        else
+            currentCooldown -= Time.deltaTime;
     }
 
     public void DetectDevice()
@@ -99,6 +110,8 @@ public class CharSelection : MonoBehaviour
     }
     public void IncreasePlayers(int controllerNumber)
     {
+        currentCooldown = controllerCooldown;
+
         if(numPlayers < 4)
         {
             //O: Aumenta o número de jogadores após inicializados os controles e libera para selecionar um personagem
@@ -114,6 +127,8 @@ public class CharSelection : MonoBehaviour
     //O: As duas funções abaixo alteram a imagem do personagem selecionado ao mover o joystick para cima. Caso chegue à ultima imagem, retorna para a primeira
     public void ChangeCharUp(int player)
     {
+        currentCooldown = controllerCooldown;
+
         PlayerData.CharSelected[player]++;
 
         if (PlayerData.CharSelected[player] > CharSprites.Length)
@@ -125,6 +140,8 @@ public class CharSelection : MonoBehaviour
     }
     public void ChangeCharDown(int player)
     {
+        currentCooldown = controllerCooldown;
+
         PlayerData.CharSelected[player]--;
 
         if (PlayerData.CharSelected[player] < 0)
@@ -138,11 +155,18 @@ public class CharSelection : MonoBehaviour
     //O: Confirma a seleção do jogador e declara que ele está pronto
     public void Confirm(int player)
     {
+        currentCooldown = controllerCooldown;
+            
         if (CharAlreadySelected(player))
             return;
 
         playerReady[player] = true;
         Arrows[player].SetActive(false);
+        if (CheckIfPlayersReady())
+        {
+            readyButton.gameObject.SetActive(true);
+            returnButton.gameObject.SetActive(true);
+        }
     }
 
     //O: Verifica se o personagem que o jogador tenta selecionar já foi escolhido por outro jogador

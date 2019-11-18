@@ -8,6 +8,7 @@ public class PersistentInfo : MonoBehaviour
 {
     
     public int playersQtd;
+    public CharacterSelectionData PlayerData;
 
     //padrão singleton
     public static PersistentInfo Instance {get; private set;}

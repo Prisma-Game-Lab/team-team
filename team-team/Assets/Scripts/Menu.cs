@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    private CharSelection charSelection;
+    public CharSelection charSelection;
     public string[] availableLevels;
     private int playerCount;
     public void Iniciar()
@@ -30,5 +30,15 @@ public class Menu : MonoBehaviour
     {
         PersistentInfo.Instance.playersQtd = playerCount;
         SceneManager.LoadScene(availableLevels[selectedLevel]);
+    }
+    public void StartGame(int selectedLevel)
+    {
+
+        if (charSelection.CheckIfPlayersReady())
+        {
+            PersistentInfo.Instance.PlayerData = charSelection.PlayerData;
+            PersistentInfo.Instance.playersQtd = charSelection.numPlayers;
+            SceneManager.LoadScene(availableLevels[selectedLevel]);
+        }
     }
 }
