@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
     [Tooltip("o número de pontos para vitória, no caso FirstToMaxPoints")]
     public float objectiveMaxPoints;
 
+
+
     [Header("Referências do Unity, cuidado ao mexer")]
     [Tooltip("lista de poções no jogo. aumente o tamanho da lista e adicione o prefab de uma poção para adicioná-la")]
     public GameObject[] potionVariants;
@@ -211,6 +213,8 @@ public class GameController : MonoBehaviour
 		yield return new WaitUntil(() => targetCount == 0);
 	}
     }
+
+    
 
     // informa se o time em questão ganhou o jogo!
     //varia de acordo com o objetivo corrente

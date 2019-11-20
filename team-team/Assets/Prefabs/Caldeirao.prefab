@@ -106,16 +106,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddaecafb8299afd44a272a9295feb8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPotions: 3
+  initialMaxOrbs: 5
+  finalMaxOrbs: 10
+  IncrementInterval: 3
   minSpawnX: -10
   maxSpawnX: 10
   minSpawnZ: -10
   maxSpawnZ: 10
   SpawnY: 0.75
-  Obstacles: []
-  potionVariants: []
-  potionSize: 0.6
-  maxAttempts: 0
+  potionSize: 0.74
+  maxAttempts: 30
 --- !u!114 &4114396337426120968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,11 +132,15 @@ MonoBehaviour:
   objectiveSize: 3
   objectiveMaxPoints: 1000
   potionVariants:
-  - {fileID: 2245802354034773144, guid: deb7fd7ecb60ccd41b99b7b76c917293, type: 3}
-  - {fileID: 4005174709601626066, guid: 6411fdc693f17e2419cae3235afd5621, type: 3}
-  bonusTarget: {fileID: 0}
+  - {fileID: 4326583028995198262, guid: 7b62c07137ae7714db227a7ce977720f, type: 3}
+  - {fileID: 1126043967734524566, guid: 5c1b3d42c36f826408a4780b2def103d, type: 3}
+  - {fileID: 486895087683828573, guid: 07a788d003b7ffb4e9ab3fee423879dc, type: 3}
+  - {fileID: 956956042837002119, guid: ff0ae66a4d618764d99fdecedbb4954f, type: 3}
+  telaFinal: {fileID: 0}
+  bonusTarget: {fileID: 3633992858033585656, guid: dac48b2b5638b504e92e05435797aebf,
+    type: 3}
   targetSpawnPoints: []
-  targetCooldown: 0
+  targetCooldown: 10
   numTeams: 2
   DisplayP1: {fileID: 0}
   DisplayP2: {fileID: 0}
@@ -146,4 +150,15 @@ MonoBehaviour:
   orbNames:
   - 'Cubo '
   - 'Bola '
-  players: []
+  - Freeze
+  - Invert
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerBarFill:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

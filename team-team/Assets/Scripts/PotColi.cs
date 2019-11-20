@@ -34,7 +34,6 @@ public class PotColi : MonoBehaviour
 
     private Rigidbody rigidbody;
     private Collider collider;
-    private float raycastDistance = 0.5f;
     //armazenamos sempre qual o último objeto em que quicamos, para poder bloquear quiques duplos
     private GameObject lastObjectBouncedOn;
 

@@ -6,8 +6,17 @@ using UnityEngine;
 
 public class PotionSpawner : MonoBehaviour
 {
+    [Header("Configurações de quantidade de poções")]
+
+    //J: contador inicial e final de orbes na cena, para incrementar com o tempo, e intervalo entre incrementos.
+    [Tooltip("Número máximo de orbes inicial")]
+    public int initialMaxOrbs;
+    [Tooltip("Número máximo de orbes ao final do jogo")]
+    public int finalMaxOrbs;
+    [Tooltip("Intervalo entre alterações no número máximo de orbes, em segundos")]
+    public float IncrementInterval;
     //valor que gerencia a quantidade maxima de poções existentes
-    public int maxPotions;
+    private int currentMaxOrbs;
 
     //valores que definem os extremos da região permitida ao aparecimento das poções
     public float minSpawnX;
@@ -31,23 +40,26 @@ public class PotionSpawner : MonoBehaviour
 
     void Start()
     {
+        currentMaxOrbs = initialMaxOrbs;
         potionVariants = GameController.Instance.potionVariants;
         
         baseTransform = GetComponent<Transform>();
         //J: cria o numero de poções igual ao máximo no inicio
-        while (GameController.potionCount < maxPotions)
+        while (GameController.potionCount < currentMaxOrbs)
         {
             spawnPotion();
         }
+        StartCoroutine(potionCountIncrement());
 
     }
     
     void Update()
     {
         //J: reestoca poções no jogo
-        if (GameController.potionCount < maxPotions)
+        if (GameController.potionCount < currentMaxOrbs)
         {
             spawnPotion();
+            Debug.Log("Spawn");
         }
     }
 
@@ -67,7 +79,7 @@ public class PotionSpawner : MonoBehaviour
             attempts++;
             overlaps = Physics.OverlapSphere(new Vector3(spawnX, SpawnY, spawnZ), potionSize);
             //J: muda a posição caso exista um objeto dentro da area definida, a não ser que tenha tentadov vezes demais
-        } while (overlaps.Length != 0||attempts > maxAttempts);
+        } while (overlaps.Length != 0 && attempts < maxAttempts);
         if (attempts < maxAttempts)
         {
             Instantiate(potionVariants[chosenPotion], new Vector3(spawnX, SpawnY, spawnZ), baseTransform.rotation);
@@ -75,6 +87,29 @@ public class PotionSpawner : MonoBehaviour
         //J: soma mesmo que não instancie, para terminar o loop caso não tenham espaços disponiveis para spawnar orbes
         GameController.potionCount += 1;
     }
+    IEnumerator potionCountIncrement()
+    {
+        if (initialMaxOrbs < finalMaxOrbs)
+        {
+            while (currentMaxOrbs < finalMaxOrbs)
+            {
+                yield return new WaitForSecondsRealtime(IncrementInterval);
+                currentMaxOrbs++;
+                Debug.Log("Incrementado");
+            }
+        }
+        else
+        {
+            while (currentMaxOrbs > finalMaxOrbs)
+            {
+
+                yield return new WaitForSecondsRealtime(IncrementInterval);
+                currentMaxOrbs--;
+                Debug.Log("Decrementado");
+            }
+        }
+    }
 }
+
 
 
