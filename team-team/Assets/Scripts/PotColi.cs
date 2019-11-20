@@ -45,7 +45,6 @@ public class PotColi : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         lastObjectBouncedOn = null;
-
         //K: uma solução simplista para o problema das orbes flutuando sozinhas, estranhamente: no inicio, desablitar qualquer movimento
         rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
     }
@@ -119,15 +118,16 @@ public class PotColi : MonoBehaviour
     public void HitPlayer(PlayerEffects player)
     {
         player.AddEffect(potionType, potionDuration);
-
         
         Throw _throw = player.gameObject.GetComponent<Throw>();
+
         Debug.Assert(_throw != null);
         //se quem arremessou é de outro time de quem foi acertado, 
         if(_throw.throwerTeam != this.getThrower())
         {
             //incrementa pontuação:
             GameController.Instance.AddPoints(pointValueOnPlayer, this.getThrower());
+            _throw.barFill.fillAmount += 0.2f;
         }
         
         Destroy(gameObject);

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CenaGDFinal.unity
     guid: d0c4ae266d73ca7489d07f691863e06c
+  - enabled: 1
+    path: Assets/Scenes/TesteSelecao.unity
+    guid: 386cd012b8ed48d47b5e532fb0f34b39
   m_configObjects: {}

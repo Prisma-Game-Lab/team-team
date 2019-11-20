@@ -80,6 +80,9 @@ public class GameController : MonoBehaviour
 
     //singleton stuff
     public static GameController Instance {get; private set;}
+
+    //Barras super mago
+    public Image[] playerBarFill;
     void Awake()
     {
         //se não há alguma outra instancia desta classe, me registro
@@ -119,7 +122,7 @@ public class GameController : MonoBehaviour
             DisplayGoal.text = DisplayGoal.text + orbNames[objective[i]];
             
         }
-	//J: inicia a função que cria os alvos bonus, que se repete sozinha
+	    //J: inicia a função que cria os alvos bonus, que se repete sozinha
         StartCoroutine(spawnTarget(targetCooldown));
 
         //k: coisas temporárias pra setar o jogo de acordo com o num de players
@@ -152,6 +155,7 @@ public class GameController : MonoBehaviour
         {
             teamPoints[i] = 0;
             teamObjIndex[i] = 0;
+            playerBarFill[i].fillAmount = 0.0f;
         }
 
         //inicializa time vencedor para -1, no início da partida
@@ -184,8 +188,16 @@ public class GameController : MonoBehaviour
 	//enqanto o jogo não acabar
 	while (!gameEnd)
 	{
-		//espera o tempo
-		yield return new WaitForSecondsRealtime(cooldown);
+		//espera o tempo. pausa contagem se o jogo estiver pausado
+        for(int i=0;i<cooldown;i++)
+            {
+                while (MenuPausa.pausado)
+                {
+                    yield return new WaitForSecondsRealtime(0.1f);
+                }
+                yield return new WaitForSecondsRealtime(1.0f);
+
+            }
 
 		//escolhe um spawn possivel
 		int chosenSpawn = Random.Range(0,targetSpawnPoints.Length);
@@ -347,6 +359,7 @@ public class GameController : MonoBehaviour
         //K: talvez verificar aqui se o modo de jogo está de fato usando pontos?
         if(team >= 0 && team < numTeams)
         {
+            playerBarFill[team].fillAmount += 0.1f;
             teamPoints[team] += points;
             if(HasWonGame(team))
             {

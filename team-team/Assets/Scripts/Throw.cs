@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
 Throw: script que implementa o comportamento de um player segurar objetos e poder arremessá-los
@@ -40,6 +41,9 @@ public class Throw : MonoBehaviour
 
     //O: Variável que define se o jogador pode jogar ou não os itens
     private bool canThrow = true;
+
+    //O: Barra do Super Mago 
+    public Image barFill;
 
     // Start is called before the first frame update
     void Start()
