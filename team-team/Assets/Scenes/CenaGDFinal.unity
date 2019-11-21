@@ -1550,6 +1550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
+      propertyPath: superMago.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
       propertyPath: numTeams
       value: 2
       objectReference: {fileID: 0}
@@ -1713,6 +1718,26 @@ PrefabInstance:
       propertyPath: playerBarFill.Array.data[3]
       value: 
       objectReference: {fileID: 1867177546}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: superMago.Array.data[0]
+      value: 
+      objectReference: {fileID: 943891201}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: superMago.Array.data[1]
+      value: 
+      objectReference: {fileID: 1223881090}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: superMago.Array.data[2]
+      value: 
+      objectReference: {fileID: 701498300}
+    - target: {fileID: 4114396337426120968, guid: a756a0457544b154fa1e140b3d740dd3,
+        type: 3}
+      propertyPath: superMago.Array.data[3]
+      value: 
+      objectReference: {fileID: 725343161}
     - target: {fileID: 1028561590935306878, guid: a756a0457544b154fa1e140b3d740dd3,
         type: 3}
       propertyPath: m_Enabled

@@ -85,6 +85,7 @@ public class GameController : MonoBehaviour
 
     //Barras super mago
     public Image[] playerBarFill;
+    public SuperMago[] superMago;
     void Awake()
     {
         //se não há alguma outra instancia desta classe, me registro
@@ -158,6 +159,7 @@ public class GameController : MonoBehaviour
             teamPoints[i] = 0;
             teamObjIndex[i] = 0;
             playerBarFill[i].fillAmount = 0.0f;
+            superMago[i].full = false;
         }
 
         //inicializa time vencedor para -1, no início da partida
@@ -363,7 +365,10 @@ public class GameController : MonoBehaviour
         //K: talvez verificar aqui se o modo de jogo está de fato usando pontos?
         if(team >= 0 && team < numTeams)
         {
-            playerBarFill[team].fillAmount += 0.1f;
+            if(superMago[team].full == false)
+            {
+                playerBarFill[team].fillAmount += 0.1f;
+            }
             teamPoints[team] += points;
             if(HasWonGame(team))
             {
