@@ -141,6 +141,24 @@ public class InputManager : MonoBehaviour
                             return false;
                     }
                 }
+                else if (axisName == "Start")
+                {
+                    switch (controller.index)
+                    {
+                        //Start em ambos os controles 
+                        //O: A princípio, não deve dar problema, mas o controle do ps4 tambem reconhece R2 como start. No do xbox não deve ter problema
+                        case 0:
+                            return Input.GetKeyDown(KeyCode.Joystick1Button7) || Input.GetKeyDown(KeyCode.Joystick1Button9);
+                        case 1:
+                            return Input.GetKeyDown(KeyCode.Joystick2Button7) || Input.GetKeyDown(KeyCode.Joystick2Button9);
+                        case 2:
+                            return Input.GetKeyDown(KeyCode.Joystick3Button7) || Input.GetKeyDown(KeyCode.Joystick3Button9);
+                        case 3:
+                            return Input.GetKeyDown(KeyCode.Joystick4Button7) || Input.GetKeyDown(KeyCode.Joystick4Button9);
+                        default:
+                            return false;
+                    }
+                }
                 else 
                 {
                     Debug.LogWarning("Comando estranho passado para a gambiarra dos controles");

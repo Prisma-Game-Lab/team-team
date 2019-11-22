@@ -10,7 +10,7 @@ public class MenuPausa : MonoBehaviour
     public GameObject pauseMenuUi;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))//||Input.GetKeyDown("Pause Keyboard"))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button7) || Input.GetKeyDown(KeyCode.Joystick1Button9))//||Input.GetKeyDown("Pause Keyboard"))
         {
             if (pausado)
             {
