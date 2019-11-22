@@ -23812,6 +23812,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invert
       objectReference: {fileID: 0}
+    - target: {fileID: 6519041219976776600, guid: 06be757fffe97174d98673645e6ac814,
+        type: 3}
+      propertyPath: potionType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519041219976776600, guid: 06be757fffe97174d98673645e6ac814,
+        type: 3}
+      propertyPath: potionDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8360866636722860000, guid: 06be757fffe97174d98673645e6ac814,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23866,11 +23876,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6519041219976776600, guid: 06be757fffe97174d98673645e6ac814,
-        type: 3}
-      propertyPath: potionType
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06be757fffe97174d98673645e6ac814, type: 3}
