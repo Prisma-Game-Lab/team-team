@@ -89,6 +89,8 @@ public class Throw : MonoBehaviour
                     Vector3 throwDirection = transform.forward;
                     potionRigidbody.velocity = throwDirection * throwSpeed;
                     potionRigidbody.gameObject.transform.SetParent(null);
+                    //K: seta posição da poção, antes dela ser arremessada, para exatamente em cima do player?
+                    potionRigidbody.transform.position = new Vector3(this.transform.position.x, potionRigidbody.transform.position.y, this.transform.position.z);
                     //potionRigidbody.useGravity = true;
                     holding = false;
 
@@ -122,7 +124,7 @@ public class Throw : MonoBehaviour
     {
         Transform Orbtransform = Orbrigidbody.gameObject.GetComponent<Transform>();
         yield return new WaitUntil(() => !trigger.bounds.Contains(Orbtransform.position));
-        yield return new WaitForSeconds(0.1f); //K: meio gambiarra, mas é a vida(pré-hacktudo)
+        //yield return new WaitForSeconds(0.1f); //K: meio gambiarra, mas é a vida(pré-hacktudo)
         Orbrigidbody.gameObject.GetComponent<Collider>().enabled = true;
         yield break;
     }
@@ -163,9 +165,5 @@ public class Throw : MonoBehaviour
             canThrow = true;
         }
         return canThrow;
-
-        //K: não há nada de errado com a estrutura escrita acima(pode ser útil mais pra frente pra implementar efeitos visuais e tal,)
-        //mas repare que do jeito que está hoje, ela poderia ser simplificada para: 
-            // return  !playerEffects.HasEffect(PotionEffect.Freeze);
     }
 }
