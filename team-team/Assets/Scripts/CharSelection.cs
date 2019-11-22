@@ -100,7 +100,7 @@ public class CharSelection : MonoBehaviour
             }
 
             //O: Quando o jogador pressiona o botão "A" ele está livre para escolher seu personagem
-            if(InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action2"))
+            if(InputManager.GetKeyDown(playerInput[i].controllerScheme, "Start"))
             {
                 IncreasePlayers(i);
             }
