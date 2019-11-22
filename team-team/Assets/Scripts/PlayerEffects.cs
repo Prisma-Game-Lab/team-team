@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /*
 PlayerEffects: 
 Efeito para gerenciar os efeitos correntes para um determinado jogador. 
@@ -11,6 +10,8 @@ mas quaisquer interalções especiais entre poções deve ser implementada aqui
 
 Autores: Krauss, 
  */
+
+
 
 public enum PotionEffect
 {
@@ -32,6 +33,8 @@ public class PlayerEffects : MonoBehaviour
      
      */
     private Dictionary<PotionEffect, int> currentEffects;
+    public ParticleSystem aura;
+
 
     void Start()
     {
@@ -51,8 +54,16 @@ public class PlayerEffects : MonoBehaviour
 
     public void AddEffect(PotionEffect effect, float duration = 5.0f) //onde eu boto esse valor 5?
     {
-        if(effect == PotionEffect.Nothing) return;
-        else StartCoroutine(StartEffect(effect, duration));
+        if (effect == PotionEffect.Nothing)
+        {
+            aura.Stop();
+            return;
+        }
+        else
+        {
+            StartCoroutine(StartEffect(effect, duration));
+            aura.Play();
+        }
     }
 
     IEnumerator StartEffect(PotionEffect effect, float duration)
