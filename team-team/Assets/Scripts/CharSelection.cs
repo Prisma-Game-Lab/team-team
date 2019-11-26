@@ -131,7 +131,7 @@ public class CharSelection : MonoBehaviour
 
         PlayerData.CharSelected[player]++;
 
-        if (PlayerData.CharSelected[player] > CharSprites.Length)
+        if (PlayerData.CharSelected[player] > CharSprites.Length-1)
         {
             PlayerData.CharSelected[player] = 0;
         }
@@ -166,6 +166,19 @@ public class CharSelection : MonoBehaviour
         {
             readyButton.gameObject.SetActive(true);
             returnButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void Voltar()
+    {
+        for(int i = 0; i < PlayerPanels.Length; i++)
+        {
+            playerReady[i] = false;
+            Arrows[i].SetActive(true);
+            readyButton.gameObject.SetActive(false);
+            returnButton.gameObject.SetActive(false);
+            pressKeyText[i].SetActive(true);
+            numPlayers = 0;
         }
     }
 
