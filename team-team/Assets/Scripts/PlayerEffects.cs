@@ -62,7 +62,7 @@ public class PlayerEffects : MonoBehaviour
         else
         {
             StartCoroutine(StartEffect(effect, duration));
-            aura.Play();
+            //aura.Play();
         }
     }
 
