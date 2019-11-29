@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
     public int numTeams;
     //K: fiz de uma maneira em que agora há duas "pontuações" que são mantidas ao mesmo tempo. Uma é o quão longe o time foi no objetivo(de jogar N poções no poço) -> teamObjIndex
         //a outra é simplesmente uma contagem de pontos -> teamPoints
-    private int[] teamPoints;
+    public int[] teamPoints;
     private int[] teamObjIndex;
 
     //J: vetor que armazena o objetivo, gerado em Start()
@@ -176,12 +176,6 @@ public class GameController : MonoBehaviour
     {
         //J: atualiza o valor exibido como alvo atual de cada jogador
         UpdateScoringUI();
-
-        //K: temp para hacktudo: se apertar 'm', volta para menu
-        if(Input.GetKey(KeyCode.M))
-        {
-            SceneManager.LoadScene("MenuTemp");
-        }
     }
 
 
@@ -260,8 +254,10 @@ public class GameController : MonoBehaviour
                 DisplayP4 = null;
             }
             telaFinal.SetActive(true);
-            winner.text = "Jogador " + (victoriousTeam+1).ToString() + " ganhou!";
+            telaFinal.GetComponent<TelaFinal>().ActivateTelaFinal();
+            //winner.text = "Jogador " + (victoriousTeam+1).ToString() + " ganhou!";
             DisplayGoal.enabled = true;
+            
             return;
         }
         //else:
