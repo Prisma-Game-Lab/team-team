@@ -261,6 +261,7 @@ MonoBehaviour:
   throwSpeed: 17.5
   throwerTeam: 0
   throwEventString: event:/Efeitos/personagens/arremesso orb personagem 1
+  barFill: {fileID: 0}
 --- !u!114 &4856858712374608771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269ed06486ca7e64c95897ab3f82169f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aura: {fileID: 0}
 --- !u!95 &4856858712374608776
 Animator:
   serializedVersion: 3
