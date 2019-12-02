@@ -150,8 +150,15 @@ public class GameController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(i<numPlayers);
-                //players[i].SetActive(i < numPlayers);                
+                if(modelSelected != null)
+                {
+                    players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(true);
+                }
+                else
+                {
+                    players[i].transform.GetChild(0).gameObject.SetActive(true);
+                    players[i].SetActive(i < numPlayers);
+                }                                    
             }
         }
 
