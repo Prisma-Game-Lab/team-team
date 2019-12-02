@@ -146,7 +146,7 @@ public class PotColi : MonoBehaviour
             GameController.Instance.AddPoints(pointValueOnCauldron, this.getThrower());
             return;
         }   
-        else if(thrown && collision.gameObject.CompareTag("Player"))
+        /*else if(thrown && collision.gameObject.CompareTag("Player"))
         {
 
             //J: atualiza contador de poções, para criar nova poção
@@ -156,7 +156,7 @@ public class PotColi : MonoBehaviour
             this.HitPlayer(pe);
             GameController.potionCount--;
             return;
-        }
+        }*/
         else if (thrown && collision.gameObject.layer == LayerMask.NameToLayer("floor"))
         {
             //destruído ao colidir com chão

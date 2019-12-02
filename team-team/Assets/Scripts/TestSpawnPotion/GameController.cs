@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -86,6 +86,8 @@ public class GameController : MonoBehaviour
     //Barras super mago
     public Image[] playerBarFill;
     public SuperMago[] superMago;
+    private CharacterSelectionData modelSelected;
+
     void Awake()
     {
         //se não há alguma outra instancia desta classe, me registro
@@ -134,6 +136,7 @@ public class GameController : MonoBehaviour
             //free for all
             numTeams = PersistentInfo.Instance.playersQtd;
             numPlayers = numTeams;
+            modelSelected = PersistentInfo.Instance.PlayerData;
         }
         else
         {
@@ -147,7 +150,8 @@ public class GameController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                players[i].SetActive(i < numPlayers);                
+                players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(i<numPlayers);
+                //players[i].SetActive(i < numPlayers);                
             }
         }
 

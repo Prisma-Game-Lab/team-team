@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4856858712374608768, guid: 0e6984534c5a3934c9ffe0413011d901,
         type: 3}
       propertyPath: m_Name
-      value: NewPlayer
+      value: sereno
       objectReference: {fileID: 0}
     - target: {fileID: 4856858712374608777, guid: 0e6984534c5a3934c9ffe0413011d901,
         type: 3}
