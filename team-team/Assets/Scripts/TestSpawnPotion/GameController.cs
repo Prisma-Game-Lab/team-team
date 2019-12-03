@@ -87,6 +87,9 @@ public class GameController : MonoBehaviour
     public Image[] playerBarFill;
     public SuperMago[] superMago;
     private CharacterSelectionData modelSelected;
+    public Image[] playerPortraits;
+    public Sprite[] portraitImage;
+    public GameObject[] hudElements;
 
     void Awake()
     {
@@ -150,15 +153,10 @@ public class GameController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                if(modelSelected != null)
-                {
-                    players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(true);
-                }
-                else
-                {
-                    players[i].transform.GetChild(0).gameObject.SetActive(true);
-                    players[i].SetActive(i < numPlayers);
-                }                                    
+                playerPortraits[i].sprite = portraitImage[modelSelected.CharSelected[i]];
+                hudElements[i].gameObject.SetActive(i < numPlayers);
+                players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(i<numPlayers);
+                //players[i].SetActive(i < numPlayers);
             }
         }
 
