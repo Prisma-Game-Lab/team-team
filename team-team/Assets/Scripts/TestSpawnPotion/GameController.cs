@@ -155,10 +155,18 @@ public class GameController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                playerPortraits[i].sprite = portraitImage[modelSelected.CharSelected[i]];
-                hudElements[i].gameObject.SetActive(i < numPlayers);
-                players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(i<numPlayers);
-                //players[i].SetActive(i < numPlayers);
+                if(modelSelected != null)
+                {
+                    playerPortraits[i].sprite = portraitImage[modelSelected.CharSelected[i]];
+                    hudElements[i].gameObject.SetActive(i < numPlayers);
+                    players[i].transform.GetChild(modelSelected.CharSelected[i]).gameObject.SetActive(i < numPlayers);
+                }
+                else
+                {
+                    playerPortraits[i].sprite = portraitImage[i];
+                    hudElements[i].gameObject.SetActive(i < numPlayers);
+                    players[i].transform.GetChild(0).gameObject.SetActive(i < numPlayers);
+                }                    
             }
         }
 
