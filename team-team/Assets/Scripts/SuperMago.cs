@@ -8,8 +8,10 @@ public class SuperMago : MonoBehaviour
     private PlayerEffects playerEffects;
     private Throw _throw;
     private GameObject[] potionVariants;
+
     public bool full = false;
     public PotionEffect potionType;
+    public int playerIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,7 @@ public class SuperMago : MonoBehaviour
             int ChosenPotionEffect = Random.Range(0, System.Enum.GetValues(typeof(PotionEffect)).Length);//, potionVariants.Length);
             potionType = (PotionEffect) ChosenPotionEffect;
             player.AddEffect(potionType, 3);
+            GameController.Instance.AddPoints(100, playerIndex);
         }        
     }
 
