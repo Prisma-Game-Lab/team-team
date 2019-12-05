@@ -90,7 +90,7 @@ public class Throw : MonoBehaviour
                     potionRigidbody.velocity = throwDirection * throwSpeed;
                     potionRigidbody.gameObject.transform.SetParent(null);
                     //K: seta posição da poção, antes dela ser arremessada, para exatamente em cima do player?
-                    potionRigidbody.transform.position = new Vector3(this.transform.position.x, potionRigidbody.transform.position.y, this.transform.position.z);
+                    //potionRigidbody.transform.position = new Vector3(this.transform.position.x, potionRigidbody.transform.position.y, this.transform.position.z) + transform.forward.normalized * trigger.bounds.extents.z;
                     //potionRigidbody.useGravity = true;
                     holding = false;
 
@@ -124,6 +124,7 @@ public class Throw : MonoBehaviour
     {
         Transform Orbtransform = Orbrigidbody.gameObject.GetComponent<Transform>();
         yield return new WaitUntil(() => !trigger.bounds.Contains(Orbtransform.position));
+        yield return null;
         //yield return new WaitForSeconds(0.1f); //K: meio gambiarra, mas é a vida(pré-hacktudo)
         Orbrigidbody.gameObject.GetComponent<Collider>().enabled = true;
         yield break;
