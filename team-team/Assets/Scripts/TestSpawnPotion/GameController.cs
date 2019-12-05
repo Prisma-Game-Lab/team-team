@@ -195,6 +195,12 @@ public class GameController : MonoBehaviour
     {
         //J: atualiza o valor exibido como alvo atual de cada jogador
         UpdateScoringUI();
+
+        //cheat
+        // if(Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     teamPoints[0] += 100;
+        // }
     }
 
 
