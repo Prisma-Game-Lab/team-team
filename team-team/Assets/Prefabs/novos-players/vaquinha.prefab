@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1163179132029736289
+--- !u!1001 &7188346955290901507
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4856858712374608768, guid: 0e6984534c5a3934c9ffe0413011d901,
         type: 3}
       propertyPath: m_Name
-      value: sereno
+      value: vaquinha
       objectReference: {fileID: 0}
     - target: {fileID: 4856858712374608777, guid: 0e6984534c5a3934c9ffe0413011d901,
         type: 3}
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 4856858712374608770, guid: 0e6984534c5a3934c9ffe0413011d901,
         type: 3}
       propertyPath: throwEventString
-      value: event:/Efeitos/personagens/arremesso orb personagem 2
+      value: event:/Efeitos/personagens/arremesso orb personagem 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6984534c5a3934c9ffe0413011d901, type: 3}
