@@ -30,8 +30,8 @@ public class SuperMago : MonoBehaviour
             if(_throw.barFill.fillAmount == 1.0f)
             {
                 full = true;
-                this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = false;
-                this.GetComponent<Rigidbody>().useGravity = false;
+                //this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = false;
+                //this.GetComponent<Rigidbody>().useGravity = false;
                 Debug.Log("Supermago iniciado");
             }                      
         }
@@ -42,8 +42,8 @@ public class SuperMago : MonoBehaviour
             {
                 Debug.Log("Fim suoermago");
                 full = false;
-                this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;
-                this.GetComponent<Rigidbody>().useGravity = true;
+                // this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;
+                //this.GetComponent<Rigidbody>().useGravity = true;
             }               
         }      
     }
@@ -61,7 +61,29 @@ public class SuperMago : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();
-        this.HitMago(pe);
+        PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();       
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            this.HitMago(pe);
+        }
+
+        if(other.gameObject.CompareTag("Wall"))
+        {
+            StartCoroutine(DisableCollider(other, 5));
+        }
+    }
+    IEnumerator DisableCollider (Collider other, float duration)
+    {
+        if(full)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                other.enabled = false;
+            }
+            yield return new WaitForSecondsRealtime(1);
+
+            other.enabled = true;
+        }
     }
 }
