@@ -41,14 +41,14 @@ public class GameController : MonoBehaviour
     public GameObject telaFinal;
     private Text winner;
     
-
+    /*
     [Tooltip("Prefab do alvo bonus")]
     public GameObject bonusTarget;
     [Tooltip("Objetos vazios que marcam as posições possíveis onde o alvo bonus pode aparecer")]
     public Transform[] targetSpawnPoints;
     [Tooltip("Intervalo entre alvos bonus")]
     public float targetCooldown;
-
+    */
 
     [Tooltip("número de equipes com pontuações separadas na cena")]
     //J: numero de times e pontuações atuais de cada time
@@ -133,7 +133,7 @@ public class GameController : MonoBehaviour
             
         }
 	    //J: inicia a função que cria os alvos bonus, que se repete sozinha
-        StartCoroutine(spawnTarget(targetCooldown));
+        //StartCoroutine(spawnTarget(targetCooldown));
 
         //k: coisas temporárias pra setar o jogo de acordo com o num de players
         if(PersistentInfo.Instance != null)
@@ -206,7 +206,7 @@ public class GameController : MonoBehaviour
 
 
     //J: função responsável por criar os alvos bonus com n segundos de intervalo.
-    IEnumerator spawnTarget(float cooldown)
+    /*IEnumerator spawnTarget(float cooldown)
     {
 	//enqanto o jogo não acabar
 	while (!gameEnd)
@@ -233,7 +233,7 @@ public class GameController : MonoBehaviour
 		//espera o alvo sumir;
 		yield return new WaitUntil(() => targetCount == 0);
 	}
-    }
+    }*/
 
     
 
