@@ -61,7 +61,11 @@ public class SuperMago : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();
-        this.HitMago(pe);
+        PlayerEffects pe = other.gameObject.GetComponent<PlayerEffects>();       
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            this.HitMago(pe);
+        }
     }
 }
