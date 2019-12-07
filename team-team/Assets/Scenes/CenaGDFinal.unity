@@ -5346,6 +5346,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstaculos
       objectReference: {fileID: 0}
+    - target: {fileID: 2824568581340050658, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568581717452821, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568579951023277, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568579990197640, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568581853676729, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568581089187318, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568580772420621, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824568581779491721, guid: f09f079c75300b448b7eeb28f04cfaed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 2824568581182568459, guid: f09f079c75300b448b7eeb28f04cfaed,
         type: 3}
       propertyPath: m_LocalPosition.x
