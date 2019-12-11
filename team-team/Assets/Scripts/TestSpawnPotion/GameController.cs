@@ -155,7 +155,7 @@ public class GameController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                if(modelSelected != null)
+                if (modelSelected.CharSelected.Length != 0)
                 {
                     playerPortraits[i].sprite = portraitImage[modelSelected.CharSelected[i]];
                     hudElements[i].gameObject.SetActive(i < numPlayers);
