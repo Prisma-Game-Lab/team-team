@@ -883,6 +883,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298bdc12c96be524ea8143174bad13e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites_vitoria:
+  - {fileID: 21300000, guid: 4c292d06cab90f848a7256221d7d25f3, type: 3}
+  - {fileID: 21300000, guid: 4c292d06cab90f848a7256221d7d25f3, type: 3}
+  - {fileID: 21300000, guid: 995ab1dbae21e224d9350abd1ea25c2c, type: 3}
+  - {fileID: 21300000, guid: 70e3d71b28f9b8a4a992a53c40f519ed, type: 3}
+  sprites_derrota:
+  - {fileID: 21300000, guid: 64fa5ed2a7a44654b86838dcb11f7666, type: 3}
+  - {fileID: 21300000, guid: 64fa5ed2a7a44654b86838dcb11f7666, type: 3}
+  - {fileID: 21300000, guid: 3d727e862e4381345b2a51a91661bc1b, type: 3}
+  - {fileID: 21300000, guid: e8e4b017f4feef84e92d6a0e330d9a6e, type: 3}
 --- !u!1 &3686348769532080325
 GameObject:
   m_ObjectHideFlags: 0

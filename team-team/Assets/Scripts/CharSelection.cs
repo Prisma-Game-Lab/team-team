@@ -84,23 +84,23 @@ public class CharSelection : MonoBehaviour
         impedindo que dois jogadres controlem o mesmo painel de seleção*/
         for (int i = 0; i < playerInput.Length; i++)
         {
-            bool controllerAlreadyInUse = false;
+            // bool controllerAlreadyInUse = false;
 
-            for(int j = 0; j < numPlayers; j++)
-            {
-                if(InputManager.IsControllerConnected(playerInput[j].controllerScheme) == true)
-                {
-                    controllerAlreadyInUse = true;
-                }
-            }
+            // for(int j = 0; j < numPlayers; j++)
+            // {
+            //     if(InputManager.IsControllerConnected(playerInput[j].controllerScheme) == true)
+            //     {
+            //         controllerAlreadyInUse = true;
+            //     }
+            // }
 
-            if(controllerAlreadyInUse)
-            {
-                continue;
-            }
+            // if(controllerAlreadyInUse)
+            // {
+            //     continue;
+            // }
 
             //O: Quando o jogador pressiona o botão "A" ele está livre para escolher seu personagem
-            if(InputManager.GetKeyDown(playerInput[i].controllerScheme, "Start"))
+            if(i >= numPlayers && InputManager.GetKeyDown(playerInput[i].controllerScheme, "Start"))
             {
                 IncreasePlayers(i);
             }

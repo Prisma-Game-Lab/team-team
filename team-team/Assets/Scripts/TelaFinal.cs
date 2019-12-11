@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 public class TelaFinal : MonoBehaviour
 {
     private GameObject[] characterPanels;
+
+    //a ordem aqui tem que seguir a mesma ordem que tiver sido usada na tela de seleção de personagens
+    [SerializeField] private List<Sprite> sprites_vitoria;
+    [SerializeField] private List<Sprite> sprites_derrota;
+    
     int playersQtd;
     // Start is called before the first frame update
     void Start()
@@ -46,18 +51,19 @@ public class TelaFinal : MonoBehaviour
         {
             characterPanels[i].SetActive(playersQtd > i);
         }
+        //o primeiro painel é do player vitorioso
+        
+        List<int> orderedIndex = new List<int>{0,1,2,3};
+        orderedIndex.Sort((i,j) => GameController.Instance.teamPoints[j].CompareTo(GameController.Instance.teamPoints[i]));
+
         for(int i = 0; i < playersQtd; i++)
         {
-            characterPanels[i].GetComponentInChildren<Text>().text = GameController.Instance.teamPoints[i].ToString();
+            Debug.Log(orderedIndex[i]);
+            characterPanels[i].GetComponentInChildren<Text>().text = GameController.Instance.teamPoints[orderedIndex[i]].ToString();
         }
 
-        //ordena e muda ordem?
 
-        //indica quem ganhou?
 
-        //toca som?
-
-        // muda fotinhos pra ficar certo com os players?
     }
 
     public void BackToMenu()
