@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,6 +46,7 @@ public class CharSelection : MonoBehaviour
             pressKeyText[i] = PlayerPanels[i].GetChild(2).gameObject;
             PlayerData.CharSelected[i] = i;
             playerPortrait[i].sprite = CharSprites[PlayerData.CharSelected[i]];
+            playerPortrait[i].gameObject.SetActive(false);
             playerReady[i] = false;
             playerInput[i] = PlayerPanels[i].GetComponent<PlayerInput>();
         }
@@ -119,6 +120,8 @@ public class CharSelection : MonoBehaviour
             PlayerData.PlayerIndex[numPlayers] = numPlayers + 1;
 
             pressKeyText[numPlayers].SetActive(false);
+            playerPortrait[numPlayers].gameObject.SetActive(true);
+
 
             numPlayers++;
         }

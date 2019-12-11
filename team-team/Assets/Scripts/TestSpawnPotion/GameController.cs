@@ -165,7 +165,7 @@ public class GameController : MonoBehaviour
                 {
                     playerPortraits[i].sprite = portraitImage[i];
                     hudElements[i].gameObject.SetActive(i < numPlayers);
-                    players[i].transform.GetChild(0).gameObject.SetActive(i < numPlayers);
+                    players[i].transform.GetChild(i).gameObject.SetActive(i < numPlayers);
                 }                    
             }
         }
