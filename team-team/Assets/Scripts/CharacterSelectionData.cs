@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSelectionData : MonoBehaviour
+public class CharacterSelectionData : ScriptableObject
 {
     [HideInInspector] public int[] PlayerController; //guarda o número do controle que controla cada mago. -1 por default.
     [HideInInspector] public int[] CharSelected; //guarda o número do personagem que cada player selecionou.

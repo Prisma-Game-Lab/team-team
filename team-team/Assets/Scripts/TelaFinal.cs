@@ -8,6 +8,8 @@ public class TelaFinal : MonoBehaviour
 {
     private GameObject[] characterPanels;
 
+    private FMOD.Studio.Bus MasterBus;
+
     //a ordem aqui tem que seguir a mesma ordem que tiver sido usada na tela de seleção de personagens
     [SerializeField] private List<Sprite> sprites_vitoria;
     [SerializeField] private List<Sprite> sprites_derrota;
@@ -16,6 +18,7 @@ public class TelaFinal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
         this.gameObject.SetActive(false);
     }
 
@@ -81,11 +84,13 @@ public class TelaFinal : MonoBehaviour
 
     public void BackToMenu()
     {
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Menu");
     }
 
     public void RestartGame()
     {
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

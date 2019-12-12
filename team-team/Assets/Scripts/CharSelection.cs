@@ -23,6 +23,7 @@ public class CharSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerData = ScriptableObject.CreateInstance<CharacterSelectionData>();
         PlayerData.PlayerController = new int[4];
         PlayerData.CharSelected = new int[4];
         PlayerData.PlayerIndex = new int[4];

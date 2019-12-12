@@ -14,6 +14,8 @@ public class PotColi : MonoBehaviour
     public int pointValueOnCauldron = 100;
     [Tooltip("O valor em pontos que esta poção tem, caso acerte outro player, caso a condição de vitória sejam pontos!")]
     public int pointValueOnPlayer = 100;
+    [Tooltip("O nome do evento fmod a ser disparado quando a orbe impacta o player")]
+    public string impactEventString;
 
     [Header("Ajuste das durações dos efeitos")]
     [Tooltip("Duração do efeito da poção")]
@@ -117,6 +119,9 @@ public class PotColi : MonoBehaviour
     public void HitPlayer(PlayerEffects player)
     {
         player.AddEffect(potionType, potionDuration);
+
+        //toca som de impacto com o player
+        FMODUnity.RuntimeManager.PlayOneShot(impactEventString, transform.position);
         
         Throw _throw = player.gameObject.GetComponent<Throw>();
 
