@@ -46,6 +46,8 @@ public class TelaFinal : MonoBehaviour
     {
         Initialize();
         this.gameObject.SetActive(true);
+        CharacterSelectionData csd = PersistentInfo.Instance.PlayerData;
+
         //ativa ou desativa paineis de acordo com o numero de jogadores jogando
         for(int i = 0; i < 4; i++)
         {
@@ -53,13 +55,24 @@ public class TelaFinal : MonoBehaviour
         }
         //o primeiro painel é do player vitorioso
         
-        List<int> orderedIndex = new List<int>{0,1,2,3};
+        List<int> orderedIndex = new List<int>();
+        for(int i = 0; i < playersQtd; i++)
+        {
+            orderedIndex.Add(i);
+        }
         orderedIndex.Sort((i,j) => GameController.Instance.teamPoints[j].CompareTo(GameController.Instance.teamPoints[i]));
 
         for(int i = 0; i < playersQtd; i++)
         {
-            Debug.Log(orderedIndex[i]);
-            characterPanels[i].GetComponentInChildren<Text>().text = GameController.Instance.teamPoints[orderedIndex[i]].ToString();
+            characterPanels[i].GetComponentInChildren<Text>().text = "Player " + (orderedIndex[i] + 1).ToString() + ": " + GameController.Instance.teamPoints[orderedIndex[i]].ToString();
+            if(i == 0)
+            {
+                characterPanels[i].GetComponentInChildren<Image>().sprite = sprites_vitoria[csd.CharSelected[orderedIndex[i]]];
+            }
+            else
+            {
+                characterPanels[i].GetComponentInChildren<Image>().sprite = sprites_derrota[csd.CharSelected[orderedIndex[i]]];   
+            }
         }
 
 
@@ -68,7 +81,7 @@ public class TelaFinal : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MenuTemp");
+        SceneManager.LoadScene("Menu");
     }
 
     public void RestartGame()
