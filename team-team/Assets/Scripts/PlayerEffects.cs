@@ -33,7 +33,7 @@ public class PlayerEffects : MonoBehaviour
      
      */
     private Dictionary<PotionEffect, int> currentEffects;
-    public ParticleSystem aura;
+    public GameObject[] auraVariants;
 
 
     void Start()
@@ -56,18 +56,21 @@ public class PlayerEffects : MonoBehaviour
     {
         if (effect == PotionEffect.Nothing)
         {
-            aura.Stop();
+            //aura.Stop();
             return;
         }
         else
         {
             StartCoroutine(StartEffect(effect, duration));
-            aura.Play();
+            //aura.Play();
         }
     }
 
     IEnumerator StartEffect(PotionEffect effect, float duration)
     {
+        int auraIndex = (int)effect;
+        GameObject aura = auraVariants[auraIndex];
+
         if(!currentEffects.ContainsKey(effect))
         {
             currentEffects[effect] = 1;
@@ -76,9 +79,16 @@ public class PlayerEffects : MonoBehaviour
         {
             currentEffects[effect] = currentEffects[effect] + 1;
         }
+
+        aura.transform.parent = this.gameObject.transform;
+        aura.SetActive(true);
+
         yield return new WaitForSecondsRealtime(duration);
 
         currentEffects[effect] = currentEffects[effect] - 1;
+
+        aura.transform.parent = null;
+        aura.SetActive(false);
    
     }
 }
