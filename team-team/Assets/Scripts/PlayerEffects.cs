@@ -33,7 +33,6 @@ public class PlayerEffects : MonoBehaviour
      
      */
     private Dictionary<PotionEffect, int> currentEffects;
-    public GameObject[] auraVariants;
 
 
     void Start()
@@ -69,7 +68,6 @@ public class PlayerEffects : MonoBehaviour
     IEnumerator StartEffect(PotionEffect effect, float duration)
     {
         int auraIndex = (int)effect;
-        GameObject aura = auraVariants[auraIndex];
 
         if(!currentEffects.ContainsKey(effect))
         {
@@ -80,15 +78,13 @@ public class PlayerEffects : MonoBehaviour
             currentEffects[effect] = currentEffects[effect] + 1;
         }
 
-        aura.transform.parent = this.gameObject.transform;
-        aura.SetActive(true);
+        this.transform.GetChild(auraIndex + 3).gameObject.SetActive(true);
 
         yield return new WaitForSecondsRealtime(duration);
 
+        this.transform.GetChild(auraIndex + 3).gameObject.SetActive(false);
         currentEffects[effect] = currentEffects[effect] - 1;
 
-        aura.transform.parent = null;
-        aura.SetActive(false);
    
     }
 }
