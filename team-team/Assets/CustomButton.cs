@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CustomButton : EventTrigger
-{
+{    
     public override void OnSelect (BaseEventData eventData)
     {
         base.OnSelect (eventData);

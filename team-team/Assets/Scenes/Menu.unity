@@ -2785,6 +2785,7 @@ GameObject:
   - component: {fileID: 914260369}
   - component: {fileID: 914260368}
   - component: {fileID: 914260367}
+  - component: {fileID: 914260370}
   m_Layer: 5
   m_Name: Iniciar
   m_TagString: Untagged
@@ -2918,6 +2919,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914260365}
   m_CullTransparentMesh: 0
+--- !u!114 &914260370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914260365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a67b5727d996d4e833282dccb5eb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1043284657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,7 +3019,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1049763591}
-  - component: {fileID: 1049763592}
   m_Layer: 5
   m_Name: CharSelectionData
   m_TagString: Untagged
@@ -3032,21 +3045,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1049763592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049763590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee691368177e254b884eb18c2048020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerController: 
-  CharSelected: 
-  PlayerIndex: 
 --- !u!1 &1051644849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4751,7 +4749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dfbd6fb9bd90f45825a0dcdf2d9357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 1049763592}
+  PlayerData: {fileID: 0}
   PlayerPanels:
   - {fileID: 57934040}
   - {fileID: 1481270744}
@@ -6583,6 +6581,7 @@ GameObject:
   - component: {fileID: 2093778956}
   - component: {fileID: 2093778955}
   - component: {fileID: 2093778954}
+  - component: {fileID: 2093778957}
   m_Layer: 5
   m_Name: VoltarTelaInicial
   m_TagString: Untagged
@@ -6726,6 +6725,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093778952}
   m_CullTransparentMesh: 0
+--- !u!114 &2093778957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093778952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a67b5727d996d4e833282dccb5eb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2095274541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6756,7 +6768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersQtd: 0
-  PlayerData: {fileID: 1049763592}
+  PlayerData: {fileID: 0}
 --- !u!4 &2095274543
 Transform:
   m_ObjectHideFlags: 0

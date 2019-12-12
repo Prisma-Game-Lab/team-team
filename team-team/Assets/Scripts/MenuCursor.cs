@@ -8,6 +8,7 @@ public class MenuCursor : MonoBehaviour
     
     private static Image left;
     private static Image right;
+    private static string selectUIEventString = "event:/Menu/Opção";
 
     private static RectTransform rtransform;
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class MenuCursor : MonoBehaviour
 
     public static void SelectCursor(RectTransform t)
     {
+        FMODUnity.RuntimeManager.PlayOneShot(selectUIEventString);
         if(left == null || right == null)
         {
             Debug.LogWarning("UI cursor was not identified correctly");
