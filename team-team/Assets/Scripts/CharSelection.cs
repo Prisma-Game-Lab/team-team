@@ -181,6 +181,7 @@ public class CharSelection : MonoBehaviour
             Arrows[i].SetActive(true);
             readyButton.gameObject.SetActive(false);
             returnButton.gameObject.SetActive(false);
+            playerPortrait[i].gameObject.SetActive(false);
             pressKeyText[i].SetActive(true);
             numPlayers = 0;
         }
