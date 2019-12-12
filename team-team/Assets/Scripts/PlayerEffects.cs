@@ -56,13 +56,13 @@ public class PlayerEffects : MonoBehaviour
     {
         if (effect == PotionEffect.Nothing)
         {
-            //aura.Stop();
+            aura.Stop();
             return;
         }
         else
         {
             StartCoroutine(StartEffect(effect, duration));
-            //aura.Play();
+            aura.Play();
         }
     }
 
