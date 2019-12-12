@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 12157358}
   m_Layer: 9
   m_Name: parede8
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 421280000}
   m_Layer: 9
   m_Name: parede7
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2507,7 +2507,7 @@ GameObject:
   - component: {fileID: 728120657}
   m_Layer: 9
   m_Name: parede3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3730,6 +3730,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1234311886292105483}
     m_Modifications:
+    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
+        type: 3}
+      propertyPath: m_Name
+      value: TelaFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2921185584052060393, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3839,16 +3849,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
-        type: 3}
-      propertyPath: m_Name
-      value: TelaFinal
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2921185583766016855, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
         type: 3}
@@ -4185,7 +4185,7 @@ GameObject:
   - component: {fileID: 967176357}
   m_Layer: 9
   m_Name: parede4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5960,7 +5960,7 @@ GameObject:
   - component: {fileID: 1629552947}
   m_Layer: 9
   m_Name: parede1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6239,7 +6239,7 @@ GameObject:
   - component: {fileID: 1764251527}
   m_Layer: 9
   m_Name: parede2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6547,7 +6547,7 @@ GameObject:
   - component: {fileID: 1917618381}
   m_Layer: 9
   m_Name: parede5
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6785,7 +6785,7 @@ GameObject:
   - component: {fileID: 2071116256}
   m_Layer: 9
   m_Name: parede6
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
