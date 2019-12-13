@@ -112,6 +112,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        potionCount = 0;
         winner = telaFinal.GetComponentInChildren<Text>();
         Debug.Assert(potionVariants.Length > 0);
         //J: Inicializa texto do objetivo na UI
