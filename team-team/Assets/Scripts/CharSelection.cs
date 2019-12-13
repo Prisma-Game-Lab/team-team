@@ -189,6 +189,7 @@ public class CharSelection : MonoBehaviour
             returnButton.gameObject.SetActive(false);
             playerPortrait[i].gameObject.SetActive(false);
             pressKeyText[i].SetActive(true);
+            selectedMask[i].gameObject.SetActive(false);
             numPlayers = 0;
         }
     }
