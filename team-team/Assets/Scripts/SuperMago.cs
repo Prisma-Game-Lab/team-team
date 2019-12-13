@@ -33,7 +33,7 @@ public class SuperMago : MonoBehaviour
                 //this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = false;
                 //this.GetComponent<Rigidbody>().useGravity = false;
                 Debug.Log("Supermago iniciado");
-                this.transform.GetChild(10).gameObject.SetActive(true);
+                this.transform.GetChild(8).gameObject.SetActive(true);
             }                      
         }
         if(full)
@@ -43,7 +43,7 @@ public class SuperMago : MonoBehaviour
             {
                 Debug.Log("Fim suoermago");
                 full = false;
-                this.transform.GetChild(10).gameObject.SetActive(false);
+                this.transform.GetChild(8).gameObject.SetActive(false);
                 // this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;
                 //this.GetComponent<Rigidbody>().useGravity = true;
             }               
