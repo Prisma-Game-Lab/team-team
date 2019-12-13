@@ -18,6 +18,7 @@ public class CharSelection : MonoBehaviour
     private GameObject[] pressKeyText;
     private Image[] playerPortrait;
     private Image[] selectedMask;
+    private Image[] playerText;
     private PlayerInput[] playerInput;
     private float currentCooldown = 0.0f;
 
@@ -25,15 +26,21 @@ public class CharSelection : MonoBehaviour
     void Start()
     {
         PlayerData = ScriptableObject.CreateInstance<CharacterSelectionData>();
+        playerReady = new bool[PlayerPanels.Length];
+        playerInput = new PlayerInput[PlayerPanels.Length];
+
         PlayerData.PlayerController = new int[4];
         PlayerData.CharSelected = new int[4];
         PlayerData.PlayerIndex = new int[4];
+
         Arrows = new GameObject[PlayerPanels.Length];
         pressKeyText = new GameObject[PlayerPanels.Length];
+
         playerPortrait = new Image[PlayerPanels.Length];
         selectedMask = new Image[PlayerPanels.Length];
-        playerReady = new bool[PlayerPanels.Length];
-        playerInput = new PlayerInput[PlayerPanels.Length];
+        playerText = new Image[PlayerPanels.Length];
+
+
         readyButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
 
@@ -45,13 +52,15 @@ public class CharSelection : MonoBehaviour
         for (int i = 0; i < PlayerPanels.Length; i++)
         {
             playerPortrait[i] = PlayerPanels[i].GetChild(0).gameObject.GetComponent<Image>();
-            selectedMask[i] = PlayerPanels[i].GetChild(1).gameObject.GetComponent<Image>();            
+            selectedMask[i] = PlayerPanels[i].GetChild(1).gameObject.GetComponent<Image>();
+            playerText[i] = PlayerPanels[i].GetChild(4).gameObject.GetComponent<Image>();
             pressKeyText[i] = PlayerPanels[i].GetChild(2).gameObject;
             Arrows[i] = PlayerPanels[i].GetChild(3).gameObject;
             PlayerData.CharSelected[i] = i;
             playerPortrait[i].sprite = CharSprites[PlayerData.CharSelected[i]];
             playerPortrait[i].gameObject.SetActive(false);
             selectedMask[i].gameObject.SetActive(false);
+            playerText[i].gameObject.SetActive(false);
             playerReady[i] = false;
             playerInput[i] = PlayerPanels[i].GetComponent<PlayerInput>();
         }
@@ -126,6 +135,7 @@ public class CharSelection : MonoBehaviour
 
             pressKeyText[numPlayers].SetActive(false);
             playerPortrait[numPlayers].gameObject.SetActive(true);
+            playerText[numPlayers].gameObject.SetActive(true);
 
 
             numPlayers++;
@@ -190,6 +200,7 @@ public class CharSelection : MonoBehaviour
             playerPortrait[i].gameObject.SetActive(false);
             pressKeyText[i].SetActive(true);
             selectedMask[i].gameObject.SetActive(false);
+            playerText[i].gameObject.SetActive(false);
             numPlayers = 0;
         }
     }
