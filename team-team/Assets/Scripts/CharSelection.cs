@@ -45,9 +45,9 @@ public class CharSelection : MonoBehaviour
         for (int i = 0; i < PlayerPanels.Length; i++)
         {
             playerPortrait[i] = PlayerPanels[i].GetChild(0).gameObject.GetComponent<Image>();
-            selectedMask[i] = PlayerPanels[i].GetChild(1).gameObject.GetComponent<Image>();
-            Arrows[i] = PlayerPanels[i].GetChild(1).gameObject; 
+            selectedMask[i] = PlayerPanels[i].GetChild(1).gameObject.GetComponent<Image>();            
             pressKeyText[i] = PlayerPanels[i].GetChild(2).gameObject;
+            Arrows[i] = PlayerPanels[i].GetChild(3).gameObject;
             PlayerData.CharSelected[i] = i;
             playerPortrait[i].sprite = CharSprites[PlayerData.CharSelected[i]];
             playerPortrait[i].gameObject.SetActive(false);
