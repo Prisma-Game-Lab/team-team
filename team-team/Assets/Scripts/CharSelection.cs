@@ -17,6 +17,7 @@ public class CharSelection : MonoBehaviour
     private GameObject[] Arrows;
     private GameObject[] pressKeyText;
     private Image[] playerPortrait;
+    private Image[] selectedMask;
     private PlayerInput[] playerInput;
     private float currentCooldown = 0.0f;
 
@@ -30,6 +31,7 @@ public class CharSelection : MonoBehaviour
         Arrows = new GameObject[PlayerPanels.Length];
         pressKeyText = new GameObject[PlayerPanels.Length];
         playerPortrait = new Image[PlayerPanels.Length];
+        selectedMask = new Image[PlayerPanels.Length];
         playerReady = new bool[PlayerPanels.Length];
         playerInput = new PlayerInput[PlayerPanels.Length];
         readyButton.gameObject.SetActive(false);
@@ -43,11 +45,13 @@ public class CharSelection : MonoBehaviour
         for (int i = 0; i < PlayerPanels.Length; i++)
         {
             playerPortrait[i] = PlayerPanels[i].GetChild(0).gameObject.GetComponent<Image>();
+            selectedMask[i] = PlayerPanels[i].GetChild(1).gameObject.GetComponent<Image>();
             Arrows[i] = PlayerPanels[i].GetChild(1).gameObject; 
             pressKeyText[i] = PlayerPanels[i].GetChild(2).gameObject;
             PlayerData.CharSelected[i] = i;
             playerPortrait[i].sprite = CharSprites[PlayerData.CharSelected[i]];
             playerPortrait[i].gameObject.SetActive(false);
+            selectedMask[i].gameObject.SetActive(false);
             playerReady[i] = false;
             playerInput[i] = PlayerPanels[i].GetComponent<PlayerInput>();
         }
@@ -166,6 +170,8 @@ public class CharSelection : MonoBehaviour
 
         playerReady[player] = true;
         Arrows[player].SetActive(false);
+        selectedMask[player].gameObject.SetActive(true);
+
         if (CheckIfPlayersReady())
         {
             readyButton.gameObject.SetActive(true);
@@ -210,7 +216,7 @@ public class CharSelection : MonoBehaviour
                 return false;
         }
 
-        if (numPlayers > 1)
+        if (numPlayers >= 1)
             return true;
         else
             return false;
