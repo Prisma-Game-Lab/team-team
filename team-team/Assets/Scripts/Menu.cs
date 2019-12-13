@@ -20,9 +20,14 @@ public class Menu : MonoBehaviour
 
         if (charSelection.CheckIfPlayersReady())
         {
+            Debug.Log("faddfasdfasdf");
             PersistentInfo.Instance.PlayerData = charSelection.PlayerData;
             PersistentInfo.Instance.playersQtd = charSelection.numPlayers;
             SceneManager.LoadScene(availableLevels[selectedLevel]);
+        }
+        else
+        {
+            Debug.Log("false");
         }
     }
 }

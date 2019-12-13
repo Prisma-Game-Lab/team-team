@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -228,7 +228,7 @@ public class CharSelection : MonoBehaviour
                 return false;
         }
 
-        if (numPlayers >= 1)
+        if (numPlayers >= 2)
             return true;
         else
             return false;
