@@ -107,12 +107,12 @@ public class Throw : MonoBehaviour
                     FMODUnity.RuntimeManager.PlayOneShot(throwEventString, transform.position);
                     
                 }
-                else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
+                /*else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)
                 {
                     //joga a poção em si mesmo!
                     GameController.potionCount--;
                     potionScript.HitPlayer(playerEffects);
-                }
+                }*/
             }
             
         }

@@ -57,7 +57,7 @@ public class SuperMago : MonoBehaviour
             int ChosenPotionEffect = Random.Range(0, System.Enum.GetValues(typeof(PotionEffect)).Length);//, potionVariants.Length);
             potionType = (PotionEffect) ChosenPotionEffect;
             player.AddEffect(potionType, 3);
-            GameController.Instance.AddPoints(100, playerIndex);
+            GameController.Instance.AddPoints(25, playerIndex);
         }        
     }
 

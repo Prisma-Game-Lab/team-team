@@ -87,6 +87,11 @@ public class CharSelection : MonoBehaviour
                     else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
                         Confirm(i);
                 }
+                else
+                {
+                    if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action2") && playerReady[i])
+                        ReturnSelection(i);
+                }
             }
         }
         else
@@ -189,6 +194,21 @@ public class CharSelection : MonoBehaviour
         }
     }
 
+    public void ReturnSelection(int player)
+    {
+        currentCooldown = controllerCooldown;
+
+        playerReady[player] = false;
+        Arrows[player].SetActive(true);
+        selectedMask[player].gameObject.SetActive(false);
+
+        if(!CheckIfPlayersReady())
+        {
+            readyButton.gameObject.SetActive(false);
+            returnButton.gameObject.SetActive(false);
+        }
+    }
+
     public void Voltar()
     {
         for(int i = 0; i < PlayerPanels.Length; i++)
@@ -228,7 +248,7 @@ public class CharSelection : MonoBehaviour
                 return false;
         }
 
-        if (numPlayers >= 2)
+        if (numPlayers > 1)
             return true;
         else
             return false;
