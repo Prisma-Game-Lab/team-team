@@ -67,7 +67,7 @@ public class TelaFinal : MonoBehaviour
 
         for(int i = 0; i < playersQtd; i++)
         {
-            characterPanels[i].GetComponentInChildren<Text>().text = "Player " + (orderedIndex[i] + 1).ToString() + ": " + GameController.Instance.teamPoints[orderedIndex[i]].ToString();
+            //characterPanels[i].GetComponentInChildren<Text>().text = "Player " + (orderedIndex[i] + 1).ToString() + ": " + GameController.Instance.teamPoints[orderedIndex[i]].ToString();
             if(i == 0)
             {
                 characterPanels[i].GetComponentInChildren<Image>().sprite = sprites_vitoria[csd.CharSelected[orderedIndex[i]]];
@@ -76,6 +76,12 @@ public class TelaFinal : MonoBehaviour
             {
                 characterPanels[i].GetComponentInChildren<Image>().sprite = sprites_derrota[csd.CharSelected[orderedIndex[i]]];   
             }
+        }
+
+        //depois de setar as imagens e textos, ordena a hierarquia ao contrário pro primeiro lugar aparecer na frente dos demais
+        for(int i = playersQtd - 1; i >= 0; i--)
+        {
+            characterPanels[i].transform.SetAsFirstSibling();
         }
 
 
