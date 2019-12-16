@@ -312,7 +312,6 @@ GameObject:
   - component: {fileID: 1234311884928834126}
   - component: {fileID: 1234311884928834121}
   - component: {fileID: 1234311884928834120}
-  - component: {fileID: 3738159900710219737}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -406,19 +405,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3738159900710219737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234311884928834123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d27cd0928948c48a541c5846470ea4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUi: {fileID: 8491707294187819788}
 --- !u!1 &1234311885728006724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,7 +1520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3738159900710219737}
+      - m_Target: {fileID: 0}
         m_MethodName: Continuar
         m_Mode: 1
         m_Arguments:
@@ -2111,7 +2097,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3738159900710219737}
+      - m_Target: {fileID: 0}
         m_MethodName: MenuPrincipal
         m_Mode: 1
         m_Arguments:
