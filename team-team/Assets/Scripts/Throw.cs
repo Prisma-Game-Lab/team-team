@@ -23,7 +23,7 @@ public class Throw : MonoBehaviour
     public int throwerTeam;
 
     [Tooltip("O nome do evento/som a ser tocado quando a orbe é arremessada")]
-    public string throwEventString = "event:/Efeitos/personagens/arremesso potion";
+    public string throwEventString;
 
     //Arthur, é de fato importante ter essa variável Rigidbody aqui. Mas é importante que o nome dela seja potionRigidbody, ou algo mais descritivo que só rb. Tomei a liberdade de mudar. Ass: Krauss
         //Além disso, é importante que ela seja setada quando o player pega uma poção, senão ele só poderia pegar uma única poção durante o jogo
@@ -45,6 +45,9 @@ public class Throw : MonoBehaviour
     //O: Barra do Super Mago 
     public Image barFill;
 
+    private CharacterSelectionData csd;
+    private string[] throwEventStrings;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +56,13 @@ public class Throw : MonoBehaviour
         playerEffects = GetComponent<PlayerEffects>();
         transform = GetComponent<Transform>();
         trigger = GetComponent<Collider>();
+        csd = PersistentInfo.Instance.PlayerData;
 
         Debug.Assert(playerEffects != null);
+
+        //K: hardcoded - nomes dos eventos do fmod para o 'lançar' de cada bixin
+        // a ordem é fofo, sereno, vaquina, edgy
+        throwEventStrings = new string[4]{"event:/Efeitos/personagens/arremesso orb personagem 1", "event:/Efeitos/personagens/arremesso orb personagem 2", "event:/Efeitos/personagens/arremesso orb personagem 4", "event:/Efeitos/personagens/arremesso orb personagem 3"};
     }
 
     // Update is called once per frame
@@ -104,7 +112,10 @@ public class Throw : MonoBehaviour
                     StartCoroutine(OrbIsOutside(potionRigidbody));
 
                     //emite som de arremesso de poção
-                    FMODUnity.RuntimeManager.PlayOneShot(throwEventString, transform.position);
+                    if(csd != null && throwerTeam < 4 && csd.CharSelected.Length == 4)
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot(throwEventStrings[csd.CharSelected[throwerTeam]]);
+                    }
                     
                 }
                 /*else if(InputManager.GetKeyDown(playerInput.controllerScheme, "Action2") && canThrow)

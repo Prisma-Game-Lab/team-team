@@ -7185,6 +7185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
+      propertyPath: throwEventStrings.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
       propertyPath: barFill
       value: 
       objectReference: {fileID: 1025276830}
