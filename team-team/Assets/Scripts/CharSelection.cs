@@ -22,6 +22,9 @@ public class CharSelection : MonoBehaviour
     private PlayerInput[] playerInput;
     private float currentCooldown = 0.0f;
 
+    public string eventStringUIMove = "event:/Menu/Opção";
+    public string eventStringUISelect = "event:/Menu/Select";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,11 +84,20 @@ public class CharSelection : MonoBehaviour
                 if (!playerReady[i])
                 {
                     if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") > 0)
+                    {
                         ChangeCharUp(i);
+                        FMODUnity.RuntimeManager.PlayOneShot(eventStringUIMove);
+                    }
                     else if (InputManager.GetAxis(playerInput[i].controllerScheme, "VerticalL") < 0)
+                    {
                         ChangeCharDown(i);
+                        FMODUnity.RuntimeManager.PlayOneShot(eventStringUIMove);
+                    }                        
                     else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
+                    {
                         Confirm(i);
+                        FMODUnity.RuntimeManager.PlayOneShot(eventStringUISelect);
+                    }
                 }
                 else
                 {

@@ -202,6 +202,19 @@ public class GameController : MonoBehaviour
         // {
         //     teamPoints[0] += 100;
         // }
+        // if(Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     teamPoints[1] += 100;
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     teamPoints[2] += 100;
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     teamPoints[3] += 100;
+        // }
+
     }
 
 

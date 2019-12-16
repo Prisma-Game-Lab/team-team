@@ -37,7 +37,7 @@ public class SuperMago : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(paramValue == 0.0f)
+        if(paramValue == 0.0f && soundscape != null)
         {
             soundscape.SetParameter("SupermegaMago", paramValue);
         }
@@ -62,7 +62,7 @@ public class SuperMago : MonoBehaviour
             {
                 Debug.Log("Fim suoermago");
                 paramValue = 1.0f; //desliga baixo
-                soundscape.SetParameter("SupermegaMago", 1.0f);
+                if(soundscape != null) soundscape.SetParameter("SupermegaMago", 1.0f);
                 full = false;
                 this.transform.GetChild(8).gameObject.SetActive(false);
                 // this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;

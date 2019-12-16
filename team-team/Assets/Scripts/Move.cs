@@ -65,6 +65,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.timeScale == 0.0f) return;
         bool inv = plEffects.HasEffect(PotionEffect.Invert); //O: Verifica se o jogador foi atingido pelo orbe de confusão
         float adjSpeed = GetAdjustedSpeed(); //K: a velocidade de movimento que deve ser usada, considerando os efeitos que podem afetá-la
         

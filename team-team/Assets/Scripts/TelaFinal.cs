@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class TelaFinal : MonoBehaviour
 {
@@ -14,11 +15,29 @@ public class TelaFinal : MonoBehaviour
     [SerializeField] private List<Sprite> sprites_vitoria;
     [SerializeField] private List<Sprite> sprites_derrota;
     
+
+    private bool AlreadyEnded;
+    private StudioEventEmitter vitoriaEmitter;
+    private StudioEventEmitter ambientacaoEmitter;
+
     int playersQtd;
     // Start is called before the first frame update
     void Start()
     {
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        vitoriaEmitter = null;
+        GameObject go = GameObject.Find("vitoria");
+        if(go != null)
+        {
+            vitoriaEmitter = go.GetComponent<StudioEventEmitter>();
+        }
+        ambientacaoEmitter = null;
+        go = GameObject.Find("ambiencia");
+        if(go != null)
+        {
+            ambientacaoEmitter = go.GetComponent<StudioEventEmitter>();
+        }
+        AlreadyEnded = false;
         this.gameObject.SetActive(false);
     }
 
@@ -42,12 +61,27 @@ public class TelaFinal : MonoBehaviour
             characterPanels[i] =  parent.transform.GetChild(i).gameObject;
             characterPanels[i].SetActive(i < playersQtd); //disabla painel se player não está no jogo
         }
+
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        vitoriaEmitter = null;
+        GameObject go = GameObject.Find("vitoria");
+        if(go != null)
+        {
+            vitoriaEmitter = go.GetComponent<StudioEventEmitter>();
+        }
+        AlreadyEnded = false;
+
     }
     
     //função para ser chamada quando o jogo termina e a telafinal deva ser acionada
     public void ActivateTelaFinal()
     {
+        if(AlreadyEnded) return;
         Initialize();
+        AlreadyEnded = true;
+
+        Time.timeScale = 0.0f;
+
         this.gameObject.SetActive(true);
         CharacterSelectionData csd = PersistentInfo.Instance.PlayerData;
 
@@ -84,19 +118,31 @@ public class TelaFinal : MonoBehaviour
             characterPanels[i].transform.SetAsFirstSibling();
         }
 
-
+        //MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        if(ambientacaoEmitter != null)
+        {
+            ambientacaoEmitter.Stop();
+        }
+        if(vitoriaEmitter != null) 
+        {
+            vitoriaEmitter.Play();
+        }
+        else Debug.Log("vitoria emiiter = null");
 
     }
 
     public void BackToMenu()
     {
-        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //emite som de apertar o botão
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Select");
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Menu");
     }
 
     public void RestartGame()
     {
-        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Select");
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
