@@ -23,7 +23,7 @@ public class CharSelection : MonoBehaviour
     private float currentCooldown = 0.0f;
 
     public string eventStringUIMove = "event:/Menu/Opção";
-    public string eventStringUISelect = "event:/Menu/Select";
+    public string[] eventStringUIChars;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,10 @@ public class CharSelection : MonoBehaviour
         selectedMask = new Image[PlayerPanels.Length];
         playerText = new Image[PlayerPanels.Length];
 
+
+        //K: hardcoded - nomes dos eventos dos sons de cada personagem quando selecionados
+        //ordem: fofo, sereno, vaquinha, edgy
+        eventStringUIChars = new string[]{"event:/Menu/Personagem1", "event:/Menu/Personagem 2", "event:/Menu/Personagem 4", "event:/Menu/Personagem 3"};
 
         readyButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
@@ -96,7 +100,7 @@ public class CharSelection : MonoBehaviour
                     else if (InputManager.GetKeyDown(playerInput[i].controllerScheme, "Action1"))
                     {
                         Confirm(i);
-                        FMODUnity.RuntimeManager.PlayOneShot(eventStringUISelect);
+                        FMODUnity.RuntimeManager.PlayOneShot(eventStringUIChars[PlayerData.CharSelected[i]]);
                     }
                 }
                 else

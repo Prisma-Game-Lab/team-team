@@ -17,6 +17,7 @@ public class SuperMago : MonoBehaviour
 
     private StudioEventEmitter soundscape;
     private float paramValue; //valor do evento
+    private bool playedFullBarSound;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class SuperMago : MonoBehaviour
         soundscape = null;
         GameObject go = GameObject.Find("trilha");
         paramValue = 1.0f;
+        playedFullBarSound = false;
         if(go != null)
         {
             soundscape = go.GetComponent<StudioEventEmitter>();
@@ -40,6 +42,12 @@ public class SuperMago : MonoBehaviour
         if(paramValue == 0.0f && soundscape != null)
         {
             soundscape.SetParameter("SupermegaMago", paramValue);
+        }
+
+        if(!playedFullBarSound && _throw.barFill.fillAmount == 1.0f)
+        {
+            playedFullBarSound = true;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Efeitos/orbs/Barra Cheia");
         }
         
         if (InputManager.GetKeyDown(playerInput.controllerScheme, "Action2"))
@@ -64,6 +72,7 @@ public class SuperMago : MonoBehaviour
                 paramValue = 1.0f; //desliga baixo
                 if(soundscape != null) soundscape.SetParameter("SupermegaMago", 1.0f);
                 full = false;
+                playedFullBarSound = false;
                 this.transform.GetChild(8).gameObject.SetActive(false);
                 // this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;
                 //this.GetComponent<Rigidbody>().useGravity = true;
