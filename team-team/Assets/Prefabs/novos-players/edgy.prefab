@@ -72,5 +72,10 @@ PrefabInstance:
       propertyPath: throwEventString
       value: event:/Efeitos/personagens/arremesso orb personagem 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4856858712374608770, guid: 0e6984534c5a3934c9ffe0413011d901,
+        type: 3}
+      propertyPath: ignoreBufferSize
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6984534c5a3934c9ffe0413011d901, type: 3}

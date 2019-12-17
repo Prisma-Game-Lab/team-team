@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: barFill
       value: 
       objectReference: {fileID: 1025276830}
+    - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: ignoreBufferSize
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 54481360091293813, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: _controllerScheme.mode
@@ -1049,6 +1054,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: throwerTeam
@@ -1059,14 +1069,19 @@ PrefabInstance:
       propertyPath: barFill
       value: 
       objectReference: {fileID: 1234311886292105487}
-    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+    - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: ignoreBufferSize
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 54481360091293813, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: _controllerScheme.index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034894740498344475, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: playerIndex
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1731451114227302070, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
@@ -1078,11 +1093,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3034894740498344475, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
-        type: 3}
-      propertyPath: playerIndex
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
@@ -1207,6 +1217,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: throwerTeam
@@ -1217,14 +1232,19 @@ PrefabInstance:
       propertyPath: barFill
       value: 
       objectReference: {fileID: 1234311886292105486}
-    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+    - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: ignoreBufferSize
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 54481360091293813, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: _controllerScheme.index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034894740498344475, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: playerIndex
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1731451114227302070, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
@@ -1236,11 +1256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3034894740498344475, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
-        type: 3}
-      propertyPath: playerIndex
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
@@ -2604,6 +2619,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 907959268208494977, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: throwerTeam
@@ -2614,15 +2644,10 @@ PrefabInstance:
       propertyPath: barFill
       value: 
       objectReference: {fileID: 2086835898}
-    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+    - target: {fileID: 907959268208494976, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 907959268208494978, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: ignoreBufferSize
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 54481360091293813, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
@@ -2634,20 +2659,15 @@ PrefabInstance:
       propertyPath: _controllerScheme.mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6458390884341771701, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3034894740498344475, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
       propertyPath: playerIndex
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 907959268208494977, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+    - target: {fileID: 6458390884341771701, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
         type: 3}
-      propertyPath: m_UseGravity
-      value: 1
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}

@@ -107,6 +107,8 @@ MonoBehaviour:
   throwSpeed: 15
   throwerTeam: 1
   throwEventString: event:/Efeitos/personagens/arremesso orb personagem 2
+  barFill: {fileID: 0}
+  ignoreBufferSize: 10
 --- !u!114 &2056175996575858363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,16 +322,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: sereno_modelo 1
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 46003e472175deb4194b32621397261d,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 46003e472175deb4194b32621397261d,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ff33adf22f563c840b584166ec34756c, type: 2}
     - target: {fileID: -4216859302048453862, guid: 46003e472175deb4194b32621397261d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,6 +392,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 46003e472175deb4194b32621397261d,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 46003e472175deb4194b32621397261d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ff33adf22f563c840b584166ec34756c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46003e472175deb4194b32621397261d, type: 3}
 --- !u!1 &5822309071263473601 stripped

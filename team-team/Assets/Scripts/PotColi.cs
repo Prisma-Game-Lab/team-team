@@ -207,15 +207,7 @@ public class PotColi : MonoBehaviour
     {
         Debug.Log("Trigger");
 	
-        //K: seria válido testar aqui se a poção foi arremessada? thrown?
-        if (other.gameObject.CompareTag("Target"))
-        {
-            //J: destroi a poção ao colidir com o alvo bonus
-            Destroy(gameObject);
-            GameController.potionCount--;
-        }
-        //interação com o player é tratada aqui pq o player tem uma box no seu entorno que é um trigger   
-        else if(thrown && other.CompareTag("Player"))
+        if(thrown && other.CompareTag("Player"))
         {
 
             //J: atualiza contador de poções, para criar nova poção

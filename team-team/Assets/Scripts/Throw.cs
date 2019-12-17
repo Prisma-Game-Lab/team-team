@@ -45,6 +45,10 @@ public class Throw : MonoBehaviour
     //O: Barra do Super Mago 
     public Image barFill;
 
+    //J: armazena orbes com colisão desligada para serem reativadas depois
+    private Collider[] ignorados = new Collider[10];
+    private int numIgnore = 0;
+
     private CharacterSelectionData csd;
     private string[] throwEventStrings;
 
@@ -59,7 +63,6 @@ public class Throw : MonoBehaviour
         csd = PersistentInfo.Instance.PlayerData;
 
         Debug.Assert(playerEffects != null);
-
         //K: hardcoded - nomes dos eventos do fmod para o 'lançar' de cada bixin
         // a ordem é fofo, sereno, vaquina, edgy
         throwEventStrings = new string[4]{"event:/Efeitos/personagens/arremesso orb personagem 1", "event:/Efeitos/personagens/arremesso orb personagem 2", "event:/Efeitos/personagens/arremesso orb personagem 4", "event:/Efeitos/personagens/arremesso orb personagem 3"};
@@ -124,8 +127,43 @@ public class Throw : MonoBehaviour
                     GameController.potionCount--;
                     potionScript.HitPlayer(playerEffects);
                 }*/
+
+                //J: se longe suficiente da orbe, reativa colisão, para evitar trancar orbes em estado intangivel enquanto não arremessar
+
+                if (numIgnore != 0)
+                {
+                    for(int i=0;i < numIgnore;i++)
+                    {
+
+                        if (Vector3.Distance(ignorados[i].gameObject.GetComponent<Transform>().position, transform.position) >= 1.25)
+                        {
+                            Debug.Log("Removido longe");
+                            ignorados[i].enabled = true;
+                            ignorados[i] = null;
+                            for(int j=i;j<numIgnore;j++)
+                            {
+                                Debug.Log("Ajustando array");
+                                ignorados[j] = ignorados[j + 1];
+                            }
+                            numIgnore--;
+                        }
+                    }
+                    
+                    
+                }
             }
             
+        }
+        else if (numIgnore != 0 && !holding)
+        {
+            //reativa colisão com orbe no chão assim que arremessa o que esta carregando
+            for (int i = 0; i < numIgnore; i++)
+            {
+                Debug.Log("Removido arremesso");
+                ignorados[i].enabled = true;
+                ignorados[i] = null;
+            }
+            numIgnore = 0;
         }
             
     }
@@ -162,7 +200,28 @@ public class Throw : MonoBehaviour
             potionScript = pc;
             potionScript.setThrower(throwerTeam);
         }
+        else if (other.gameObject.CompareTag("Potion") && holding == true && pc != null && !other.GetComponent<PotColi>().getThrown())
+        {
+            //J: ao colidir com orbe no chão enquanto carrega outra orbe, desativa sua colisão
+            if (numIgnore <= 10)
+            {
+                Debug.Log("Novo Ignorado");
+                other.enabled = false;
+                numIgnore++;
+                ignorados[numIgnore-1] = other;
+            }
+        }
     }
+
+    /*private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Potion"))
+        {
+            Debug.Log("Reativando colisão");
+            other.enabled = true;
+        }
+    }*/
+
 
     //O: Função que altera o valor da variável canThrow caso o jogador esteja ou não congelado
     private bool GetCanThrow()
