@@ -10402,6 +10402,11 @@ PrefabInstance:
       propertyPath: _controllerScheme.mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 458738595598602022, guid: ad3b24ba6c6e7734085ea2d9dab01a49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3b24ba6c6e7734085ea2d9dab01a49, type: 3}
 --- !u!1 &537355946 stripped
@@ -20814,6 +20819,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1234311886292105483}
     m_Modifications:
+    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
+        type: 3}
+      propertyPath: m_Name
+      value: TelaFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2921185584052060393, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20923,16 +20938,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
-        type: 3}
-      propertyPath: m_Name
-      value: TelaFinal
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921185584052060392, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2921185583766016855, guid: 6113f2aaea690cd4590e2ed1d8432dbe,
         type: 3}
@@ -26562,7 +26567,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

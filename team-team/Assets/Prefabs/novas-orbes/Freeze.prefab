@@ -28632,7 +28632,7 @@ PrefabInstance:
     - target: {fileID: 6519041219976776600, guid: 06be757fffe97174d98673645e6ac814,
         type: 3}
       propertyPath: potionDuration
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 6519041219976776600, guid: 06be757fffe97174d98673645e6ac814,
         type: 3}

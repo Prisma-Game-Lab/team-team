@@ -209,7 +209,6 @@ MonoBehaviour:
   throwerTeam: 0
   throwEventString: event:/Efeitos/personagens/arremesso orb personagem 1
   barFill: {fileID: 0}
-  ignoreBufferSize: 10
 --- !u!114 &54481360091293813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,11 +681,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 907959268208495005}
     m_Modifications:
-    - target: {fileID: 2969107425158955142, guid: 894946c71f2f5234dbe28a0d55d08280,
-        type: 3}
-      propertyPath: m_Name
-      value: AuraConfused
-      objectReference: {fileID: 0}
     - target: {fileID: 2969107425158955143, guid: 894946c71f2f5234dbe28a0d55d08280,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -742,6 +736,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2969107425158955142, guid: 894946c71f2f5234dbe28a0d55d08280,
+        type: 3}
+      propertyPath: m_Name
+      value: AuraConfused
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 894946c71f2f5234dbe28a0d55d08280, type: 3}
 --- !u!4 &207887207930837877 stripped
@@ -757,11 +756,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 907959268208495005}
     m_Modifications:
-    - target: {fileID: 2934093056274080241, guid: 4ddc0cb66bb3e004eb2121f9610c1807,
-        type: 3}
-      propertyPath: m_Name
-      value: AuraFrost
-      objectReference: {fileID: 0}
     - target: {fileID: 2934093056274080242, guid: 4ddc0cb66bb3e004eb2121f9610c1807,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -816,6 +810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934093056274080241, guid: 4ddc0cb66bb3e004eb2121f9610c1807,
+        type: 3}
+      propertyPath: m_Name
+      value: AuraFrost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ddc0cb66bb3e004eb2121f9610c1807, type: 3}
@@ -907,16 +906,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 907959268208495005}
     m_Modifications:
-    - target: {fileID: 6353570440606584651, guid: 073d4ddfd246deb4e81d2b23ebf5a758,
-        type: 3}
-      propertyPath: m_Name
-      value: AuraSlow
-      objectReference: {fileID: 0}
-    - target: {fileID: 6353570440606584651, guid: 073d4ddfd246deb4e81d2b23ebf5a758,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6353570440606584648, guid: 073d4ddfd246deb4e81d2b23ebf5a758,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -972,6 +961,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6353570440606584651, guid: 073d4ddfd246deb4e81d2b23ebf5a758,
+        type: 3}
+      propertyPath: m_Name
+      value: AuraSlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353570440606584651, guid: 073d4ddfd246deb4e81d2b23ebf5a758,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073d4ddfd246deb4e81d2b23ebf5a758, type: 3}
 --- !u!4 &399517178560046512 stripped
@@ -997,6 +996,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 59151e9344091e34c8d9ef1cbeba4c93,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1581ea0d66110e2498ac89732ee12bab, type: 2}
     - target: {fileID: -4216859302048453862, guid: 59151e9344091e34c8d9ef1cbeba4c93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1067,11 +1071,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 59151e9344091e34c8d9ef1cbeba4c93,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 1581ea0d66110e2498ac89732ee12bab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59151e9344091e34c8d9ef1cbeba4c93, type: 3}
 --- !u!4 &3341577723639625013 stripped
@@ -1099,6 +1098,11 @@ PrefabInstance:
       value: charfofo_modelo
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7a435ab0996bbe2449a9eba5b6dd50f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7187173738456214021, guid: 7a435ab0996bbe2449a9eba5b6dd50f3,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1172,11 +1176,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: -7187173738456214021, guid: 7a435ab0996bbe2449a9eba5b6dd50f3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8392005264802450582, guid: 7a435ab0996bbe2449a9eba5b6dd50f3,
         type: 3}
