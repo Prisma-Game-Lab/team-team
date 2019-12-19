@@ -60,7 +60,7 @@ public class SuperMago : MonoBehaviour
                 Debug.Log("Supermago iniciado");
                 paramValue = 0.0f; //liga baixo
                 
-                this.transform.GetChild(8).gameObject.SetActive(true);
+                this.transform.GetChild(11).gameObject.SetActive(true);
             }                      
         }
         if(full)
@@ -73,7 +73,7 @@ public class SuperMago : MonoBehaviour
                 if(soundscape != null) soundscape.SetParameter("SupermegaMago", 1.0f);
                 full = false;
                 playedFullBarSound = false;
-                this.transform.GetChild(8).gameObject.SetActive(false);
+                this.transform.GetChild(11).gameObject.SetActive(false);
                 // this.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().enabled = true;
                 //this.GetComponent<Rigidbody>().useGravity = true;
             }               
